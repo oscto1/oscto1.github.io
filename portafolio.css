@@ -1,0 +1,164 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #1f2235;
+  font-family: "Montserrat";
+}
+
+.contenido{
+  min-width: 100%;
+}
+
+/* Main Heading Font */
+.m-heading {
+  font-family: "Montserrat";
+  font-weight: 700;
+}
+
+/* Navigation */
+.nav-link {
+  border: 2px solid transparent;
+}
+
+.navbar-nav{
+  justify-content: space-around;
+}
+
+.nav-link:hover {
+  text-decoration: none;
+  border-bottom: 2px solid #f5ba09;
+  transition: 0.5s ease;
+}
+
+/* Main Container height*/
+.main-container {
+  height: 70vh;
+}
+
+/* Aligning items in main row */
+.main_row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Changing Name Font sixe */
+.main_row h1 {
+  font-size: 5rem;
+}
+
+
+.main_row img {
+  width: auto;
+  height: 70vh;
+}
+
+/* About Section */
+.about {
+  background: #313552;
+  border-radius: 0.5rem;
+}
+
+.card {
+  border-bottom: 8px solid #f5ba09;
+  height: auto;
+}
+
+.card-title{
+  font-weight: 600;
+}
+
+.card-text{
+  position: relative ;
+}
+
+/* Social Media Section */
+#social-media {
+  background: #313552;
+}
+
+/* Add color to Social Media Links */
+.media_link {
+  padding: 1rem;
+  max-width: 15rem;
+  margin-left: 1rem;
+  border: 2px solid #f5ba09;
+  border-radius: 0.5rem;
+}
+
+
+@keyframes float {
+  from {
+    transform:translateY(8px) rotate3d(0,0,1,15deg);
+  }
+
+  to {
+     transform:translateY(-8px) rotate3d(0,0,1,15deg);
+  }
+}
+
+#a{
+  animation-duration: 1s;
+  animation-name: float;
+  animation-iteration-count: infinite;
+  animation-timing-function:ease-in-out;
+  animation-direction: alternate;
+  animation-play-state: running;
+}
+
+#pr{
+  min-width: 90%;
+}
+
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: black;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+  background-color: #f1f1f1;
+  color: black;
+}
+
+.Slide1{
+  display: none;
+}
+
+.b_redes{
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 769px) {
+   #pr { display: none; }
+   .main-container { max-height: 45vh;}
+}
+
+@media screen and (max-width: 400px) {
+   #nom{ font-size: 3rem}
+   #con{ font-size: 2rem}
+   .main-container { max-height: 30vh;}
+}

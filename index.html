@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Bootstrap Js -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="portafolio.css" />
+
+    <script src="https://kit.fontawesome.com/996973c893.js"></script>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <title>Oscar Castillejo | Portafolio</title>
+  </head>
+  <body data-new-gr-c-s-check-loaded="14.993.0" data-gr-ext-installed>
+
+    <div class="contenido">
+      <nav class="navbar navbar-expand-sm text-white navbar-dark">
+        <div class="col-7 pt-2 d-flex justify-content-start align-items-center">
+          <img src="./img/remote.svg" style="height: 40px; width:40px;" alt="">
+          <h5 class="d-inline text-white">Portafolio</h5>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="col-5 pt-2 collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav" style="width:100%">
+            <li class="nav-item">
+              <a class="nav-link" href="#yo">Sobre mí</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#proyectos">Proyectos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#redes-sociales">Redes sociales</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="main-container container">
+        <div class="row main_row">
+          <div class="col-sm-4">
+            <h2 class="text-white">Hola, soy</h2>
+            <h1 class="text-warning m-heading" id="nom">Oscar Castillejo</h1>
+            <!-- <h2 class="text-white">Web Developer</h2> -->
+          </div>
+          <div class="col-sm-8">
+            <img
+              src="./img/Saly-10.png"
+              class="img-fluid"
+              id="pr"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Sobre mí -->
+      <div id="yo" class="container col-sm-12 about p-5">
+        <div class="row">
+          <div class="col-sm-6 align-self-center text-center">
+            <img src="./img/Saly-21.svg" class="img-fluid" id="a"/>
+          </div>
+          <div class="col-sm-6 pl-5 pt-5 pb-5 text-white">
+            <h3 class="text-warning" style="font-size: 2rem;">Sobre mí</h3>
+            <p style="font-size:1.3rem;">
+              Soy estudiante de <b class="text-warning">ingeniería de sistemas</b>  y
+              técnico en operación y mantenimiento de
+              bases de datos.
+
+            </p>
+            <br />
+            <p style="font-size:1.3rem;">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis
+              magni <b class="text-warning">adipisci sunt eum</b>, reprehenderit
+              dignissimos quaerat maiores ad. Magni, totam iure. Doloribus ea
+              <b class="text-warning">molestiae deleniti</b> excepturi iure neque,
+              harum illum!
+            </p>
+          
+          </div>
+        </div>
+      </div>
+
+      <!-- Proyectos -->
+      <div id="proyectos" class="container mt-5 pt-5">
+        <h1 class="text-warning mb-3 pb-2">Proyectos</h1>
+        <div class="row">
+          <!-- Renta App Web -->
+          <div class="col-sm-6 mb-5">
+            <div class="card">
+              <div class="slideshow-container">
+                <div class="Slide1">
+                  <img
+                    src="./img/renta/Slide7.jpg"
+                    class="card-img-top"
+                    style="width: 100%;"
+                    alt="..."
+                  />
+                </div>
+
+                <div class="Slide1">
+                  <img
+                    src="./img/renta/Slide8.jpg"
+                    class="card-img-top"
+                    style="width: 100%;"
+                    alt="..."
+                  />
+                </div>
+
+                <div class="Slide1">
+                  <img
+                    src="./img/renta/Slide9.jpg"
+                    class="card-img-top"
+                    style="width: 100%;"
+                    alt="..."
+                  />
+                </div>
+
+                <div class="Slide1">
+                  <img
+                    src="./img/renta/Slide10.jpg"
+                    class="card-img-top"
+                    style="width: 100%;"
+                    alt="..."
+                  />
+                </div>
+
+                <div class="Slide1">
+                  <img
+                    src="./img/renta/Slide11.jpg"
+                    class="card-img-top"
+                    style="width: 100%;"
+                    alt="..."
+                  />
+                </div>
+                <a class="prev" onclick="plusSlides(-1,0)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1,0)">&#10095;</a>
+              </div>
+
+              <div class="card-body">
+                <h5 class="card-title" >Aplicación web | Renta de vehículos eléctricos</h5>
+                <p class="card-text">
+                  Un proyecto que realicé para la universidad en el que use el framework Electron, empleando HTML5, CSS y Jquery para el frontend.
+                  Usé NodeJS y MySQL para realizar la conexión a la Base de datos.
+                </p>
+                <a href="#" class="btn btn-warning" style="position: relative;">Ver en Github</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- ##################### -->
+
+      <!-- Redes Sociales -->
+      <div id="redes-sociales" class="container-fluid">
+        <div class="container text-white py-5">
+          <h4 class="text-warning">Redes sociales</h4>
+          <h1 class="m-heading" id="con">¡Conectemos!</h1>
+          <div class="row pt-5">
+            <a class="b_redes col-sm-3" href="https://www.linkedin.com/in/oscar-castilllejo/" target="_blank">
+              <div class="col-3 media_link btn" style="text-decoration: none;">
+                <div class="row">
+                  <div class="col-6 d-flex justify-content-start">
+                    <h3 class="m-0 pt-2 text-white">LinkedIn</h3>
+                  </div>
+                  <div class="col-6 d-flex justify-content-end align-items-center">
+                    <i class="fab fa-linkedin-in fa-2x text-secondary"></i>
+                  </div>
+                </div>
+              </div>
+            </a>
+
+            <a class="b_redes col-sm-3" href="https://github.com/oscto1" target="_blank">
+              <div class="col-3 media_link btn">
+                <div class="row">
+                  <div class="col-6 d-flex justify-content-start">
+                    <h3 class="m-0 pt-2 text-white">Github</h3>
+                  </div>
+                  <div class="col-6 d-flex justify-content-end align-items-center">
+                    <i class="fab fa-github fa-2x text-secondary"></i>
+                  </div>
+                </div>
+              </div>
+            </a>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer>
+        <div class="container text-muted text-center py-3 mt-5">
+          <h5>
+            Copyright &copy; 2020 |
+            <a class="text-warning text-decoration-none" href="#yo"
+              >Oscar Castillejo</a
+            >
+          </h5>
+        </div>
+      </footer>
+    </div>
+
+
+    <script type="text/javascript" src="portafolio.js"></script>
+  </body>
+</html>

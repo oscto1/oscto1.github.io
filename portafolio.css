@@ -100,6 +100,7 @@ body {
 }
 
 #a{
+  max-width: 70%;
   animation-duration: 1s;
   animation-name: float;
   animation-iteration-count: infinite;
@@ -110,6 +111,7 @@ body {
 
 #pr{
   min-width: 90%;
+
 }
 
 .slideshow-container {
@@ -148,17 +150,28 @@ body {
 }
 
 .b_redes{
-  margin-right: 10px;
-  margin-bottom: 10px;
+  margin-right: 30px;
+  margin-bottom: 20px;
+}
+
+
+#pr{
+content: url("img/Saly-10.png");
 }
 
 @media screen and (max-width: 769px) {
-   #pr { display: none; }
-   .main-container { max-height: 45vh;}
+   #pr {content: url("img/mano.png");
+        display: inline-block;
+        height: 80%;
+        width: 20vw;
+        bottom: 0;
+ }
+   .main-container { max-height: 35vh;}
 }
 
 @media screen and (max-width: 400px) {
    #nom{ font-size: 3rem}
    #con{ font-size: 2rem}
+   #hola{ font-size: 1rem}
    .main-container { max-height: 30vh;}
 }

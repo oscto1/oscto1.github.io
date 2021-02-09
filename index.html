@@ -20,6 +20,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
 
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+
     <title>Oscar Castillejo | Portafolio</title>
   </head>
   <body data-new-gr-c-s-check-loaded="14.993.0" data-gr-ext-installed>
@@ -50,12 +53,12 @@
 
       <div class="main-container container">
         <div class="row main_row">
-          <div class="col-sm-4">
-            <h2 class="text-white">Hola, soy</h2>
+          <div class="col-sm-4" style="width: 60vw">
+            <h2 id="hola" class="text-white">Hola, soy</h2>
             <h1 class="text-warning m-heading" id="nom">Oscar Castillejo</h1>
-            <!-- <h2 class="text-white">Web Developer</h2> -->
+
           </div>
-          <div class="col-sm-8">
+          <div>
             <img
               src="./img/Saly-10.png"
               class="img-fluid"
@@ -68,7 +71,7 @@
       <!-- Sobre mí -->
       <div id="yo" class="container col-sm-12 about p-5">
         <div class="row">
-          <div class="col-sm-6 align-self-center text-center">
+          <div class="col-sm-6 align-self-center text-center" >
             <img src="./img/Saly-21.svg" class="img-fluid" id="a"/>
           </div>
           <div class="col-sm-6 pl-5 pt-5 pb-5 text-white">
@@ -81,13 +84,12 @@
             </p>
             <br />
             <p style="font-size:1.3rem;">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis
-              magni <b class="text-warning">adipisci sunt eum</b>, reprehenderit
-              dignissimos quaerat maiores ad. Magni, totam iure. Doloribus ea
-              <b class="text-warning">molestiae deleniti</b> excepturi iure neque,
-              harum illum!
+              He realizado algunos cursos de HTML5, CSS, Javascript, MySQL y siempre estoy interesado
+              en aprender más. <br/>
+              Estoy en busca de <b class="text-warning">aquirir experiencia laboral</b> en el área de desarrollo y tengo
+              ganas de aportar mi conocimiento en el área laboral.
             </p>
-          
+
           </div>
         </div>
       </div>
@@ -154,7 +156,7 @@
                   Un proyecto que realicé para la universidad en el que use el framework Electron, empleando HTML5, CSS y Jquery para el frontend.
                   Usé NodeJS y MySQL para realizar la conexión a la Base de datos.
                 </p>
-                <a href="#" class="btn btn-warning" style="position: relative;">Ver en Github</a>
+                <a href="https://github.com/oscto1/renta-electricos-electronjs" target="_blank" class="btn btn-warning" style="position: relative;">Ver en Github</a>
               </div>
             </div>
           </div>
@@ -167,11 +169,11 @@
           <h4 class="text-warning">Redes sociales</h4>
           <h1 class="m-heading" id="con">¡Conectemos!</h1>
           <div class="row pt-5">
-            <a class="b_redes col-sm-3" href="https://www.linkedin.com/in/oscar-castilllejo/" target="_blank">
-              <div class="col-3 media_link btn" style="text-decoration: none;">
+            <a class="b_redes" href="https://www.linkedin.com/in/oscar-castilllejo/" target="_blank">
+              <div class="col-6 media_link btn" style="margin-left: 0; width: 300px;">
                 <div class="row">
                   <div class="col-6 d-flex justify-content-start">
-                    <h3 class="m-0 pt-2 text-white">LinkedIn</h3>
+                    <h3 class="m-0 text-white">LinkedIn</h3>
                   </div>
                   <div class="col-6 d-flex justify-content-end align-items-center">
                     <i class="fab fa-linkedin-in fa-2x text-secondary"></i>
@@ -180,11 +182,11 @@
               </div>
             </a>
 
-            <a class="b_redes col-sm-3" href="https://github.com/oscto1" target="_blank">
-              <div class="col-3 media_link btn">
+            <a class="b_redes" href="https://github.com/oscto1" target="_blank">
+              <div class="col-6 media_link btn" style="margin-left: 0px;  width: 300px;">
                 <div class="row">
                   <div class="col-6 d-flex justify-content-start">
-                    <h3 class="m-0 pt-2 text-white">Github</h3>
+                    <h3 class="m-0 text-white">Github</h3>
                   </div>
                   <div class="col-6 d-flex justify-content-end align-items-center">
                     <i class="fab fa-github fa-2x text-secondary"></i>
@@ -197,15 +199,19 @@
         </div>
       </div>
 
+
+
       <!-- Footer -->
       <footer>
-        <div class="container text-muted text-center py-3 mt-5">
+        <div class="container text-muted text-center py-3 mt-5" style="width: 100vw;">
           <h5>
+            <h6 id="hola" class="text-white">(+57) 322 7056984 | oscarcastillejo2@gmail.com</h6>
             Copyright &copy; 2020 |
             <a class="text-warning text-decoration-none" href="#yo"
               >Oscar Castillejo</a
             >
           </h5>
+
         </div>
       </footer>
     </div>

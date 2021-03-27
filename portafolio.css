@@ -6,6 +6,9 @@ body {
   background: #1f2235;
   font-family: "Montserrat";
 }
+#cardarc{
+  color: white;
+}
 
 .contenido{
   min-width: 100%;

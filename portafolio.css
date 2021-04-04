@@ -102,21 +102,6 @@ body {
   }
 }
 
-@keyframes waving {
-  0% {
-    transform: rotate(0deg);
-    transform-origin: 32% 70%;
-  }
-  50% {
-    transform: rotate(5deg);
-    transform-origin: 32% 66%;
-  }
-  100% {
-    transform: rotate(0deg);
-    transform-origin: 32% 66%;
-  }
-}
-
 #a{
   max-width: 70%;
   animation-duration: 1.5s;
@@ -129,9 +114,6 @@ body {
 
 #pr{
   min-width: 90%;
-  animation-duration: 1s;
-  animation-name: waving;
-  animation-iteration-count: infinite;
 }
 
 .slideshow-container {

@@ -39,17 +39,11 @@ if (window.location.hash == "#eng") {
 $('#englishbtn').click(function (){
   location.hash = "eng";
   location.reload();
-  if(window.innerWidth < 992){
-    imagen.classList.remove('col-md-8');
-  }
 });
 
 $('#espanolbtn').click(function (){
   location.hash = "esp";
   location.reload();
-  if(window.innerWidth < 992){
-    imagen.classList.remove('col-md-8');
-  }
 });
 
 
@@ -82,12 +76,10 @@ function showSlides(n, no) {
 }
 
 $(document).ready(function() {
-
+  if(window.innerWidth < 992){
+    imagen.classList.remove('col-md-8');
+  }
   $(window).on('load', function(){
-    if(window.innerWidth < 992){
-      imagen.classList.remove('col-md-8');
-    }
-    console.log(textc.offsetHeight);
     if(window.innerWidth < 992){
       imagen.classList.remove('col-md-8');
     }

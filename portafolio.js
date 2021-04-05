@@ -82,8 +82,11 @@ function showSlides(n, no) {
 }
 
 $(document).ready(function() {
-  $(window).on('load', function(){
 
+  $(window).on('load', function(){
+    if(window.innerWidth < 992){
+      imagen.classList.remove('col-md-8');
+    }
     console.log(textc.offsetHeight);
     if(window.innerWidth < 992){
       imagen.classList.remove('col-md-8');

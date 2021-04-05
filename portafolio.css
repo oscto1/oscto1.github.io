@@ -1,4 +1,4 @@
-/*@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap');*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap');
 
 html {
   scroll-behavior: smooth;
@@ -37,7 +37,18 @@ body {
   transition: 0.5s ease;
 }
 
-/* Main Container height*/
+.btn-circle.btn-lg{
+  float: left;
+  margin-top: 30px;
+  margin-right: 20px;
+  width: 40px;
+  height: 40px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
+  cursor:pointer;
+}
 
 
 /* Aligning items in main row */
@@ -79,10 +90,10 @@ body {
 
 .card-text{
   position: relative;
-  margin-bottom: 50px;
 }
 .card-body{
   position: relative;
+  padding-bottom: 20%;
 }
 
 .card-body a{
@@ -201,6 +212,7 @@ min-width: 100%;
 
   .main-container{
     height: 310px;
+
   }
   .main_row{
     height: 100%;

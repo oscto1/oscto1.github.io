@@ -9,9 +9,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
     <!-- Bootstrap Js -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script id="pruebilla" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
 
     <link rel="stylesheet" href="portafolio.css" />
 
@@ -28,6 +29,7 @@
   <body data-new-gr-c-s-check-loaded="14.993.0" data-gr-ext-installed>
 
     <div class="contenido">
+
       <nav class="navbar navbar-expand-sm text-white navbar-dark">
         <div class="col-5 pt-2 d-flex justify-content-start align-items-center">
           <img src="./img/remote.svg" style="height: 40px; width:40px;" alt="">
@@ -39,24 +41,29 @@
         <div class="col-7 pt-2 collapse navbar-collapse" id="collapsibleNavbar">
           <ul class="navbar-nav" style="width:100%">
             <li class="nav-item">
-              <a class="nav-link" href="#yo">Sobre mí</a>
+              <a class="nav-link aboutme" href="#yo">Sobre mí</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#proyectos">Proyectos</a>
+              <a class="nav-link projects" href="#proyectos">Proyectos</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#redes-sociales">Redes sociales</a>
+            <li class="nav-item ">
+              <a class="nav-link social" href="#redes-sociales">Redes sociales</a>
             </li>
           </ul>
         </div>
       </nav>
 
-      <div class="main-container container">
+
+
+
+
+      <div class="main-container container" style="margin-right: 10px;">
         <div class="row main_row">
           <div class="col-md-4" style="width: 60vw">
             <h2 id="hola" class="text-white">Hola, soy</h2>
             <h1 class="text-warning m-heading" id="nom">Oscar Castillejo</h1>
-
+            <button type="button" class="btn btn-warning btn-circle btn-lg" style="background-image: url('img/spain.png'); background-size: cover;" id="espanolbtn"></button>
+            <button type="button" class="btn btn-warning btn-circle btn-lg" style="background-image: url('img/united-kingdom.png'); background-size: cover;" id="englishbtn"></button>
           </div>
           <div class="col-md-8" id="imagenPrinc">
             <img
@@ -75,16 +82,16 @@
             <img src="./img/Saly-21.svg" class="img-fluid" id="a"/>
           </div>
           <div class="col-sm-8 pl-5 pt-5 pb-5 text-white">
-            <h3 class="text-warning" style="font-size: 2rem;">Sobre mí</h3>
-            <p>
+            <h3 class="text-warning aboutme" style="font-size: 2rem;">Sobre mí</h3>
+            <p id="text1">
               Soy estudiante de <b class="text-warning">ingeniería de sistemas</b>  y
               técnico en operación y mantenimiento de
               bases de datos.
 
             </p>
             <br />
-            <p>
-              He realizado algunos cursos de HTML5, CSS, Javascript, MySQL y siempre estoy interesado
+            <p id="text2">
+              He realizado algunos cursos de HTML5, CSS, Javascript, MySQL, Unity y siempre estoy interesado
               en aprender más. <br/>
               Estoy en busca de <b class="text-warning">aquirir experiencia laboral</b> en el área de desarrollo. Estoy dispuesto a
               trabajar en equipo y aportar lo necesario
@@ -97,7 +104,7 @@
 
       <!-- Proyectos -->
       <div id="proyectos" class="container mt-5 pt-5">
-        <h1 class="text-warning mb-3 pb-2">Proyectos</h1>
+        <h1 class="text-warning mb-3 pb-2 projects">Proyectos</h1>
         <div class="row">
           <!-- Renta App Web -->
           <div class="col-sm-6 mb-5">
@@ -111,6 +118,7 @@
 
                   />
                 </div>
+
 
                 <div class="Slide1 slideconta">
                   <img
@@ -148,13 +156,13 @@
               </div>
 
               <div class="card-body" id="sampletext">
-                <h5 class="card-title" >Aplicación web | Renta de vehículos eléctricos</h5>
-                <p class="card-text">
+                <h5 class="card-title project-1-title" >Aplicación web | Renta de vehículos eléctricos</h5>
+                <p class="card-text project-1-text">
                   Un proyecto que realicé para la universidad en el que use el framework Electron, empleando HTML5, CSS y Jquery para el frontend.
                   Usé NodeJS y MySQL para realizar la conexión a la Base de datos.
                 </p>
 
-                  <a href="https://github.com/oscto1/renta-electricos-electronjs" target="_blank" class="btn btn-warning  pull-right">Ver en Github</a>
+                  <a href="https://github.com/oscto1/renta-electricos-electronjs" target="_blank" class="btn btn-warning  pull-right project-1-btn">Ver en Github</a>
 
               </div>
             </div>
@@ -208,12 +216,12 @@
               </div>
 
               <div class="card-body" >
-                <h5 class="card-title" >Juego Unity | Arcade</h5>
-                <p class="card-text">
-                  Un juego web desarrollado en Unity. C#, que contiene la simplicidad de algunos juegos clásicos, Pong y Space Invaders por el momento.
+                <h5 class="card-title project-2-title" >Juego Unity | Arcade</h5>
+                <p class="card-text project-2-text">
+                  Un juego web desarrollado en Unity. C#, que contiene la simplicidad de algunos juegos clásicos como Pong y Space Invaders. Planeo agregar más en el futuro.
                 </p>
 
-                  <a href="Arcade/arcade.html" target="_blank" class="btn btn-warning">Probar ahora</a>
+                  <a href="Arcade/arcade.html" target="_blank" class="btn btn-warning project-2-btn">Probar ahora</a>
 
 
               </div>
@@ -225,7 +233,7 @@
       <!-- Redes Sociales -->
       <div id="redes-sociales" class="container-fluid">
         <div class="container text-white py-5">
-          <h4 class="text-warning">Redes sociales</h4>
+          <h4 class="text-warning social">Redes sociales</h4>
           <h1 class="m-heading" id="con">¡Conectemos!</h1>
           <div class="row pt-5">
             <a class="b_redes" href="https://www.linkedin.com/in/oscar-castilllejo/" target="_blank">
@@ -275,8 +283,6 @@
       </footer>
     </div>
 
-
-    <script type="text/javascript" src="portafolio.js"></script>
-
   </body>
+<script src="portafolio.js"></script>
 </html>

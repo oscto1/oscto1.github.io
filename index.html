@@ -18,7 +18,7 @@
     <script src="https://kit.fontawesome.com/996973c893.js"></script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <!--<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">-->
 
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
@@ -29,14 +29,14 @@
 
     <div class="contenido">
       <nav class="navbar navbar-expand-sm text-white navbar-dark">
-        <div class="col-7 pt-2 d-flex justify-content-start align-items-center">
+        <div class="col-5 pt-2 d-flex justify-content-start align-items-center">
           <img src="./img/remote.svg" style="height: 40px; width:40px;" alt="">
           <h5 class="d-inline text-white">Portafolio</h5>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="col-5 pt-2 collapse navbar-collapse" id="collapsibleNavbar">
+        <div class="col-7 pt-2 collapse navbar-collapse" id="collapsibleNavbar">
           <ul class="navbar-nav" style="width:100%">
             <li class="nav-item">
               <a class="nav-link" href="#yo">Sobre mí</a>
@@ -53,12 +53,12 @@
 
       <div class="main-container container">
         <div class="row main_row">
-          <div class="col-sm-4" style="width: 60vw">
+          <div class="col-md-4" style="width: 60vw">
             <h2 id="hola" class="text-white">Hola, soy</h2>
             <h1 class="text-warning m-heading" id="nom">Oscar Castillejo</h1>
 
           </div>
-          <div>
+          <div class="col-md-8" id="imagenPrinc">
             <img
               src="./img/Saly-10.png"
               class="img-fluid"
@@ -71,19 +71,19 @@
       <!-- Sobre mí -->
       <div id="yo" class="container col-sm-12 about p-5">
         <div class="row">
-          <div class="col-sm-6 align-self-center text-center" >
+          <div class="col-sm-4 align-self-center text-center" >
             <img src="./img/Saly-21.svg" class="img-fluid" id="a"/>
           </div>
-          <div class="col-sm-6 pl-5 pt-5 pb-5 text-white">
+          <div class="col-sm-8 pl-5 pt-5 pb-5 text-white">
             <h3 class="text-warning" style="font-size: 2rem;">Sobre mí</h3>
-            <p style="font-size:1.3rem;">
+            <p>
               Soy estudiante de <b class="text-warning">ingeniería de sistemas</b>  y
               técnico en operación y mantenimiento de
               bases de datos.
 
             </p>
             <br />
-            <p style="font-size:1.3rem;">
+            <p>
               He realizado algunos cursos de HTML5, CSS, Javascript, MySQL y siempre estoy interesado
               en aprender más. <br/>
               Estoy en busca de <b class="text-warning">aquirir experiencia laboral</b> en el área de desarrollo. Estoy dispuesto a
@@ -102,48 +102,44 @@
           <!-- Renta App Web -->
           <div class="col-sm-6 mb-5">
             <div class="card">
-              <div class="slideshow-container">
-                <div class="Slide1">
+              <div class="slideshow-container" id="sampleimg">
+                <div class="Slide1 slideconta" >
                   <img
                     src="./img/renta/Slide9.jpg"
                     class="card-img-top"
-                    style="width: 100%;"
                     alt="..."
+
                   />
                 </div>
 
-                <div class="Slide1">
+                <div class="Slide1 slideconta">
                   <img
                     src="./img/renta/Slide8.jpg"
                     class="card-img-top"
-                    style="width: 100%;"
                     alt="..."
                   />
                 </div>
 
-                <div class="Slide1">
+                <div class="Slide1 slideconta">
                   <img
                     src="./img/renta/Slide7.jpg"
                     class="card-img-top"
-                    style="width: 100%;"
                     alt="..."
                   />
                 </div>
 
-                <div class="Slide1">
+                <div class="Slide1 slideconta">
                   <img
                     src="./img/renta/Slide10.jpg"
                     class="card-img-top"
-                    style="width: 100%;"
                     alt="..."
                   />
                 </div>
 
-                <div class="Slide1">
+                <div class="Slide1 slideconta">
                   <img
                     src="./img/renta/Slide11.jpg"
                     class="card-img-top"
-                    style="width: 100%;"
                     alt="..."
                   />
                 </div>
@@ -151,13 +147,15 @@
                 <a class="next" onclick="plusSlides(1,0)">&#10095;</a>
               </div>
 
-              <div class="card-body">
+              <div class="card-body" id="sampletext">
                 <h5 class="card-title" >Aplicación web | Renta de vehículos eléctricos</h5>
                 <p class="card-text">
                   Un proyecto que realicé para la universidad en el que use el framework Electron, empleando HTML5, CSS y Jquery para el frontend.
                   Usé NodeJS y MySQL para realizar la conexión a la Base de datos.
                 </p>
-                <a href="https://github.com/oscto1/renta-electricos-electronjs" target="_blank" class="btn btn-warning" style="position: relative;">Ver en Github</a>
+
+                  <a href="https://github.com/oscto1/renta-electricos-electronjs" target="_blank" class="btn btn-warning  pull-right">Ver en Github</a>
+
               </div>
             </div>
           </div>
@@ -166,47 +164,42 @@
           <div class="col-sm-6 mb-5">
             <div class="card">
               <div class="slideshow-container">
-                <div class="Slide2">
+                <div class="Slide2 slideconta">
                   <img
                     src="./img/arcade/arcade1.png"
                     class="card-img-top"
-                    style="width: 100%;"
                     alt="..."
                   />
                 </div>
 
-                <div class="Slide2">
+                <div class="Slide2 slideconta">
                   <img
                     src="./img/arcade/arcade2.jpg"
                     class="card-img-top"
-                    style="width: 100%;"
                     alt="..."
                   />
                 </div>
 
-                <div class="Slide2">
+                <div class="Slide2 slideconta">
                   <img
                     src="./img/arcade/arcade4.jpg"
                     class="card-img-top"
-                    style="width: 100%;"
                     alt="..."
                   />
                 </div>
 
-                <div class="Slide2">
+                <div class="Slide2 slideconta">
                   <img
                     src="./img/arcade/arcade5.jpg"
                     class="card-img-top"
-                    style="width: 100%;"
                     alt="..."
                   />
                 </div>
 
-                <div class="Slide2">
+                <div class="Slide2 slideconta">
                   <img
                     src="./img/arcade/arcade6.jpg"
                     class="card-img-top"
-                    style="width: 100%;"
                     alt="..."
                   />
                 </div>
@@ -214,12 +207,15 @@
                 <a id="cardarc" class="next" onclick="plusSlides(1,1)">&#10095;</a>
               </div>
 
-              <div class="card-body">
+              <div class="card-body" >
                 <h5 class="card-title" >Juego Unity | Arcade</h5>
                 <p class="card-text">
                   Un juego web desarrollado en Unity. C#, que contiene la simplicidad de algunos juegos clásicos, Pong y Space Invaders por el momento.
                 </p>
-                <a href="Arcade/arcade.html" target="_blank" class="btn btn-warning" style="position: relative;">Probar ahora</a>
+
+                  <a href="Arcade/arcade.html" target="_blank" class="btn btn-warning">Probar ahora</a>
+
+
               </div>
             </div>
           </div>
@@ -269,7 +265,7 @@
         <div class="container text-muted text-center py-3 mt-5" style="width: 100vw;">
           <h5>
             <h6 id="hola" class="text-white">(+57) 322 7056984 | oscarcastillejo2@gmail.com</h6>
-            Copyright &copy; 2020 |
+            Copyright &copy; 2021 |
             <a class="text-warning text-decoration-none" href="#yo"
               >Oscar Castillejo</a
             >
@@ -281,5 +277,6 @@
 
 
     <script type="text/javascript" src="portafolio.js"></script>
+
   </body>
 </html>

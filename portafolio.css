@@ -1,3 +1,5 @@
+/*@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap');*/
+
 html {
   scroll-behavior: smooth;
 }
@@ -36,9 +38,7 @@ body {
 }
 
 /* Main Container height*/
-.main-container {
-  height: 70vh;
-}
+
 
 /* Aligning items in main row */
 .main_row {
@@ -49,12 +49,12 @@ body {
 
 /* Changing Name Font sixe */
 .main_row h1 {
-  font-size: 5rem;
+  font-size: 6.3rem;
 }
 
 
 .main_row img {
-  width: auto;
+  width: 100%;
   height: 70vh;
 }
 
@@ -66,15 +66,28 @@ body {
 
 .card {
   border-bottom: 8px solid #f5ba09;
-  height: auto;
+}
+
+.card-img-top{
+  height: 100%;
 }
 
 .card-title{
   font-weight: 600;
+  position: relative;
 }
 
 .card-text{
-  position: relative ;
+  position: relative;
+  margin-bottom: 50px;
+}
+.card-body{
+  position: relative;
+}
+
+.card-body a{
+  position: absolute;
+  bottom: 20px;
 }
 
 /* Social Media Section */
@@ -120,7 +133,7 @@ body {
   max-width: 1000px;
   position: relative;
   margin: auto;
-}
+  }
 
 .prev, .next {
   cursor: pointer;
@@ -137,6 +150,9 @@ body {
   user-select: none;
 }
 
+.container p{
+  font-size: 1.3rem;
+}
 .next {
   right: 0;
   border-radius: 3px 0 0 3px;
@@ -147,9 +163,7 @@ body {
   color: black;
 }
 
-.Slide1{
-  display: none;
-}
+
 
 .b_redes{
   margin-right: 30px;
@@ -159,21 +173,66 @@ body {
 
 #pr{
 content: url("img/Saly-10.png");
+height: 100%;
+min-width: 100%;
 }
 
-@media screen and (max-width: 769px) {
+@media screen and (max-width: 768px) {
    #pr {content: url("img/mano.png");
-        display: inline-block;
-        height: 80%;
-        width: 20vw;
-        bottom: 0;
- }
-   .main-container { max-height: 35vh;}
-}
+        height: 100%;
+        min-width: 100%;
+        animation-duration: 1.2s;
+        animation-name: saludo;
+        animation-iteration-count: infinite;
+        }
+  body p{
+    font-size: 1.15rem;
+  }
 
-@media screen and (max-width: 400px) {
-   #nom{ font-size: 3rem}
-   #con{ font-size: 2rem}
-   #hola{ font-size: 1rem}
-   .main-container { max-height: 30vh;}
-}
+  .container p{
+    font-size: 1.15rem;
+  }
+  .main_row h1 {
+      font-size: 3rem;
+  }
+  .main_row h2 {
+      font-size: 1.4rem;
+  }
+
+  .main-container{
+    height: 310px;
+  }
+  .main_row{
+    height: 100%;
+  }
+  #redes-sociales h1{
+    font-size: 2rem;
+  }
+
+ }
+
+ @media screen and (max-width: 992px){
+   #pr {content: url("img/mano.png");
+        /*display: inline-block;*/
+        height: 100%;
+        width: 20vw;
+        animation-duration: 1.2s;
+        animation-name: saludo;
+        animation-iteration-count: infinite;
+        }
+ }
+
+ @keyframes saludo {
+   0%{
+     transform: rotate(0deg);
+     transform-origin: 35% 100%;
+   }
+   50%{
+     transform: rotate(5deg);
+     transform-origin: 35% 100%;
+   }
+   100%{
+     transform: rotate(0deg);
+     transform-origin: 35% 100%;
+   }
+ }

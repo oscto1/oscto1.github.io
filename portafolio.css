@@ -179,8 +179,12 @@ body {
 .b_redes{
   margin-right: 30px;
   margin-bottom: 20px;
-}
 
+}
+.b_redess{
+    width: 300px;
+
+}
 
 #pr{
 content: url("img/Saly-10.png");
@@ -196,42 +200,71 @@ min-width: 100%;
         animation-name: saludo;
         animation-iteration-count: infinite;
         }
-  body p{
-    font-size: 1.15rem;
-  }
+    body p{
+      font-size: 1.15rem;
+    }
 
-  .container p{
-    font-size: 1.15rem;
-  }
-  .main_row h1 {
-      font-size: 3rem;
-  }
-  .main_row h2 {
-      font-size: 1.4rem;
-  }
+    .container p{
+      font-size: 1.15rem;
+    }
 
-  .main-container{
-    height: 310px;
+    .main_row h2 {
+        font-size: 1.4rem;
+    }
 
-  }
-  .main_row{
-    height: 100%;
-  }
-  #redes-sociales h1{
-    font-size: 2rem;
-  }
+    .main-container{
+      height: 310px;
 
+    }
+    .main_row{
+      height: 100%;
+    }
+
+    .redess{
+      text-align: center;
+      justify-content: center;
+    }
+
+    #redess a {
+      font-size: 0.5rem;
+    }
+
+    #redes-sociales h1{
+      font-size: 2rem;
+    }
+
+    .b_redes{
+      margin-right: 0;
+    }
+
+
+
+ }
+
+
+.contNombre{
+   width: 40vw;
  }
 
  @media screen and (max-width: 992px){
    #pr {content: url("img/mano.png");
-        /*display: inline-block;*/
+        display: inline-block;
         height: 100%;
         width: 20vw;
         animation-duration: 1.2s;
         animation-name: saludo;
         animation-iteration-count: infinite;
         }
+   .main_row h1 {
+        font-size: 3rem;
+     }
+ }
+
+
+ @media screen and (max-width: 674px){
+    .contNombre{
+      width: 60vw;
+    }
  }
 
  @keyframes saludo {

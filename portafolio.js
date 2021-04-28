@@ -106,4 +106,5 @@ $(window).on('load', function(){
 function showPage() {
   $('#loader').hide();
   $('#contenido').show();
+  $('#contenido').addClass("animate-bottom");
 }

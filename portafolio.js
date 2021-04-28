@@ -39,11 +39,15 @@ if (window.location.hash == "#eng") {
 $('#englishbtn').click(function (){
   location.hash = "eng";
   location.reload();
+  $('#contenido').hide();
+  $('#loader').show();
 });
 
 $('#espanolbtn').click(function (){
   location.hash = "esp";
   location.reload();
+  $('#contenido').hide();
+  $('#loader').show();
 });
 
 
@@ -80,13 +84,13 @@ $(document).ready(function() {
   if(window.innerWidth < 992){
     imagen.classList.remove('col-md-8');
   }
-
+  $('#contenido').hide();
+  $('#loader').show();
 
 });
 
 $(window).on('load', function(){
-  $('#contenido').hide();
-  $('#loader').show();
+
   showPage();
 
   if(window.innerWidth < 992){

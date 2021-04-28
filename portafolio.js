@@ -81,11 +81,12 @@ $(document).ready(function() {
     imagen.classList.remove('col-md-8');
   }
 
-  $('#contenido').hide();
-  $('#loader').show();
+
 });
 
 $(window).on('load', function(){
+  $('#contenido').hide();
+  $('#loader').show();
   showPage();
 
   if(window.innerWidth < 992){

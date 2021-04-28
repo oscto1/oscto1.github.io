@@ -6,7 +6,7 @@ var language = {
     social: "Social Network",
     hi: "Hi, I am",
     me1: "I'm a <b class= 'text-warning'>system engeenering</b> student.",
-    me2: "I have taken some courses about HTML5, CSS, Javascript, MySQL, Game Development with Unity. I'm looking for ways to acquire experience while I learn more about Web Development, Game Development, and other technologies and topics. I'm willing and open to teamwork and create connections.",
+    me2: "I have taken some courses about HTML5, CSS, Javascript, MySQL, Game Development with Unity. I'm going to give what is necessary regarding the projects I am enrolled, while I learn more about Web Development, Game Development, and other technologies and topics. I'm willing and open to teamwork and create connections.",
     project1title: "Web App | Electric Cars Rental",
     project1text: "A project I made in college in which I used Electron JS framework, with HTML5, CSS y Jquery for the frontend. I employed NodeJS and MySQL for the database connection.",
     project1btn: "See on Github",
@@ -76,20 +76,34 @@ function showSlides(n, no) {
 }
 
 $(document).ready(function() {
+
   if(window.innerWidth < 992){
     imagen.classList.remove('col-md-8');
   }
-  $(window).on('load', function(){
-    if(window.innerWidth < 992){
-      imagen.classList.remove('col-md-8');
-    }
 
-    for(var i=0; i < cardssize.length; i++) {
-      cardssize[i].style.height = cards.offsetHeight+"px";
-    }
-
-    for(var i=0; i < textsize.length; i++) {
-      textsize[i].style.height = (textc.offsetHeight)+"px";
-    }
-  });
+  $('#contenido').hide();
+  $('#loader').show();
 });
+
+$(window).on('load', function(){
+  showPage();
+
+  if(window.innerWidth < 992){
+    imagen.classList.remove('col-md-8');
+  }
+
+  for(var i=0; i < cardssize.length; i++) {
+    cardssize[i].style.height = cards.offsetHeight+"px";
+  }
+
+  for(var i=0; i < textsize.length; i++) {
+    textsize[i].style.height = (textc.offsetHeight)+"px";
+  }
+
+});
+
+
+function showPage() {
+  $('#loader').hide();
+  $('#contenido').show();
+}

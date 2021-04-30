@@ -39,15 +39,11 @@ if (window.location.hash == "#eng") {
 $('#englishbtn').click(function (){
   location.hash = "eng";
   location.reload();
-  $('#contenido').hide();
-  $('#loader').show();
 });
 
 $('#espanolbtn').click(function (){
   location.hash = "esp";
   location.reload();
-  $('#contenido').hide();
-  $('#loader').show();
 });
 
 
@@ -81,6 +77,8 @@ function showSlides(n, no) {
 
 $(document).ready(function() {
 
+
+
   if(window.innerWidth < 992){
     imagen.classList.remove('col-md-8');
   }
@@ -112,4 +110,6 @@ function showPage() {
   $('#loader').hide();
   $('#contenido').show();
   $('#contenido').addClass("animate-bottom");
+  var position = $('#navvbar').position();
+  $('html,body').animate({ scrollTop: position.top}, 500);
 }

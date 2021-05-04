@@ -9,6 +9,24 @@ body {
   font-family: "Montserrat";
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #1f2235;
+
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #f5ba09;
+  border-radius: 15px;
+}
+
 
 #loader {
   position: fixed;
@@ -235,13 +253,13 @@ body {
 }
 
 #pr{
-content: url("img/Saly-10.png");
+/* content: url("img/Saly-10.webp"); */
 height: 100%;
 min-width: 100%;
 }
 
 @media screen and (max-width: 768px) {
-   #pr {content: url("img/mano.png");
+   #pr {content: url("img/mano.webp");
         height: 100%;
         min-width: 100%;
         animation-duration: 1.2s;

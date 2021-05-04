@@ -313,7 +313,7 @@ min-width: 100%;
  }
 
  @media screen and (max-width: 992px){
-   #pr {content: url("img/mano.png");
+   #pr {content: url("img/mano.webp");
         display: inline-block;
         height: 100%;
         width: 20vw;

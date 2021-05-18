@@ -13,6 +13,8 @@ var language = {
     project2title: "Unity Game | Arcade",
     project2text: "A browser videogame that I am developing in Unity, C#. You can find the simplicity of retro games such as Pong or Space Invaders. I have plans to add more games.",
     project2btn: "Try Now",
+    project3title: "Messaging app | ReactJS",
+    project3text: "A messaging app based on Whatsapp Web. It is built in ReactJS and firebase. You can log in with Google, create rooms, and send or receive text messages from other accounts. I’m still working to improve it.",
     con: "Lets connect!"
   }
 }
@@ -32,6 +34,10 @@ if (window.location.hash == "#eng") {
     $(".project-2-text").text(language.eng.project2text);
     $(".project-1-btn").text(language.eng.project1btn);
     $(".project-2-btn").text(language.eng.project2btn);
+    $(".project-3-title").text(language.eng.project3title);
+    $(".project-3-text").text(language.eng.project3text);
+    $(".project-3-btn1").text(language.eng.project2btn);
+    $(".project-3-btn2").text(language.eng.project1btn);
     $("#con").text(language.eng.con);
 }
 
@@ -47,10 +53,12 @@ $('#espanolbtn').click(function (){
 });
 
 
-var slideIndex = [1,1];
-var slideId = ["Slide1","Slide2"];
+var slideId = ["Slide1","Slide2","Slide3"];
+var slideIndex = [1,1,1];
 showSlides(1, 0);
 showSlides(1, 1);
+showSlides(1, 2);
+
 var maxHeight = 0;
 var cardssize = document.getElementsByClassName("slideconta");
 var cards = document.getElementById("sampleimg");
@@ -76,8 +84,6 @@ function showSlides(n, no) {
 }
 
 $(document).ready(function() {
-
-
 
   if(window.innerWidth < 992){
     imagen.classList.remove('col-md-8');

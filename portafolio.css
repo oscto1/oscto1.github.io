@@ -180,8 +180,6 @@ body {
 
 .card-body a{
   margin-top: 20px;
-  width: 35%;
-  margin-right: 15px;
 }
 
 /* Social Media Section */
@@ -259,19 +257,55 @@ body {
 
 
 
+
 .b_redes{
   margin-right: 30px;
   margin-bottom: 20px;
-
 }
 
 .b_redess{
-    width: 300px;
+  flex: 1 1 auto;
+  margin: 10px;
+  padding: 20px;
+  border: 2px solid #f5ba09;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: .3s;
+  color: white;
+}
+
+.b_redess:after{
+  position: absolute;
+  transition: .4s;
+  content: '';
+  width: 0;
+  left: 50%;
+  bottom: 0;
+  height: 3px;
+  background: #f7f7f7;
+  height: 120%;
+  left: -10%;
+  transform: skewX(15deg);
+  z-index: -2;
+}
+
+
+.b_redess:hover:after {
+  width: 100%;
+  left: 0;
+  color:black;
 }
 
 .b_redess:hover{
-    background-color: rgba(200, 200, 200, 0.2);
+  color:#1f2235;
 }
+
+
+/*
+.b_redess:hover{
+    background-color: rgba(200, 200, 200, 0.2);
+} */
 
 #pr{
 /* content: url("img/Saly-10.webp"); */

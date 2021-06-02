@@ -273,6 +273,7 @@ body {
   overflow: hidden;
   transition: .3s;
   color: white;
+  width: 300px;
 }
 
 .b_redess:after{

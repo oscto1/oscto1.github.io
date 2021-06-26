@@ -10,14 +10,13 @@
 
     <!-- Bootstrap Js -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="js/splide.min.js"></script>
+
 
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="css/splide.min.css">
     <link rel="stylesheet" href="portafolio.css" />
-
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
 
     <link rel="icon" href="img/remote.svg" type="image/x-icon">
 
@@ -67,6 +66,7 @@
             <img
               src="./img/Saly-10.webp"
               class="img-fluid"
+              loading="lazy"
               id="pr"
             />
           </div>
@@ -92,7 +92,7 @@
       <div id="yo" class="container col-sm-12 about p-5">
         <div class="row">
           <div class="col-sm-4 align-self-center text-center" >
-            <img src="./img/Saly-21.svg" class="img-fluid" id="a"/>
+            <img src="./img/Saly-21.svg" loading="lazy" class="img-fluid" id="a"/>
           </div>
           <div class="col-sm-8 pl-5 pt-5 pb-5 text-white">
             <h3 class="text-warning aboutme" style="font-size: 2rem;">Sobre mí</h3>
@@ -118,208 +118,115 @@
       <!-- Proyectos -->
       <div id="proyectos" class="container mt-5 pt-5">
         <h1 class="text-warning mb-3 pb-2 projects">Proyectos</h1>
-        <div class="row">
-          <!-- Renta App Web -->
-          <div class="col-sm-6 mb-5">
-            <div class="card" >
-              <div class="slideshow-container" id="sampleimg">
-                <div class="Slide1 slideconta" >
-                  <img
-                    src="./img/renta/Slide9.webp"
-                    class="card-img-top"
-                    alt="..."
 
-                  />
-                </div>
+        <div class="splide">
+        	<div class="splide__track">
+        		<u class="splide__list">
+                <li class="splide__slide">
+                  <!-- Renta App Web -->
+                      <div id="card1" class="card-body">
+                          <div class="descr_cont dc1" >
+                            <button type="button" id="act1"  class="act desact"><i class="fas fa-angle-up fa-lg f1"></i></button>
+                            <div class="descr d1">
+                              <h5 class="card-title project-1-title" >Aplicación web | Renta de vehículos eléctricos</h5>
+                              <p class="card-text project-1-text">
+                                Un proyecto que realicé para la universidad en el que use el framework Electron, empleando HTML5, CSS y Jquery para el frontend.
+                                Usé NodeJS y MySQL para realizar la conexión a la Base de datos.
+                              </p>
+                              <h5 class="card-title tecsused" >Tecnologías usadas</h5>
+                              <ul class=tecs>
+                                <li class="tec_item">
+                                  <img loading="lazy" src="img/icons/electronjs-icon.svg">
+                                  <span>ElectronJS</span>
+                                </li>
+                                <li class="tec_item">
+                                  <img loading="lazy" src="img/icons/jquery-vertical.svg">
+                                  <span>Jquery</span>
+                                </li>
+                                <li class="tec_item">
+                                  <img loading="lazy" src="img/icons/mysql-icon.svg">
+                                  <span>MySQL</span>
+                                </li>
+                                <li class="tec_item">
+                                  <img loading="lazy" src="img/icons/nodejs-icon.svg">
+                                  <span>NodeJS</span>
+                                </li>
+                              </ul>
+                              <a href="https://github.com/oscto1/renta-electricos-electronjs" target="_blank" class="btn btn-descr  pull-right project-1-btn">Ver en Github</a>
+                            </div>
+                          </div>
+                      </div>
+                </li>
 
+                <li class="splide__slide">
+                  <!-- Arcade -->
+                  <div id="card2" class="card-body">
+                      <div class="descr_cont dc2" >
+                        <button type="button" id="act2" class="act desact"><i class="fas fa-angle-up fa-lg f2"></i></button>
+                        <div class="descr d2">
+                          <h5 class="card-title project-2-title" >Juego Unity | Arcade</h5>
+                          <p class="card-text project-2-text">
+                            Un juego para navegador web desarrollado en Unity. C#, que contiene la simplicidad de algunos juegos clásicos como Pong y Space Invaders. Planeo agregar más en el futuro.
+                          </p>
+                          <h5 class="card-title tecsused" >Tecnologías usadas</h5>
+                          <ul class=tecs>
+                            <li class="tec_item">
+                              <img loading="lazy" src="img/icons/unity3d-icon.svg">
+                              <span>Unity</span>
+                            </li>
+                            <li class="tec_item">
+                              <img loading="lazy" src="img/icons/c-sharp-c-seeklogo.com.svg">
+                              <span>C#</span>
+                            </li>
+                          </ul>
+                          <a href="Arcade/arcade.html" target="_blank" class="btn btn-descr  pull-right project-2-btn">Probar ahora</a>
+                        </div>
+                      </div>
+                  </div>
+                </li>
 
-                <div class="Slide1 slideconta">
-                  <img
-                    src="./img/renta/Slide8.webp"
-                    class="card-img-top"
-                    alt="..."
-                  />
-                </div>
+                <li class="splide__slide">
+                  <!-- Messaging App -->
+                  <div id="card3" class="card-body">
+                      <div class="descr_cont dc3">
+                        <!-- <button type="button" name="act" id="act3" class="act desact"><i class="fas fa-angle-up fa-lg"></i></button> -->
+                        <button type="button"  id="act3" class="act desact"><i class="fas fa-angle-up fa-lg f3"></i></button>
+                        <div class="descr d3">
+                          <h5 class="card-title project-3-title" >App de mensajes | ReactJS</h5>
+                          <p class="card-text project-3-text">
+                            Una aplicación web de mensajes basada en Whatsapp Web. Desarrollada usando ReactJS y Firebase. Puedes iniciar sesión con Google, crear salas, y enviar y recibir mensajes de texto de otras cuentas.
+                          </p>
+                          <h5 class="card-title tecsused" >Tecnologías usadas</h5>
+                          <ul class=tecs>
+                            <li class="tec_item">
+                              <img loading="lazy" src="img/icons/reactjs-icon.svg">
+                              <span>ReactJS</span>
+                            </li>
+                            <li class="tec_item">
+                              <img loading="lazy" src="img/icons/firebase-icon.svg">
+                              <span>Firebase</span>
+                            </li>
+                          </ul>
+                          <a href="https://messa-69e78.web.app/" target="_blank" class="btn btn-descr  pull-right project-3-btn">Probar ahora</a>
+                        </div>
+                      </div>
+                  </div>
+                </li>
 
-                <div class="Slide1 slideconta">
-                  <img
-                    src="./img/renta/Slide7.webp"
-                    class="card-img-top"
-                    alt="..."
-                  />
-                </div>
-
-                <div class="Slide1 slideconta">
-                  <img
-                    src="./img/renta/Slide10.webp"
-                    class="card-img-top"
-                    alt="..."
-                  />
-                </div>
-
-                <div class="Slide1 slideconta">
-                  <img
-                    src="./img/renta/Slide11.webp"
-                    class="card-img-top"
-                    alt="..."
-                  />
-                </div>
-                <a class="prev" onclick="plusSlides(-1,0)">&#10094;</a>
-                <a class="next" onclick="plusSlides(1,0)">&#10095;</a>
-              </div>
-
-              <div class="card-body">
-                <h5 class="card-title project-1-title" >Aplicación web | Renta de vehículos eléctricos</h5>
-                <p class="card-text project-1-text">
-                  Un proyecto que realicé para la universidad en el que use el framework Electron, empleando HTML5, CSS y Jquery para el frontend.
-                  Usé NodeJS y MySQL para realizar la conexión a la Base de datos.
-                </p>
-
-                  <a href="https://github.com/oscto1/renta-electricos-electronjs" target="_blank" class="btn btn-warning  pull-right project-1-btn">Ver en Github</a>
-
-              </div>
-            </div>
-          </div>
-
-          <!-- Arcade -->
-          <div class="col-sm-6 mb-5">
-            <div class="card">
-              <div class="slideshow-container">
-                <div class="Slide2 slideconta">
-                  <img
-                    src="./img/arcade/arcade1.webp"
-                    class="card-img-top"
-                    alt="..."
-                  />
-                </div>
-
-                <div class="Slide2 slideconta">
-                  <img
-                    src="./img/arcade/arcade2.webp"
-                    class="card-img-top"
-                    alt="..."
-                  />
-                </div>
-
-                <div class="Slide2 slideconta">
-                  <img
-                    src="./img/arcade/arcade4.webp"
-                    class="card-img-top"
-                    alt="..."
-                  />
-                </div>
-
-                <div class="Slide2 slideconta">
-                  <img
-                    src="./img/arcade/arcade5.webp"
-                    class="card-img-top"
-                    alt="..."
-                  />
-                </div>
-
-                <div class="Slide2 slideconta">
-                  <img
-                    src="./img/arcade/arcade6.webp"
-                    class="card-img-top"
-                    alt="..."
-                  />
-                </div>
-                <a id="cardarc" class="prev" onclick="plusSlides(-1,1)">&#10094;</a>
-                <a id="cardarc" class="next" onclick="plusSlides(1,1)">&#10095;</a>
-              </div>
-
-              <div class="card-body" >
-                <h5 class="card-title project-2-title" >Juego Unity | Arcade</h5>
-                <p class="card-text project-2-text">
-                  Un juego web desarrollado en Unity. C#, que contiene la simplicidad de algunos juegos clásicos como Pong y Space Invaders. Planeo agregar más en el futuro.
-                </p>
-
-                  <a href="Arcade/arcade.html" target="_blank" class="btn btn-warning project-2-btn">Probar ahora</a>
-
-
-              </div>
-            </div>
-          </div>
+              </u>
+        		</div>
+        	</div>
         </div>
 
-        <div class="row">
-
-          <!-- Messaging App -->
-          <div class="col-sm-6 mb-5">
-            <div class="card">
-              <div class="slideshow-container">
-
-                <div class="Slide3 slideconta">
-                  <img
-                    src="./img/messaging/Messa1-min.webp"
-                    class="card-img-top"
-                    alt="..."
-                  />
-                </div>
-
-
-                <div class="Slide3 slideconta">
-                  <img
-                    src="./img/messaging/Messa3.webp"
-                    class="card-img-top"
-                    alt="..."
-                  />
-                </div>
-
-                <div class="Slide3 slideconta">
-                  <img
-                    src="./img/messaging/Messa2-min.webp"
-                    class="card-img-top"
-                    alt="..."
-                  />
-                </div>
-
-                <div class="Slide3 slideconta">
-                  <img
-                    src="./img/messaging/Messa4.webp"
-                    class="card-img-top"
-                    alt="..."
-                  />
-                </div>
-
-                <div class="Slide3 slideconta">
-                  <img
-                    src="./img/messaging/Messa5.webp"
-                    class="card-img-top"
-                    alt="..."
-                  />
-                </div>
-
-                <a id="cardarc" class="prev" onclick="plusSlides(-1,2)">&#10094;</a>
-                <a id="cardarc" class="next" onclick="plusSlides(1,2)">&#10095;</a>
-              </div>
-
-              <div class="card-body" id="sampletext">
-                <h5 class="card-title project-3-title" >App de mensajes | ReactJS</h5>
-                <p class="card-text project-3-text">
-                  Una aplicación web de mensajes basada en Whatsapp Web. Desarrollada usando ReactJS y Firebase. Puedes iniciar sesión con Google, crear salas, y enviar y recibir mensajes de texto de otras cuentas. Sigo trabajando en mejorarla.
-                </p>
-
-                <a href="https://messa-69e78.web.app/" target="_blank" class="botonam btn btn-warning project-3-btn1">Probar ahora</a>
-
-
-
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-      </div>
 
           <!-- ##################### -->
 
       <!-- Redes Sociales -->
       <div id="redes-sociales" class="container-fluid redess" >
-        <div class="container text-white py-5">
+        <div class="container text-white pt-5">
           <h4 class="text-warning social">Redes sociales</h4>
           <h1 class="m-heading" id="con">¡Conectemos!</h1>
-          <div class="row pt-5 redess">
+          <div class="row redess">
             <a class="b_redes" href="https://www.linkedin.com/in/oscar-castilllejo/" target="_blank">
               <div class="col-6 media_link btn b_redess" style="margin-left: 0;">
                 <div class="row">
@@ -354,7 +261,7 @@
 
       <!-- Footer -->
       <footer>
-        <div class="container text-muted text-center py-3 mt-5" style="width: 100vw;">
+        <div class="container text-muted text-center py-2" style="width: 100vw;">
           <h5>
             <h6 id="hola" class="text-white">(+57) 322 7056984 | oscarcastillejo2@gmail.com</h6>
             Copyright &copy; 2021 |

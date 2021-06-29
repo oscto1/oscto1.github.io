@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="../../img/remote.svg" type="image/x-icon">
+    <link rel="stylesheet" href="rent.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <title>Oscar Castillejo | Renta de vehiculos</title>
+  </head>
+  <body>
+    <div id="loader"></div>
+    <nav>
+      <a href="https://oscto1.github.io/">
+        <div  class="back">
+          <i class="fas fa-arrow-left"></i>
+          <span id="back">Volver</span>
+        </div>
+      </a>
+
+      <div class="logo">
+        <img src="../../img/remote.svg"  alt="">
+        <h5 class="d-inline">Portafolio</h5>
+      </div>
+      <button type="button" onclick="change_lan()" class="btn btn-warning btn-circle btn-lg" style="background-image: url('../../img/united-kingdom.webp'); background-size: cover;" id="englishbtn"></button>
+
+    </nav>
+
+    <div class="m-container">
+      <h1 id="m-titulo">Renta de vehículos eléctricos</h1>
+      <div loading="lazy" class="m-img-cont"></div>
+    </div>
+
+    <div class="des-container">
+      <p id="proy1t">Un proyecto desarrollado en el framework ElectronJS cuyo propósito principal es comparar y rentar un vehículo eléctrico, ya sea motocicleta o automóvil. Incluye la posibilidad de filtrar por marca y modelo, y mirar especificaciones y caracteristicas de cada modelo.</p>
+      <h3 id="tecsu">Tecnologías usadas</h3>
+      <ul class=tecs>
+        <li class="tec_item">
+          <img loading="lazy" src="../../img/icons/electronjs-icon.svg">
+          <span>ElectronJS</span>
+        </li>
+        <li class="tec_item">
+          <img loading="lazy" src="../../img/icons/jquery-vertical.svg">
+          <span>Jquery</span>
+        </li>
+        <li class="tec_item">
+          <img loading="lazy" src="../../img/icons/mysql-icon.svg">
+          <span>MySQL</span>
+        </li>
+        <li class="tec_item">
+          <img loading="lazy" src="../../img/icons/nodejs-icon.svg">
+          <span>NodeJS</span>
+        </li>
+      </ul>
+      <a href="https://github.com/oscto1/renta-electricos-electronjs" target="_blank" id="btn-sour" type="button" name="button">
+        <span id="btnl">Ver en Github</span>
+        <i class="fab fa-github fa-2x"></i>
+      </a>
+    </div>
+    <div class="features">
+      <h1 id="cara">Características</h1>
+      <div class="cont_items">
+        <div class="feat_item">
+          <img class="imag_it" src="../../img/renta/Slide10.webp" alt="">
+          <div class="s">
+            <h2 id="i1">Filtrar por diferentes marcas</h2>
+            <p id="ti1">Hay variedad de marcas tanto de automóviles como de motocicletas eléctricas.</p>
+          </div>
+        </div>
+        <div class="feat_item">
+          <img class="imag_it" src="../../img/renta/Slide11.webp" alt="">
+          <div class="s">
+            <h2 id="i2">Buscar diferentes modelos</h2>
+            <p id="ti2">Existen varios modelos por cada marca.</p>
+          </div>
+        </div>
+        <div class="feat_item">
+          <img class="imag_it" src="../../img/renta/Slide12.webp" alt="">
+          <div class="s">
+            <h2 id="i3">Comparar especificaciones</h2>
+            <p id="ti3">Posibilidad de comparar caracteristicas como motor, autonimía y velocidad punta.</p>
+          </div>
+        </div>
+        <div class="feat_item">
+          <img class="imag_it" src="../../img/renta/Slide8.webp" alt="">
+          <div class="s">
+            <h2 id="i4">Sección de administrador</h2>
+            <p id="ti4">Gestionar y controlar la cantidad de motocicletas y automóviles rentados.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="" style="width: 100vw;">
+        <h5>
+          Copyright &copy; 2021 |
+          <a class="" href="https://oscto1.github.io/">Oscar Castillejo</a>
+        </h5>
+      </div>
+    </footer>
+  </body>
+  <script src="rent.js" type="text/javascript"></script>
+</html>

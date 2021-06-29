@@ -1,0 +1,245 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap');
+
+body,html{
+  max-width: 100%;
+  background-color: rgb(249,248,249);
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  padding: 0;
+  /* overflow-x: hidden; */
+}
+
+a {
+  text-decoration: none;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  vertical-align: middle;
+  justify-content: space-between;
+}
+
+nav a{
+  color: black;
+}
+
+.logo{
+  display: flex;
+  align-items: center;
+  transform:translateX(-25%);
+}
+
+.logo h5{
+  margin: 0;
+  color: black;
+}
+
+.back{
+  cursor: pointer;
+  flex: 1;
+}
+.m-container{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 15px;
+  max-height: 65vh;
+}
+
+.m-img-cont{
+  animation: fadein 4s;
+  -webkit-animation: fadein 4s;
+}
+
+.m-container h1{
+  font-size: 3.2rem;
+  margin-right: 15%;
+  margin-left: 15%;
+  font-weight: bold;
+  animation: fadein 5s;
+  -webkit-animation: fadein 5s;
+}
+
+.m-img-cont{
+  background: url('../../img/renta/Slide9.webp') no-repeat center center;
+  background-size: 100.2% 100.5%;
+  margin-right: 15%;
+  margin-left: 15%;
+  border: 6px solid black;
+  border-radius: 40px;
+  padding-top: 45%;
+  margin-top: 30px;
+  -webkit-box-shadow: 0px 0px 19px -5px #000000;
+  box-shadow: 0px 0px 19px -5px #000000;
+}
+
+.des-container{
+  position: relative;
+  margin-top: 30px;
+  max-width: 100%;
+  /* background-color: rgb(254,202,1); */
+  background-color: rgb(15,15,15);
+  padding: 3rem;
+  font-size: 1.5rem;
+  color: rgb(220,220,220);
+}
+.btn-lg{
+  width: 25px;
+  height: 25px;
+  /* padding: 10px 16px; */
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 50px;
+  cursor:pointer;
+  border: none;
+  outline:none;
+}
+
+.des-container p{
+  margin: 0;
+  margin-bottom: 30px;
+}
+
+.tecs{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-left: 0;
+  flex:1;
+  margin-top: 20px;
+}
+
+.tec_item img{
+  height: 60%;
+  margin-bottom: 5px;
+}
+
+.tec_item{
+  display: flex;
+  flex-direction: column;
+  background: #0f0f0f;
+  margin-right: 15px;
+  margin-bottom: 15px;
+  height: 90px;
+  width: 90px;
+  font-size: small;
+  box-shadow:  15px 15px 30px #090909,
+             -15px -15px 30px #151515;
+  border-radius: 15px;
+  padding: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+#btn-sour{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(15,15,15);
+  border: 2px solid #f5ba09;
+  border-radius: 30px;
+  height: 50px;
+  width: 200px;
+  color: rgb(255,202,2);
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-family: 'Montserrat';
+  text-decoration: none;
+}
+
+#btn-sour i{
+  margin-left: 10px;
+}
+
+#btn-sour:hover{
+  color:black;
+  background-color: rgb(255,202,2);
+  transition: 0.5s;
+}
+.cont_items{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.imag_it{
+  max-width: 45%;
+  height: 100%;
+  margin-right: 40px;
+  margin-bottom: 30px;
+  min-width: 300px;
+  border-radius: 20px;
+  -webkit-box-shadow: 0px 0px 26px -10px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 26px -10px rgba(0,0,0,0.75);
+}
+
+.feat_item{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* flex-wrap: wrap; */
+  margin-bottom: 60px;
+}
+.feat_item h2{
+  margin: 0;
+}
+
+.features{
+  background-color: rgb(249,248,249);
+  max-width: 100%;
+  padding: 3rem;
+  font-size: 1.5rem;
+  color: rgb(15,15,15);
+  padding-bottom: 0;
+}
+
+.features p{
+  font-size: 1rem;
+  word-wrap: break-word;
+}
+
+.s{
+  min-width: 40%;
+}
+
+footer{
+    color: rgb(40,40,40);
+    max-width: 90%;
+    text-align: center;
+    margin-bottom: 20px;
+    overflow-x: hidden;
+}
+footer a{
+    color: rgb(40,40,40);
+}
+
+@media screen and (max-width: 768px){
+  .feat_item{
+    flex-wrap: wrap;
+  }
+  .m-img-cont{
+    margin-left: 2%;
+    margin-right: 2%;
+    padding-top: 52%;
+  }
+}
+@media screen and (max-width: 400px){
+  .features h2{
+    font-size: 1.2rem;;
+  }
+  .imag_it{
+    margin-right: 0;
+  }
+}

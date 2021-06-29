@@ -9,7 +9,7 @@ var language = {
     me2: "I have taken some courses about HTML5, CSS, Javascript, MySQL, Game Development with Unity. I'm going to give what is necessary regarding the projects I am enrolled, while I learn more about Web Development, Game Development, and other technologies and topics. I'm willing and open to teamwork and create connections.",
     project1title: "Web App | Electric Cars Rental",
     project1text: "A project I made in college in which I used Electron JS framework, with HTML5, CSS y Jquery for the frontend. I employed NodeJS and MySQL for the database connection.",
-    project1btn: "See on Github",
+    project1btn: "Read more",
     project2title: "Unity Game | Arcade",
     project2text: "A browser videogame that I am developing in Unity, C#. You can find the simplicity of retro games such as Pong or Space Invaders. I have plans to add more games.",
     project2btn: "Try Now",
@@ -19,7 +19,6 @@ var language = {
     tecs: "Technologies used"
   }
 }
-
 
 if (window.location.hash == "#eng") {
     $(".aboutme").text(language.eng.about);
@@ -46,7 +45,6 @@ $('.act').click(function (){
   var t = $(this).attr("id");
   var id = t.charAt(t.length-1);
   if($(this).hasClass('desact')){
-    console.log("#dc" + id);
     $('.f' + id).addClass('fa-angle-down').removeClass('fa-angle-up');
     $(this).removeClass('desact');
     $(".dc" + id).animate({height: "90%"}, 150);
@@ -56,7 +54,7 @@ $('.act').click(function (){
     $(this).addClass('desact');
     $(".d" + id).scrollTop(0);
     $(".d" + id).css("overflow-y", "hidden");
-    $(".dc" + id).animate({height: "70px"}, 150);
+    $(".dc" + id).animate({height: "65px"}, 150);
   }
 });
 
@@ -70,72 +68,49 @@ $('#espanolbtn').click(function (){
   location.reload();
 });
 
-new Splide( '.splide', {
-	type   : 'loop',
-	padding: {
-		right: '2rem',
-		left : '2rem',
-	},
-} ).mount();
-
-// var slideId = ["Slide1","Slide2","Slide3"];
-// var slideIndex = [1,1,1];
-// showSlides(1, 0);
-// showSlides(1, 1);
-// showSlides(1, 2);
-
-var maxHeight = 0;
-var cardssize = document.getElementsByClassName("slideconta");
-var cards = document.getElementById("sampleimg");
-var textsize = document.getElementsByClassName("card-body");
-var textc = document.getElementById("sampletext");
-
 var imagen = document.getElementById("imagenPrinc");
 
-// function plusSlides(n, no) {
-//   showSlides(slideIndex[no] += n, no);
-// }
-//
-// function showSlides(n, no) {
-//   var i;
-//   var x = document.getElementsByClassName(slideId[no]);
-//   if (n > x.length) {slideIndex[no] = 1}
-//   if (n < 1) {slideIndex[no] = x.length}
-//   for (i = 0; i < x.length; i++) {
-//      x[i].style.display = "none";
-//   }
-//   x[slideIndex[no]-1].style.display = "block";
-//   x[slideIndex[no]-1].style.display = "block";
-// }
-
 $(document).ready(function() {
-
+  $('#contenido').hide();
+  $('#loader').show();
   if(window.innerWidth < 992){
     imagen.classList.remove('col-md-8');
   }
-  $('#contenido').hide();
-  $('#loader').show();
 
+  if(window.innerWidth < 768){
+    new Splide( '.splide', {
+    	type   : 'loop',
+    	padding: {
+      	right : '1.2rem',
+    	},
+      pagination: false,
+    } ).mount();
+  }else{
+    new Splide( '.splide', {
+    	type   : 'loop',
+    	padding: {
+      	right: '2rem',
+      	left : '2rem',
+    	},
+      pagination: false,
+    } ).mount();
+  }
+
+
+  $('.card-body').css("background-size", "100.2% 100.5%");
+  if(window.innerWidth < 992){
+    imagen.classList.remove('col-md-8');
+  }
 });
 
 $(window).on('load', function(){
-  // $('.card-body').height( window.innerWidth / 1.8);
-  $('.card-body').css("background-size", "100.2% 100.5%");
-
-  showPage();
-
-  if(window.innerWidth < 992){
-    imagen.classList.remove('col-md-8');
-  }
-
+    showPage();
 });
-
-
 
 function showPage() {
   $('#loader').hide();
   $('#contenido').show();
   $('#contenido').addClass("animate-bottom");
   var position = $('#navvbar').position();
-  $('html,body').animate({ scrollTop: position.top}, 500);
+  $('html,body').animate({ scrollTop: position.top});
 }

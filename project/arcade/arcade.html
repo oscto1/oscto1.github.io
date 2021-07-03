@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="../../img/remote.svg" type="image/x-icon">
+    <link rel="stylesheet" href="arcade.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <title>Oscar Castillejo | Arcade</title>
+  </head>
+  <body>
+    <div id="loader"></div>
+    <nav>
+      <a href="https://oscto1.github.io/">
+        <div  class="back">
+          <i class="fas fa-arrow-left"></i>
+          <span id="back">Volver</span>
+        </div>
+      </a>
+
+      <div class="logo">
+        <img src="../../img/remote.svg"  alt="">
+        <h5 class="d-inline">Portafolio</h5>
+      </div>
+      <button type="button" onclick="change_lan()" class="btn btn-warning btn-circle btn-lg" style="background-image: url('../../img/united-kingdom.webp'); background-size: cover;" id="englishbtn"></button>
+
+    </nav>
+
+    <div class="m-container">
+        <h1 class="center__text glitch is-glitching" data-text="Mini arcade">Mini arcade</h1>
+        <img id="imgi" src="../../img/arcade/alien.svg"></img>
+    </div>
+
+    <div class="des-container">
+      <p id="proy1t">Un videojuego para navegador web que desarrollé usando el motor de videojuegos multiplataforma Unity. Incluye los minijuegos Pong y Space Invaders.</p>
+      <h3 id="tecsu">Tecnologías usadas</h3>
+      <ul class=tecs>
+        <li class="tec_item">
+          <img loading="lazy" src="../../img/icons/unity3d-icon-w.svg">
+          <span>Unity</span>
+        </li>
+        <li class="tec_item">
+          <img loading="lazy" src="../../img/icons/c-sharp-c-seeklogo.com.svg">
+          <span>C#</span>
+        </li>
+      </ul>
+      <a href="../../Arcade/arcade.html" target="_blank" id="btn-sour" type="button" name="button">
+        <span id="btnl">Jugar ahora</span>
+        <i class="fas fa-play-circle fa-1x"></i>
+      </a>
+    </div>
+    <footer>
+      <div class="">
+        <h5>
+          Copyright &copy; 2021 |
+          <a class="" href="https://oscto1.github.io/">Oscar Castillejo</a>
+        </h5>
+      </div>
+    </footer>
+  </body>
+  <script src="arcade.js" type="text/javascript"></script>
+</html>

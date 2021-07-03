@@ -32,7 +32,7 @@ if (window.location.hash == "#eng") {
     $(".project-1-text").text(language.eng.project1text);
     $(".project-2-text").text(language.eng.project2text);
     $(".project-1-btn").text(language.eng.project1btn);
-    $(".project-2-btn").text(language.eng.project2btn);
+    $(".project-2-btn").text(language.eng.project1btn);
     $(".project-3-title").text(language.eng.project3title);
     $(".project-3-text").text(language.eng.project3text);
     $(".project-3-btn1").text(language.eng.project2btn);

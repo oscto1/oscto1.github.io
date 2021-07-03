@@ -2,7 +2,7 @@
 
 body,html{
   max-width: 100%;
-  background-color: rgb(249,248,249);
+  background-color: rgb(2,0,28);
   font-family: "Montserrat", sans-serif;
   margin: 0;
   padding: 0;
@@ -13,15 +13,63 @@ a {
   text-decoration: none;
 }
 
-@keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+/* glitch effect by https://codepen.io/marcellegane */
+
+.center__text {
+  margin: auto;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 120px;
+  z-index: 1;
+  cursor: default;
 }
 
-@-webkit-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+.glitch {
+	 position: relative;
+	 color: white;
+	 mix-blend-mode: lighten;
 }
+ .glitch:before, .glitch:after {
+	 content: attr(data-text);
+	 position: absolute;
+	 top: 0;
+	 width: 100%;
+	 background: black;
+	 clip: rect(0, 0, 0, 0);
+}
+ .glitch:before {
+	 left: -1px;
+	 text-shadow: 1px 0 rgba(255, 0, 0, 0.7);
+}
+ .glitch:after {
+	 left: 1px;
+	 text-shadow: -1px 0 rgba(0, 0, 255, 0.7);
+}
+ .glitch:hover:before {
+	 text-shadow: 4px 0 rgba(255, 0, 0, 0.7);
+	 animation: glitch-loop-1 0.4s infinite ease-in-out alternate-reverse;
+}
+ .glitch:hover:after {
+	 text-shadow: -5px 0 rgba(0, 0, 255, 0.7);
+	 animation: glitch-loop-2 0.4s infinite ease-in-out alternate-reverse;
+}
+
+@keyframes glitch-loop-1 {
+  0% { clip: rect(36px, 9999px, 9px, 0) }
+  25% { clip: rect(25px, 9999px, 99px, 0) }
+  50% { clip: rect(50px, 9999px, 102px, 0) }
+  75% { clip: rect(30px, 9999px, 92px, 0) }
+  100% { clip: rect(91px, 9999px, 98px, 0) }
+}
+
+@keyframes glitch-loop-2 {
+  0% { top: -1px; left: 1px; clip: rect(65px, 9999px, 119px, 0) }
+  25% { top: -6px; left: 4px; clip: rect(79px, 9999px, 19px, 0) }
+  50% { top: -3px; left: 2px; clip: rect(68px, 9999px, 11px, 0) }
+  75% { top: 0px; left: -4px; clip: rect(95px, 9999px, 53px, 0) }
+  100% { top: -1px; left: -1px; clip: rect(31px, 9999px, 149px, 0) }
+}
+
+/* ------- */
 
 nav {
   display: flex;
@@ -32,7 +80,7 @@ nav {
 }
 
 nav a{
-  color: black;
+  color: white;
 }
 
 .logo{
@@ -43,7 +91,7 @@ nav a{
 
 .logo h5{
   margin: 0;
-  color: black;
+  color: white;
 }
 
 .back{
@@ -52,10 +100,17 @@ nav a{
 }
 .m-container{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   text-align: center;
   margin-top: 15px;
-  max-height: 65vh;
+  height: 40vh;
+}
+
+#imgi{
+    position: absolute;
+    height: 50%;
+    transform: rotate(20deg);
+    /* right: -25px; */
 }
 
 .m-img-cont{
@@ -63,6 +118,7 @@ nav a{
   -webkit-animation: fadein 4s;
 }
 
+/*
 .m-container h1{
   font-size: 3.2rem;
   margin-right: 15%;
@@ -70,30 +126,18 @@ nav a{
   font-weight: bold;
   animation: fadein 5s;
   -webkit-animation: fadein 5s;
-}
+} */
 
-.m-img-cont{
-  background: url('../../img/renta/Slide9.webp') no-repeat center center;
-  background-size: 100.2% 100.5%;
-  margin-right: 15%;
-  margin-left: 15%;
-  border: 6px solid black;
-  border-radius: 40px;
-  padding-top: 45%;
-  margin-top: 30px;
-  -webkit-box-shadow: 0px 0px 19px -5px #000000;
-  box-shadow: 0px 0px 19px -5px #000000;
-}
 
 .des-container{
   position: relative;
   margin-top: 30px;
   max-width: 100%;
   /* background-color: rgb(254,202,1); */
-  background-color: rgb(15,15,15);
+  background-color: #1f2235;
   padding: 3rem;
   font-size: 1.5rem;
-  color: rgb(220,220,220);
+  color: #f8f9f8;
 }
 .btn-lg{
   width: 25px;
@@ -129,14 +173,14 @@ nav a{
 .tec_item{
   display: flex;
   flex-direction: column;
-  background: #0f0f0f;
   margin-right: 15px;
   margin-bottom: 15px;
   height: 90px;
   width: 90px;
   font-size: small;
-  box-shadow:  15px 15px 30px #090909,
-             -15px -15px 30px #151515;
+  background: #1f2235;
+  box-shadow:  9px 9px 18px #1b1e2f,
+             -9px -9px 18px #23263b;
   border-radius: 15px;
   padding: 10px;
   align-items: center;
@@ -147,12 +191,12 @@ nav a{
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgb(15,15,15);
-  border: 2px solid #f5ba09;
+  background: rgb(249,248,248);
+  border: 2px solid rgb(249,248,248);
   border-radius: 30px;
   height: 50px;
   width: 200px;
-  color: rgb(255,202,2);
+  color:  #1f2235;
   font-size: 0.9rem;
   cursor: pointer;
   font-family: 'Montserrat';
@@ -164,8 +208,8 @@ nav a{
 }
 
 #btn-sour:hover{
-  color:black;
-  background-color: rgb(255,202,2);
+  color:#1f2235;
+  background-color: rgba(255,255,255,0.6);
   transition: 0.5s;
 }
 .cont_items{
@@ -174,60 +218,25 @@ nav a{
   flex-wrap: wrap;
 }
 
-.imag_it{
-  max-width: 45%;
-  height: 100%;
-  margin-right: 40px;
-  margin-bottom: 30px;
-  min-width: 300px;
-  border-radius: 20px;
-  -webkit-box-shadow: 0px 0px 26px -10px rgba(0,0,0,0.75);
-  box-shadow: 0px 0px 26px -10px rgba(0,0,0,0.75);
-}
-
-.feat_item{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  /* flex-wrap: wrap; */
-  margin-bottom: 60px;
-}
-.feat_item h2{
-  margin: 0;
-}
-
-.features{
-  background-color: rgb(249,248,249);
-  max-width: 100%;
-  padding: 3rem;
-  font-size: 1.5rem;
-  color: rgb(15,15,15);
-  padding-bottom: 0;
-}
-
-.features p{
-  font-size: 1rem;
-  word-wrap: break-word;
-}
-
-.s{
-  min-width: 40%;
-}
-
 footer{
-    color: rgb(40,40,40);
+    color: rgb(248,249,248);
     text-align: center;
     padding-top: 7px;
     padding-bottom: 7px;
     overflow-x: hidden;
-    background-color: rgb(249,248,249);
     margin-right: 0px;
 }
 footer a{
-    color: rgb(40,40,40);
+    color: rgb(248,249,248);
 }
 
 @media screen and (max-width: 768px){
+  #imgi{
+    height: 35%;
+  }
+  .center__text{
+    font-size: 80px;
+  }
   .feat_item{
     flex-wrap: wrap;
   }
@@ -238,11 +247,22 @@ footer a{
   }
 }
 @media screen and (max-width: 400px){
+  #imgi{
+    height: 30%;
+  }
+
+  .m-container{
+    height: 30vh;
+  }
+
+  .center__text{
+    font-size: 50px;
+  }
   .features h2{
-    font-size: 1.2rem;;
+    font-size: 1.2rem;
   }
   .features h1{
-    font-size: 1.6rem;;
+    font-size: 1.6rem;
   }
   .imag_it{
     margin-right: 0;

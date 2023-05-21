@@ -22,7 +22,10 @@
     <title>Oscar Castillejo | Portafolio</title>
   </head>
   <body data-new-gr-c-s-check-loaded="14.993.0" data-gr-ext-installed>
-    <div id="loader"></div>
+    <div id="loader-overlay">
+      <div id="loader"></div>
+    </div>
+    
     <div id="contenido">
 
       <nav id=navvbar class="navbar navbar-expand-sm text-white navbar-dark">
@@ -92,18 +95,11 @@
           <div class="col-sm-8 pl-5 pt-5 pb-5 text-white">
             <h3 class="text-warning aboutme" style="font-size: 2rem;">Sobre mí</h3>
             <p id="text1">
-              Soy estudiante de <b class="text-warning">ingeniería de sistemas</b>  y
-              técnico en operación y mantenimiento de
-              bases de datos.
-
+              Soy estudiante de <b class="text-warning">Ingeniería de Software</b>
             </p>
             <br />
             <p id="text2">
-              He realizado cursos de HTML5, CSS, Javascript, MySQL, Unity y siempre estoy interesado
-              en aprender más, tanto en desarrollo web como desarrollo de videojuegos. <br/>
-              Estoy dispuesto a aportar lo necesario de acuerdo a las necesidades y requerimientos de los proyectos y a adaptarme a las tecnologías necesarias en el área de desarrollo. Puedo
-              trabajar en equipo y proporcionar lo necesario
-              para realizar un trabajo de calidad.
+              Tengo algo de experiencia trabajando en ciberseguridad como Security Tester. Algunas de las habilidades que he aprendido en cursos son HTML5, CSS, Javascript, MySQL, Java, Python y desarrollo de juegos con Unity y UE5. Estoy buscando activamente oportunidades para aprender nuevas tecnologías y crecer como profesional y como persona.
             </p>
 
           </div>
@@ -117,6 +113,58 @@
         <div class="splide">
         	<div class="splide__track">
         		<u class="splide__list">
+                <li class="splide__slide">
+                  <!-- Ski Game -->
+                      <div id="card4" class="card-body">
+                          <div class="descr_cont dc4" >
+                            <button type="button" id="act4"  class="act desact"><i class="fas fa-angle-up fa-lg f4"></i></button>
+                            <div class="descr d1">
+                              <h5 class="card-title project-4-title" >Math Slopes | Phaser Game</h5>
+                              <p class="card-text project-4-text">
+                                Juego desarrollado en el framework Phaser usando Javascript. El objetivo es resolver problemas matemáticos para conseguir puntos, mientras tratas de evitar los obstaculos. La velocidad irá aumentando mientras más puntos consigues.
+                              </p>
+                              <h5 class="card-title tecsused" >Tecnologías usadas</h5>
+                              <ul class=tecs>
+                                <li class="tec_item">
+                                  <img loading="lazy" src="img/icons/logo-phaser.svg" style="max-width:95%;">
+                                  <span>Phaser</span>
+                                </li>
+                              </ul>
+                              <a href="ski.html" class="btn btn-descr  pull-right project-3-btn1">
+                                Probar ahora
+                              </a>
+                            </div>
+                          </div>
+                      </div>
+                </li>
+
+                <li class="splide__slide">
+                  <!-- Arcade -->
+                  <div id="card2" class="card-body">
+                      <div class="descr_cont dc2" >
+                        <button type="button" id="act2" class="act desact"><i class="fas fa-angle-up fa-lg f2"></i></button>
+                        <div class="descr d2">
+                          <h5 class="card-title project-2-title" >Juego Unity | Arcade</h5>
+                          <p class="card-text project-2-text">
+                            Un juego para navegador web desarrollado en Unity. C#, que contiene la simplicidad de algunos juegos clásicos como Pong y Space Invaders. Planeo agregar más en el futuro.
+                          </p>
+                          <h5 class="card-title tecsused" >Tecnologías usadas</h5>
+                          <ul class=tecs>
+                            <li class="tec_item">
+                              <img loading="lazy" src="img/icons/unity3d-icon.svg">
+                              <span>Unity</span>
+                            </li>
+                            <li class="tec_item">
+                              <img loading="lazy" src="img/icons/c-sharp-c-seeklogo.com.svg">
+                              <span>C#</span>
+                            </li>
+                          </ul>
+                          <a href="project/arcade/arcade.html" class="btn btn-descr  pull-right project-2-btn">Ver más</a>
+                        </div>
+                      </div>
+                  </div>
+                </li>
+
                 <li class="splide__slide">
                   <!-- Renta App Web -->
                       <div id="card1" class="card-body">
@@ -155,32 +203,7 @@
                       </div>
                 </li>
 
-                <li class="splide__slide">
-                  <!-- Arcade -->
-                  <div id="card2" class="card-body">
-                      <div class="descr_cont dc2" >
-                        <button type="button" id="act2" class="act desact"><i class="fas fa-angle-up fa-lg f2"></i></button>
-                        <div class="descr d2">
-                          <h5 class="card-title project-2-title" >Juego Unity | Arcade</h5>
-                          <p class="card-text project-2-text">
-                            Un juego para navegador web desarrollado en Unity. C#, que contiene la simplicidad de algunos juegos clásicos como Pong y Space Invaders. Planeo agregar más en el futuro.
-                          </p>
-                          <h5 class="card-title tecsused" >Tecnologías usadas</h5>
-                          <ul class=tecs>
-                            <li class="tec_item">
-                              <img loading="lazy" src="img/icons/unity3d-icon.svg">
-                              <span>Unity</span>
-                            </li>
-                            <li class="tec_item">
-                              <img loading="lazy" src="img/icons/c-sharp-c-seeklogo.com.svg">
-                              <span>C#</span>
-                            </li>
-                          </ul>
-                          <a href="project/arcade/arcade.html" class="btn btn-descr  pull-right project-2-btn">Ver más</a>
-                        </div>
-                      </div>
-                  </div>
-                </li>
+                
 
                 <li class="splide__slide">
                   <!-- Messaging App -->
@@ -261,7 +284,7 @@
         <div class="container text-muted text-center py-2" style="width: 100vw;">
           <h5>
             <h6 id="hola" class="text-white">(+57) 322 7056984 | oscarcastillejo2@gmail.com</h6>
-            Copyright &copy; 2021 |
+            Copyright &copy; 2023 |
             <a class="text-warning text-decoration-none" href="#yo"
               >Oscar Castillejo</a
             >
@@ -270,7 +293,6 @@
         </div>
       </footer>
     </div>
-
+    <script src="portafolio.js"></script>
   </body>
-<script src="portafolio.js"></script>
 </html>

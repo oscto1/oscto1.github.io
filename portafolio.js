@@ -1,12 +1,13 @@
 
+
 var language = {
   eng: {
     about: "About me",
     projects: "Projects",
     social: "Social Network",
     hi: "Hi, I am",
-    me1: "I'm a <b class= 'text-warning'>system engeenering</b> student.",
-    me2: "I have taken some courses about HTML5, CSS, Javascript, MySQL, Game Development with Unity. I'm going to give what is necessary regarding the projects I am enrolled, while I learn more about Web Development, Game Development, and other technologies and topics. I'm willing and open to teamwork and create connections.",
+    me1: "I'm a <b class= 'text-warning'>Software engeenering</b> student.",
+    me2: "I have some experience working in Cybersecurity as a Security Tester. Some of the skills I've learned in courses are HTML5, CSS, Javascript, MySQL, Java, Python ad Game Development with Unity and UE5. I am actively looking for opportunities to learn new technologies and grow as a professional and as a human.",
     project1title: "Web App | Electric Cars Rental",
     project1text: "A project I made in college in which I used Electron JS framework, with HTML5, CSS y Jquery for the frontend. I employed NodeJS and MySQL for the database connection.",
     project1btn: "Read more",
@@ -15,8 +16,11 @@ var language = {
     project2btn: "Try Now",
     project3title: "Messaging app | ReactJS",
     project3text: "A messaging app based on Whatsapp Web. It is built in ReactJS and firebase. You can log in with Google, create rooms, and send or receive text messages from other accounts. I’m still working to improve it.",
+    project4text: "Game developed in the Phaser framework using JavaScript. The objective is to solve mathematical problems to earn points while trying to avoid obstacles. The speed will increase as you earn more points.",
     con: "Lets connect!",
-    tecs: "Technologies used"
+    tecs: "Technologies used",
+    
+
   }
 }
 
@@ -39,6 +43,8 @@ if (window.location.hash == "#eng") {
     $(".project-3-btn2").text(language.eng.project1btn);
     $("#con").text(language.eng.con);
     $(".tecsused").text(language.eng.tecs);
+
+    $(".project-4-text").text(language.eng.project4text);
 }
 
 $('.act').click(function (){
@@ -70,13 +76,14 @@ $('#espanolbtn').click(function (){
 
 var imagen = document.getElementById("imagenPrinc");
 
-$(document).ready(function() {
-  $('#contenido').hide();
-  $('#loader').show();
+
   if(window.innerWidth < 992){
     imagen.classList.remove('col-md-8');
   }
 
+  
+
+window.addEventListener('load', function() {
   if(window.innerWidth < 768){
     new Splide( '.splide', {
     	type   : 'loop',
@@ -101,11 +108,9 @@ $(document).ready(function() {
   if(window.innerWidth < 992){
     imagen.classList.remove('col-md-8');
   }
+    document.getElementById('loader-overlay').style.display = 'none';
 });
 
-$(window).on('load', function(){
-    showPage();
-});
 
 function showPage() {
   $('#loader').hide();

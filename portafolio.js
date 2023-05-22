@@ -47,9 +47,10 @@ if (window.location.hash == "#eng") {
     $(".project-4-text").text(language.eng.project4text);
 }
 
-$('.act').click(function (){
+$('.act').click(function (){ 
   var t = $(this).attr("id");
   var id = t.charAt(t.length-1);
+  console.log(id);
   if($(this).hasClass('desact')){
     $('.f' + id).addClass('fa-angle-down').removeClass('fa-angle-up');
     $(this).removeClass('desact');
@@ -119,3 +120,15 @@ function showPage() {
   var position = $('#navvbar').position();
   $('html,body').animate({ scrollTop: position.top});
 }
+
+// function checkScroll() {
+//   var divs = document.getElementsByClassName("descr");
+
+//   for (var i = 0; i < divs.length; i++) {
+//     var div = divs[i];
+    
+//     if (div.scrollTop + div.clientHeight === div.scrollHeight) {
+//       console.log("Scrolled to the bottom" + div[i]);
+//     }
+//   }
+// }

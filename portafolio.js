@@ -45,7 +45,15 @@ if (window.location.hash == "#eng") {
     $(".tecsused").text(language.eng.tecs);
 
     $(".project-4-text").text(language.eng.project4text);
+    $('#btn-change-lang').text("Español");
+
 }
+
+history.scrollRestoration = "manual";
+
+$(window).on('beforeunload', function(){
+      $(window).scrollTop(0);
+});
 
 $('.act').click(function (){ 
   var t = $(this).attr("id");
@@ -71,8 +79,22 @@ $('#englishbtn').click(function (){
 });
 
 $('#espanolbtn').click(function (){
-  location.hash = "esp";
+  location.hash = "";
   location.reload();
+});
+
+$('#btn-change-lang').click(function (){
+  if(location.hash === "")
+  {
+    location.hash = "eng";
+    location.reload();
+    
+  }
+  else
+  {
+    location.hash = "";
+    location.reload();
+  }
 });
 
 var imagen = document.getElementById("imagenPrinc");
@@ -120,15 +142,3 @@ function showPage() {
   var position = $('#navvbar').position();
   $('html,body').animate({ scrollTop: position.top});
 }
-
-// function checkScroll() {
-//   var divs = document.getElementsByClassName("descr");
-
-//   for (var i = 0; i < divs.length; i++) {
-//     var div = divs[i];
-    
-//     if (div.scrollTop + div.clientHeight === div.scrollHeight) {
-//       console.log("Scrolled to the bottom" + div[i]);
-//     }
-//   }
-// }

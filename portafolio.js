@@ -12,7 +12,7 @@ var language = {
     project1text: "A project I made in college in which I used Electron JS framework, with HTML5, CSS y Jquery for the frontend. I employed NodeJS and MySQL for the database connection.",
     project1btn: "Read more",
     project2title: "Unity Game | Arcade",
-    project2text: "A browser videogame that I am developing in Unity, C#. You can find the simplicity of retro games such as Pong or Space Invaders. I have plans to add more games.",
+    project2text: "A browser videogame that I am developing in Unity, C#. You can find the simplicity of retro games such as Pong or Space Invaders.",
     project2btn: "Try Now",
     project3title: "Messaging app | ReactJS",
     project3text: "A messaging app based on Whatsapp Web. It is built in ReactJS and firebase. You can log in with Google, create rooms, and send or receive text messages from other accounts. I’m still working to improve it.",
@@ -53,6 +53,17 @@ history.scrollRestoration = "manual";
 
 $(window).on('beforeunload', function(){
       $(window).scrollTop(0);
+});
+
+Object.defineProperty(HTMLMediaElement.prototype, 'playing', {
+  get: function(){
+      return !!(this.currentTime > 0 && !this.paused && !this.ended && this.readyState > 2);
+  }
+})
+
+document.querySelectorAll('.splide__slide[aria-hidden="true"] video').forEach(video => {
+  video.setAttribute('tabindex', '-1');
+  video.setAttribute('disabled', 'true');
 });
 
 $('.act').click(function (){ 
@@ -142,3 +153,36 @@ function showPage() {
   var position = $('#navvbar').position();
   $('html,body').animate({ scrollTop: position.top});
 }
+
+function pauseVideo(video)
+{
+
+  play_button = video.parentElement.children[1];
+
+  if(play_button.classList.contains("play_button")){
+    if(!video.playing){
+      video.play().catch(error => console.log("Playback failed:", error));  // Ensure play is triggered
+      play_button.style.display = "none";
+    }else{
+      video.pause();
+      play_button.style.display = "block";
+    }
+  }
+}
+
+var handled = false;
+
+$(".videos").on("touchend click",function(event){
+  event.stopImmediatePropagation();
+  
+    if(event.type == "touchend") {
+      handled = true;
+      pauseVideo(this);
+    }
+    else if(event.type == "click" && !handled) {
+      pauseVideo(this);
+    }
+    else {
+      handled = false;
+    } 
+});

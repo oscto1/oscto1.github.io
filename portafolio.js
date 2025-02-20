@@ -152,33 +152,30 @@ function showPage() {
 function pauseVideo(video)
 {
 
-  list_cards = document.getElementsByClassName("splide__slide");
-  main_card = video.parentElement.parentElement;
+  let list_cards = document.getElementsByClassName("splide__slide");
+  let play_button = video.parentElement.children[1]; 
 
-  play_button = video.parentElement.children[1];
+  // Stop all other videos in the slides before playing the new one
+  for (let i = 0; i < list_cards.length; i++) {
+    let childVideo = list_cards[i].querySelector("video"); // Find video inside slide
 
-  if(play_button.classList.contains("play_button")){
-    if(!video.playing){
-
-      //Stop videos
-      for(i=0; i<list_cards.length; i++){
-        childVideo = list_cards[i].children[0].children[0]; 
-        
-        if(childVideo && childVideo.nodeName === "VIDEO"){
-          if(childVideo.playing){
-            console.log("Video playiiiingggg");
-            childVideo.pause();
-            list_cards[i].children[0].children[1].style.display = "block";
-          }
-        }
+    if (childVideo && childVideo !== video && childVideo.playing) {
+      console.log("Pausing another playing video...");
+      childVideo.pause();
+      let childButton = list_cards[i].querySelector(".play_button"); 
+      if (childButton) {
+        childButton.style.display = "block"; // Show play button again
       }
-
-      video.play().catch(error => console.log("Playback failed:", error));  // Ensure play is triggered
-      play_button.style.display = "none";
-    }else{
-      video.pause();
-      play_button.style.display = "block";
     }
+  }
+
+  if (!video.playing) {
+    video.play()
+      .then(() => play_button.style.display = "none") // Hide play button
+      .catch(error => console.log("Playback failed:", error));
+  } else {
+    video.pause();
+    play_button.style.display = "block"; // Show play button
   }
 }
 

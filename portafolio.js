@@ -161,10 +161,10 @@ function pauseVideo(video)
     if(!video.playing){
 
       //Stop videos
-      for(i=0; i<list_cards.length-1; i++){
+      for(i=0; i<list_cards.length; i++){
         childVideo = list_cards[i].children[0].children[0]; 
         
-        if(childVideo.nodeName === "VIDEO"){
+        if(childVideo && childVideo.nodeName === "VIDEO"){
           if(childVideo.playing){
             console.log("Video playiiiingggg");
             childVideo.pause();
@@ -183,7 +183,7 @@ function pauseVideo(video)
 }
 
 var handled = false;
-var handledSplide = false;
+
 $(".videos").on("touchend click",function(event){
   event.stopImmediatePropagation();
   
@@ -198,8 +198,4 @@ $(".videos").on("touchend click",function(event){
       handled = false;
     } 
 });
-
-function test(element){
-  console.log(element);
-}
 

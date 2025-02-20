@@ -61,11 +61,6 @@ Object.defineProperty(HTMLMediaElement.prototype, 'playing', {
   }
 })
 
-document.querySelectorAll('.splide__slide[aria-hidden="true"] video').forEach(video => {
-  video.setAttribute('tabindex', '-1');
-  video.setAttribute('disabled', 'true');
-});
-
 $('.act').click(function (){ 
   var t = $(this).attr("id");
   var id = t.charAt(t.length-1);
@@ -157,10 +152,27 @@ function showPage() {
 function pauseVideo(video)
 {
 
+  list_cards = document.getElementsByClassName("splide__slide");
+  main_card = video.parentElement.parentElement;
+
   play_button = video.parentElement.children[1];
 
   if(play_button.classList.contains("play_button")){
     if(!video.playing){
+
+      //Stop videos
+      for(i=0; i<list_cards.length-1; i++){
+        childVideo = list_cards[i].children[0].children[0]; 
+        
+        if(childVideo.nodeName === "VIDEO"){
+          if(childVideo.playing){
+            console.log("Video playiiiingggg");
+            childVideo.pause();
+            list_cards[i].children[0].children[1].style.display = "block";
+          }
+        }
+      }
+
       video.play().catch(error => console.log("Playback failed:", error));  // Ensure play is triggered
       play_button.style.display = "none";
     }else{
@@ -171,7 +183,7 @@ function pauseVideo(video)
 }
 
 var handled = false;
-
+var handledSplide = false;
 $(".videos").on("touchend click",function(event){
   event.stopImmediatePropagation();
   
@@ -186,3 +198,8 @@ $(".videos").on("touchend click",function(event){
       handled = false;
     } 
 });
+
+function test(element){
+  console.log(element);
+}
+

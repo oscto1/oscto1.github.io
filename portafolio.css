@@ -223,8 +223,21 @@ h5{
   -moz-border-radius: 30px 30px 30px 30px;
   -webkit-border-radius: 30px 30px 30px 30px;
   border-radius: 30px 30px 30px 30px;
+  background: #f1f1f1;
+  opacity: 1;
 }
 
+.splide__arrow svg{
+  fill: #1f2235;
+}
+
+.splide__arrow--next{
+  transform: translate(150%);
+}
+
+.splide__arrow--prev{
+  transform: translate(-150%);
+}
 .act{
   height: 40px;
   width: 40px;
@@ -481,6 +494,24 @@ height: 100%;
 min-width: 100%;
 }
 
+#swipeText{
+  color: white;
+  margin-top: 20px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  animation-iteration-count: infinite;
+  animation-duration: 1s;
+}
+
+#swipeText i{
+  animation-name: swipeAnim;
+  animation-duration: 1s;
+  /* animation-timing-function: ease-in-out; */
+  margin-bottom: 5px;
+}
+
 @media screen and (max-width: 768px) {
    #pr {content: url("img/mano.webp");
         height: 100%;
@@ -489,6 +520,19 @@ min-width: 100%;
         animation-name: saludo;
         animation-iteration-count: infinite;
         }
+
+    #swipeText i{
+        animation-name: swipeAnim;
+        animation-duration: 1.2s;
+        /* animation-timing-function: ease-in-out; */
+        margin-bottom: 5px;
+        animation-iteration-count: infinite;
+    }
+    
+    #swipeText{
+      display: flex;
+    }
+
     .splide__arrow{
       display: none;
     }
@@ -608,6 +652,15 @@ ul {
 	100% {
 		transform: translateX(0);
 	}
+}
+
+@keyframes swipeAnim {
+  15%{
+    transform: translateX(-10px);
+  }
+  100%{
+    transform: translateX(10px);
+  }
 }
 
 .b_redes_s > i{

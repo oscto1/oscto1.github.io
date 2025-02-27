@@ -110,28 +110,42 @@ var imagen = document.getElementById("imagenPrinc");
     imagen.classList.remove('col-md-8');
   }
 
-  
-
-window.addEventListener('load', function() {
+ 
+let splide;
+window.addEventListener('DOMContentLoaded', function() {
   if(window.innerWidth < 768){
-    new Splide( '.splide', {
+    splide = new Splide( '.splide', {
     	type   : 'loop',
     	padding: {
-      	right : '1.2rem',
+      	// right : '1.2rem',
     	},
       pagination: false,
-    } ).mount();
+      omitEnd : true,
+    } );
   }else{
-    new Splide( '.splide', {
+    splide = new Splide( '.splide', {
     	type   : 'loop',
     	padding: {
-      	right: '2rem',
-      	left : '2rem',
+      	// right: '2rem',
+      	// left : '2rem',
     	},
       pagination: false,
-    } ).mount();
+      omitEnd: true,
+    } );
   }
 
+
+  splide.on("mounted move", function () {
+    document.querySelectorAll(".splide__slide").forEach((slide) => {
+      if (slide.classList.contains("is-active")) {
+        slide.removeAttribute("aria-hidden"); // Ensure active slides are interactive
+      } else {
+        slide.setAttribute("aria-hidden", "true"); // Hide inactive slides
+      }
+    });
+  });
+
+  splide.mount();
 
   $('.card-body').css("background-size", "100.2% 100.5%");
   if(window.innerWidth < 992){
@@ -139,6 +153,8 @@ window.addEventListener('load', function() {
   }
     document.getElementById('loader-overlay').style.display = 'none';
 });
+
+
 
 
 function showPage() {
@@ -158,7 +174,7 @@ function pauseVideo(video)
   // Stop all other videos in the slides before playing the new one
   for (let i = 0; i < list_cards.length; i++) {
     let childVideo = list_cards[i].querySelector("video"); // Find video inside slide
-
+    list_cards[i].removeAttribute("aria-hidden");
     if (childVideo && childVideo !== video && childVideo.playing) {
       console.log("Pausing another playing video...");
       childVideo.pause();

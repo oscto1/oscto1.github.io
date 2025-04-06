@@ -595,6 +595,10 @@ ul {
    width: 40vw;
  }
 
+.githubInd{
+  padding: 5px 5px 3px 5px;
+}
+
  @media screen and (max-width: 992px){
    #pr {content: url("img/mano.webp");
         display: inline-block;

@@ -17,6 +17,8 @@ var language = {
     project3title: "Messaging app | ReactJS",
     project3text: "A messaging app based on Whatsapp Web. It is built in ReactJS and firebase. You can log in with Google, create rooms, and send or receive text messages from other accounts. I’m still working to improve it.",
     project4text: "Game developed in the Phaser framework using JavaScript. The objective is to solve mathematical problems to earn points while trying to avoid obstacles. The speed will increase as you earn more points.",
+    project5title: "Sort Algorithm Visualizer",
+    project5text: "Try in a visual way the performance of some popular sorting algorithms, such as Merge Sort, Quick Sort, Heap Sort, and Bubble Sort.",
     con: "Lets connect!",
     tecs: "Technologies used",
     
@@ -45,6 +47,8 @@ if (window.location.hash == "#eng") {
     $(".tecsused").text(language.eng.tecs);
 
     $(".project-4-text").text(language.eng.project4text);
+    $(".project-5-title").text(language.eng.project5title);
+    $(".project-5-text").text(language.eng.project5text);
     $('#btn-change-lang').text("Español");
 
 }

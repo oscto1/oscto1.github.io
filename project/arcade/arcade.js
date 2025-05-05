@@ -13,7 +13,7 @@ var language = {
       document.getElementById("tecsu").innerHTML = language.eng.tecs;
       document.getElementById("btnl").innerHTML = language.eng.btn;
       var imagen = document.getElementById("englishbtn");
-      imagen.style.backgroundImage = "url('../../img/spain.webp')";
+      imagen.style.backgroundImage = "url('../../img/es.svg')";
   }
 
   function change_lan(){

@@ -205,17 +205,16 @@ h5{
   pointer-events: none;
 }
 
-#card1{
+/* #card1{
   background: url('img/renta/Slide9.webp') no-repeat center center;
-  /* background-image: url('img/renta/Slide9.webp'); */
 }
 #card2{
-  background-image: url('img/arcade/arcade1.webp');
+  background-image: url('img/arcade/arcade1.png');
 }
 #card3{
   background-image: url('img/messaging/Messa2-min.webp');
   background-color:#1f2235;
-}
+} */
 
 .splide__arrow{
   height: 80px;
@@ -363,11 +362,6 @@ h5{
 
 }
 
-.card-body p{
-  /* margin-bottom: auto; */
-}
-
-
 
 /* Social Media Section */
 #social-media {
@@ -513,7 +507,7 @@ min-width: 100%;
 }
 
 @media screen and (max-width: 768px) {
-   #pr {content: url("img/mano.webp");
+   #pr {content: url("img/mano.png");
         height: 100%;
         min-width: 100%;
         animation-duration: 1.2s;

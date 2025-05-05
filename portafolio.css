@@ -211,10 +211,11 @@ h5{
 #card2{
   background-image: url('img/arcade/arcade1.png');
 }
+*/
 #card3{
-  background-image: url('img/messaging/Messa2-min.webp');
+  background-image: url('img/messaging/Messa2-min.png');
   background-color:#1f2235;
-} */
+} 
 
 .splide__arrow{
   height: 80px;

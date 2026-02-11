@@ -380,17 +380,17 @@ h5{
 
 @keyframes float {
   from {
-    transform:translateY(8px) rotate3d(0,0,1,15deg);
+    transform:translateY(8px);
   }
 
   to {
-     transform:translateY(-8px) rotate3d(0,0,1,15deg);
+     transform:translateY(-8px);
   }
 }
 
 #a{
-  max-width: 70%;
-  animation-duration: 1.5s;
+  max-width: 100%;
+  animation-duration: 1s;
   animation-name: float;
   animation-iteration-count: infinite;
   animation-timing-function:ease-in-out;

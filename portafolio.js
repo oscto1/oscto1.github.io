@@ -159,11 +159,26 @@ window.addEventListener('DOMContentLoaded', function() {
   if(window.innerWidth < 992){
     imagen.classList.remove('col-md-8');
   }
-    document.getElementById('loader-overlay').style.display = 'none';
+    
 });
 
+window.addEventListener("load", function(){
+  //fallback: In case something fails.
+  setTimeout(hideLoader, 3000);
+});
 
-
+function hideLoader()
+{
+  const preloader = document.getElementById("loader-overlay");
+  
+  if(preloader)
+  {
+    preloader.style.opacity = "0";
+      setTimeout(() => {
+        preloader.style.display = "none";
+      }, 300);
+  }
+}
 
 function showPage() {
   $('#loader').hide();

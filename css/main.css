@@ -32,6 +32,16 @@ p {
   line-height: 1.6;
 }
 
+.navbar {
+  position: sticky;
+  top: 0;
+  padding: 25px;
+  background-color: #17348C;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+}
+
 .section {
     padding-left: clamp(1rem, 5vw, 5rem);
     padding-right: clamp(1rem, 5vw, 5rem);
@@ -54,6 +64,7 @@ p {
 }
 
 #controls_div{
+  margin-top: 20px;
   display: flex;
   justify-content: space-between;
   min-width: 300px;

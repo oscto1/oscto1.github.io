@@ -1,0 +1,193 @@
+html{
+  background-color: brown;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  overflow-x: hidden;
+  min-height: 3000px;
+}
+html, body {
+    margin: 0;
+    overflow: hidden;
+    height: 100%;
+}
+
+h1 {
+    font-size: clamp(2rem, 8vw, 5rem);
+}
+
+h2 {
+    font-size: clamp(1.5rem, 5vw, 5rem);
+}
+
+div, button {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+}
+
+p {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  max-width: 65ch;
+  line-height: 1.6;
+}
+
+.section {
+    padding-left: clamp(1rem, 5vw, 5rem);
+    padding-right: clamp(1rem, 5vw, 5rem);
+}
+
+#bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+#hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#controls_div{
+  display: flex;
+  justify-content: space-between;
+  min-width: 300px;
+  padding: 20px;
+
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.25s ease;
+}
+
+#controls_div.hidden{
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ctrl_hint{
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+#about{
+  height: 1000px;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+  color: white;
+}
+
+section {
+  /* min-height: 100vh; */
+  padding: 60px;
+  position: relative;
+  /* background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px); */
+
+}
+
+.card {
+  background: rgba(0,0,0,0.6);
+  padding: 20px;
+  margin: 10px 0;
+  border-radius: 10px;
+}
+
+.control-btn {
+  width: 60px;
+  height: 60px;
+  padding: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+
+.control-btn svg {
+  width: 100%;
+  height: 100%;
+  fill: white;
+}
+
+.glass-element {
+  /* 1. Semi-transparent background using rgba() */
+  background: rgba(255, 255, 255, 0.15);
+  
+  /* 2. The key property: applying blur to the background */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* for Safari support */
+  
+  /* 3. Subtle border to define the edge */
+    border: 2px solid rgba(255, 255, 255, 0.2);
+  
+  /* 4. Soft shadow for depth and a floating effect */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  
+  /* 5. Rounded corners for a modern aesthetic */
+  border-radius: 16px;
+}
+
+main {
+    position: fixed;
+    inset: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100vh;
+}
+
+#joystick-zone {
+    position: fixed;
+    /* left: 0px; */
+    bottom: 0px;
+    width: 100vw;
+    height: 140px;
+    z-index: 1000;
+    pointer-events: auto;
+    border-radius: 16px 16px 0 0;
+    touch-action: none;
+    overscroll-behavior: contain;
+
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.25s ease;
+}
+
+#joystick-zone.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#onJoystickToggle{
+  transform: rotate(180deg);
+  position: fixed;
+  z-index: 1000;
+  height: 2.5em;
+  width: 2.5em;
+  right: 10px;
+  bottom: 10px;
+}
+
+#ctrl-zone {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.stick-zone {
+  position: relative;
+  width: 50%;
+  height: 100%;
+}

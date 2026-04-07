@@ -80,7 +80,7 @@ scene.add(namePlatform);
 let Fname = fontLoader.load("../fonts/dongle/Dongle_Bold.json", (font) => {
     const textGeometry = new TextGeometry('oscar', {
         font: font,
-        size: 8,
+        size: 9,
         depth: 1.5,
         curveSegments: 12,
         bevelEnabled: true,

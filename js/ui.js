@@ -2,17 +2,71 @@ import { worldSize, getVisibleWorldHeight, isTouchDevice, width } from "./scene"
 import nipplejs from 'nipplejs';
 
 
-const controls_box = document.querySelector('#controls_div');
-
+// header setup ---------------------------------------------------------------------------------------
 const headerSections = document.querySelector('.header-sections');
 if(width>768){
-    headerSections.innerHTML = `<a href="#hero">Home</a>
-                                <a href="#projects">Projects</a>
-                                <a href="#about">About</a>`
+    headerSections.innerHTML = `<a href="#hero" class="nav-link">Home</a>
+                                <a href="#projects" class="nav-link">Projects</a>
+                                <a href="#about" class="nav-link">About</a>`
 }else{
-    headerSections.innerHTML = `<a class="active" id="section-hint">Home<a>`
+    headerSections.innerHTML = `<a class="active" id="section-hint">Home</a>`
 }
 
+const sectionMap = {
+  hero: "Home",
+  projects: "Projects",
+  about: "About"
+};
+
+const sections = document.querySelectorAll("section");
+const visibilityMap = new Map();
+// Observer
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        visibilityMap.set(entry.target.id, entry.intersectionRatio);
+    });
+
+    //find the most visible section
+    let maxRatio = 0;
+    let activeId = null;
+
+    visibilityMap.forEach((ratio, id) => {
+        if(ratio > maxRatio){
+            maxRatio = ratio;
+            activeId = id;
+        }
+    });
+
+    if(!activeId) return;
+
+    //Update UI;
+    if(width > 786){
+            document.querySelectorAll(".nav-link").forEach(link =>
+            link.classList.remove("active")
+        );
+
+        const activeLink = document.querySelector(`.nav-link[href="#${activeId}"]`);
+        if (activeLink) activeLink.classList.add("active");
+    }else{
+        const hint = document.querySelector("#section-hint");
+        if (hint && sectionMap[activeId]) {
+            hint.textContent = sectionMap[activeId];
+        }
+    }
+}, {
+//   threshold: Array.from({ length: 101 }, (_, i) => i / 100), //smooth tracking
+    threshold: 0,
+  rootMargin: "-50% 0px -50% 0px" // center of viewport
+});
+
+// Observe sections
+document.querySelectorAll("section").forEach(section => {
+  visibilityMap.set(section.id, 0);
+  observer.observe(section);
+});
+
+// controls setup -------------------------------------------------------------------------------------
+const controls_box = document.querySelector('#controls_div');
 let joystickInput = {
     forward: 0,
     turn: 0

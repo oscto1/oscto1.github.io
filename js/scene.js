@@ -74,7 +74,7 @@ function getWorldSize(pageHeight)
 {
     const visibleWidth = camera.right - camera.left;
 
-    const baseHeight = pageHeight / 10;
+    const baseHeight = pageHeight / 11;
 
     // Portrait screens get larger world height
     const aspect = window.innerHeight / window.innerWidth;

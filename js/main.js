@@ -28,9 +28,10 @@ const canvas = document.querySelector('#bg');
 const renderer = new THREE.WebGLRenderer({
     canvas: canvas,
     antialias: true,
-    // powerPreference: "high-performance"
+    // alpha: true
 });
-renderer.setClearColor("#3e71b4");
+// renderer.setClearColor("#3e71b4");
+renderer.setClearColor(0x000000, 0); 
 renderer.setSize(window.innerWidth, window.innerHeight);
 // renderer.shadowMap.type = THREE.PCFShadowMap;
 renderer.shadowMap.enabled = true;
@@ -168,7 +169,7 @@ const rendering = function()
         const currentScrollHeight = main.scrollHeight - main.clientHeight;
         const scrollPercent = currentScrollHeight > 0 ? main.scrollTop / currentScrollHeight : 0;
 
-        targetCameraZ = worldStart + 25 - ((scrollPercent * manualScrollHeight));
+        targetCameraZ = worldStart + 25 - ((scrollPercent * (manualScrollHeight * 6)));
         camera.position.z = targetCameraZ;
     }
 

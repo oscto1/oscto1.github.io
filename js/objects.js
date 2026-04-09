@@ -150,7 +150,9 @@ forklift.traverse((child) => {
 //floor
 const floorSize = 1024;
 const floorGeometry = new THREE.PlaneGeometry(floorSize, floorSize);
-const floorMaterial = new THREE.MeshStandardMaterial({ color: 0x3976D9, transparent:true, opacity: 0.5 });
+const floorMaterial = new THREE.ShadowMaterial({
+  opacity: 0.3 // adjust to taste
+});
 // floorMaterial.transparent = true;
 const floor = new THREE.Mesh(floorGeometry, floorMaterial);
 

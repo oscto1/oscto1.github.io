@@ -152,6 +152,9 @@ const cntr_hint = document.querySelector("#controls_div");
 //---------------------------------------------------------------------------------------------
 // const drivingRange = maxForkliftZ - worldStart;
 let targetCameraZ = camera.position.z;
+const cameraOffset = 25;
+const minCameraZ = worldStart + cameraOffset;
+const maxCameraZ = worldSize.height - worldStart + cameraOffset;
 
 const rendering = function() 
 {
@@ -163,29 +166,39 @@ const rendering = function()
 
     moveCar(keys, joystickInput, deltaTime);
 
+    const currentScrollHeight = main.scrollHeight - main.clientHeight;
 
-    if (!isDriving)
-    {
-        const currentScrollHeight = main.scrollHeight - main.clientHeight;
-        const scrollPercent = currentScrollHeight > 0 ? main.scrollTop / currentScrollHeight : 0;
+    
+    const cameraRange = maxCameraZ - minCameraZ;
 
-        targetCameraZ = worldStart + 25 - ((scrollPercent * (manualScrollHeight * 6)));
-        camera.position.z = targetCameraZ;
-    }
-
-    if (isDriving && forklift.position.z > worldStart && forklift.position.z < worldSize.height - worldStart)
+    if(forklift.position.z > worldStart)
     {
         cntr_hint.classList.add('hidden');
+    }
+    else
+    {
+        cntr_hint.classList.remove('hidden');
+    }
 
-        const currentScrollHeight = main.scrollHeight - main.clientHeight;
+    if (isDriving)
+    {
+        // Follow forklift
+        const desiredCameraZ = forklift.position.z + cameraOffset;
 
-        const targetDrivingZ = forklift.position.z + 25;
-        camera.position.z += (targetDrivingZ - camera.position.z) * 0.2;
+        const clampedCameraZ = THREE.MathUtils.clamp(
+            desiredCameraZ,
+            minCameraZ,
+            maxCameraZ
+        );
 
-        const maxForkliftZ = worldSize.height - 25;
-        const drivingRange = maxForkliftZ - worldStart;
+        camera.position.z += (clampedCameraZ - camera.position.z) * 0.2;
 
-        const normalizedProgress = Math.min(Math.max((forklift.position.z - worldStart) / drivingRange, 0), 1);
+        // Sync scroll position with forklift progress
+        const normalizedProgress = THREE.MathUtils.clamp(
+            ((forklift.position.z + cameraOffset) - minCameraZ) / cameraRange,
+            0,
+            1
+        );
 
         const newScrollTop = normalizedProgress * currentScrollHeight;
 
@@ -194,18 +207,24 @@ const rendering = function()
             behavior: 'auto'
         });
     }
-    else{
-        cntr_hint.classList.remove('hidden');
+    else
+    {
+        // Sync camera position with manual scroll
+        const scrollPercent = currentScrollHeight > 0
+            ? main.scrollTop / currentScrollHeight
+            : 0;
+
+        targetCameraZ = THREE.MathUtils.lerp(
+            minCameraZ,
+            maxCameraZ,
+            scrollPercent
+        );
+
+        camera.position.z = targetCameraZ;
     }
 
     directionalLight.position.set(-15, 40, camera.position.z - 40);
     directionalLight.target.position.set(0, 0, camera.position.z - 40);
-    // directionalLight.lookAt(0,0,camera.position.z - 40);
-
-    // const targetQuaternion = new THREE.Quaternion();
-    // console.log(directionalLight.getWorldQuaternion(targetQuaternion));
-    // // console.log(camera.position);
-    // console.log(directionalLight.rotation);
 
     renderer.render(scene, camera);
 }

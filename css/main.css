@@ -80,6 +80,8 @@ a{
 } */
 
 #bg {
+  filter: none !important;
+  -webkit-filter: none !important;
   position: fixed;
   top: 0;
   left: 0;

@@ -1,4 +1,5 @@
 import { worldSize, getVisibleWorldHeight, isTouchDevice, width } from "./scene";
+import { projects, createProjectCard } from "./projects";
 import nipplejs from 'nipplejs';
 
 
@@ -17,8 +18,62 @@ const sectionMap = {
   projects: "Projects",
   about: "About"
 };
+// Projects -----------------------------------------------------------------
+const cardGrid = document.querySelector(".card-grid");
 
-const sections = document.querySelectorAll("section");
+for (const project of projects){
+    const card = await createProjectCard(project, "en");
+    cardGrid.appendChild(card);
+}
+
+//videos
+let activeVideo = null;
+
+function pauseActiveVideo() {
+    if (!activeVideo) return;
+
+    const oldCard = activeVideo.closest(".card");
+    const oldButton = oldCard?.querySelector(".play_button");
+
+    activeVideo.pause();
+    if (oldButton) oldButton.style.display = "block";
+
+    activeVideo = null;
+}
+
+function handleVideoClick(video) {
+    const playButton = video.parentElement.querySelector(".play_button");
+
+    // If another video is playing → pause only that one
+    if (activeVideo && activeVideo !== video) {
+        pauseActiveVideo();
+    }
+
+    // Toggle current video
+    if (video.paused) {
+        video.play()
+            .then(() => {
+                if (playButton) playButton.style.display = "none";
+                activeVideo = video;
+            })
+            .catch(err => console.log("Playback failed:", err));
+    } else {
+        video.pause();
+        if (playButton) playButton.style.display = "block";
+        activeVideo = null;
+    }
+}
+
+const videos = document.querySelectorAll(".videos");
+
+for (const video of videos) {
+    video.addEventListener("click", function (e) {
+        e.stopPropagation();
+        handleVideoClick(this);
+    });
+}
+// --------------------------------------------------------------------------
+// const sections = document.querySelectorAll("section");
 const visibilityMap = new Map();
 // Observer
 const observer = new IntersectionObserver((entries) => {
@@ -144,18 +199,6 @@ if(isTouchDevice){
                                 `;
     console.log("keyboard");
 }
-
-
-// function toggleJoystick()
-// {
-//     if(joystickActive)
-// }
-// function worldZToPageY(worldZ)
-// {
-//     const scrollHeight = Math.max(document.body.scrollHeight - window.innerHeight, 0);
-
-//     return (worldZ / worldSize.height) * scrollHeight;
-// }
 
 function pageYToWorldZ(pageY)
 {

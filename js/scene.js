@@ -1,8 +1,13 @@
 import * as THREE from 'three';
 const scene = new THREE.Scene();
 
-const width = window.innerWidth;
-const height = window.innerHeight;
+let width = window.innerWidth;
+let height = window.innerHeight;
+
+function setWindowSize(newWidth, newHeight){
+    width = newWidth;
+    height = newHeight;
+}
 
 const worldStart = 28;
 
@@ -92,4 +97,4 @@ function getVisibleWorldHeight()
     return camera.top - camera.bottom;
 }
 
-export {scene, camera, directionalLight, width, height, worldStart, getVisibleWorldHeight, isTouchDevice, worldSize, getWorldSize, setWorldSize };
+export {scene, camera, frustumSize, directionalLight, width, height, worldStart, getVisibleWorldHeight, isTouchDevice, worldSize, getWorldSize, setWorldSize, setWindowSize };

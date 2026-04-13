@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import Stats from 'three/addons/libs/stats.module.js';
 import { moveCar } from './controller.js';
-import { scene, camera,directionalLight, worldStart, worldSize, getWorldSize, setWorldSize } from './scene.js';
+import { scene, camera,directionalLight, worldStart, worldSize, getWorldSize, setWorldSize, width, height, setWindowSize, frustumSize } from './scene.js';
 import { forklift } from './objects.js';
 import { worldDistanceToPixels, joystick, joystickInput } from './ui.js';
 import { directPointLight } from 'three/tsl';
@@ -36,33 +36,29 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 // renderer.shadowMap.type = THREE.PCFShadowMap;
 renderer.shadowMap.enabled = true;
 // renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-renderer.setPixelRatio(2);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 //Responsive window
 // const aspect = width / height;
-// window.addEventListener('resize', () => {
+window.addEventListener('resize', onWindowResize);
 
-//     // Ignore tiny height-only changes caused by mobile browser UI
-//     if (Math.abs(width - lastWidth) < 5 && Math.abs(height - lastHeight) < 80)
-//     {
-//         return;
-//     }
+function onWindowResize(){
+    setWindowSize(window.innerWidth, window.innerHeight);
+    const aspect = width / height;
 
-//     lastWidth = width;
-//     lastHeight = height;
+    camera.left = -frustumSize * aspect / 2
+    camera.right = frustumSize * aspect / 2;
+    camera.top = frustumSize / 2;
+    camera.bottom = -frustumSize / 2;
 
-//     // const aspect = width / height;
-// // console.log(width);
-//     renderer.setSize(width, height);
+    camera.updateProjectionMatrix();
 
-//     camera.left = -frustumSize * aspect / 2;
-//     camera.right = frustumSize * aspect / 2;
-//     camera.top = frustumSize / 2;
-//     camera.bottom = -frustumSize / 2;
+    renderer.setSize(width, height);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
 
-//     camera.updateProjectionMatrix();
-// })
-
+    const pageHeight = main.scrollHeight - main.clientHeight;
+    setWorldSize(getWorldSize(pageHeight));
+}
 
 // Controls --------------------------------------------------------------------------------
 const keys = {

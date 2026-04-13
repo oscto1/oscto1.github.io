@@ -19,25 +19,25 @@ const projects = [
         video: "img/forkfest/forkfest.mp4",
     },
 
-    {
-        id: 2,
-        title: {
-            "en": "Forkfest",
-            "es": "Forkfest"
-        },
-        description: {
-            "en": "C#, Multiplayer application with client-server synchronization and gameplay systems implemented using Unity.",
-            "es": "Aplicación multijugador en C# con sincronización cliente-servidor y sistemas de juego implementado usando Unity.",
-        },
-        tech: ["C#", "Unity"],
-        cta: {
-            "en": "Check updates",
-            "es": "Ver avances"
-        },
-        link: "https://www.instagram.com/olliqadev/",
-        img: "img/forkfest/thumbnail.png",
-        video: "",
-    }
+    // {
+    //     id: 2,
+    //     title: {
+    //         "en": "Forkfest",
+    //         "es": "Forkfest"
+    //     },
+    //     description: {
+    //         "en": "C#, Multiplayer application with client-server synchronization and gameplay systems implemented using Unity.",
+    //         "es": "Aplicación multijugador en C# con sincronización cliente-servidor y sistemas de juego implementado usando Unity.",
+    //     },
+    //     tech: ["C#", "Unity"],
+    //     cta: {
+    //         "en": "Check updates",
+    //         "es": "Ver avances"
+    //     },
+    //     link: "https://www.instagram.com/olliqadev/",
+    //     img: "img/forkfest/thumbnail.png",
+    //     video: "",
+    // }
 ]
 
 

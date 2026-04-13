@@ -347,3 +347,21 @@ main {
     width: min(1900px, 100%);
   }
 }
+
+
+/* DEV */
+#dev-banner {
+  position: fixed;
+  top: 70px;
+  left: 10px;
+  z-index: 9999;
+
+  background: rgba(255, 0, 0, 0.85);
+  color: white;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-family: sans-serif;
+
+  border-radius: 6px;
+  backdrop-filter: blur(6px);
+}

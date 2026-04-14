@@ -65,8 +65,8 @@ a{
   padding: 10px;
   /* background-color: rgba(255,255,255,0.15); */
   background-color: rgba(56,124,224,0.7);
-  backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px) !important;
   z-index: 10;
   display: flex;
   justify-content: space-between;
@@ -226,8 +226,9 @@ section {
   pointer-events: none;
 
   background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
+  
   -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px) !important;
 
   border-radius: 15px;
   border: 1px solid rgba(255, 255, 255, 0.25);

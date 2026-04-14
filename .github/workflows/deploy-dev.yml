@@ -28,5 +28,5 @@ jobs:
         with:
           external_repository: oscto1/portfolio-dev
           publish_branch: gh-pages
-          github_token: ${{ secrets.PAT }}
+          deploy_key: ${{ secrets.SSH_PRIVATE_KEY }}
           publish_dir: ./dist

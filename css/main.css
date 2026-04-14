@@ -249,11 +249,11 @@ section {
   background: rgba(255, 255, 255, 0.15);
   
   /* 2. The key property: applying blur to the background */
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px) !important;
   -webkit-backdrop-filter: blur(10px); /* for Safari support */
   
   /* 3. Subtle border to define the edge */
-    border: 2px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.2);
   
   /* 4. Soft shadow for depth and a floating effect */
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);

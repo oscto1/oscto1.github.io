@@ -9,7 +9,7 @@ const projects = [
             "en": "C#, Multiplayer application with client-server synchronization and gameplay systems implemented using Unity NGO.",
             "es": "Aplicación multijugador en C# con sincronización cliente-servidor y sistemas de juego implementado usando Unity NGO.",
         },
-        tech: ["C#", "Unity"],
+        tech: ["C#", "Unity", "NGO"],
         cta: {
             "en": "Check updates",
             "es": "Ver avances"
@@ -19,25 +19,25 @@ const projects = [
         video: "img/forkfest/forkfest.mp4",
     },
 
-    // {
-    //     id: 2,
-    //     title: {
-    //         "en": "Forkfest",
-    //         "es": "Forkfest"
-    //     },
-    //     description: {
-    //         "en": "C#, Multiplayer application with client-server synchronization and gameplay systems implemented using Unity.",
-    //         "es": "Aplicación multijugador en C# con sincronización cliente-servidor y sistemas de juego implementado usando Unity.",
-    //     },
-    //     tech: ["C#", "Unity"],
-    //     cta: {
-    //         "en": "Check updates",
-    //         "es": "Ver avances"
-    //     },
-    //     link: "https://www.instagram.com/olliqadev/",
-    //     img: "img/forkfest/thumbnail.png",
-    //     video: "",
-    // }
+    {
+        id: 2,
+        title: {
+            "en": "Forkfest",
+            "es": "Forkfest"
+        },
+        description: {
+            "en": "C#, Multemented using Unity.",
+            "es": "Aplicación multijugador en C# con sincronización cliente-servidor y sistemas de juego implementado usando Unity.",
+        },
+        tech: ["C#", "Unity"],
+        cta: {
+            "en": "Check updates",
+            "es": "Ver avances"
+        },
+        link: "https://www.instagram.com/olliqadev/",
+        img: "img/forkfest/thumbnail.png",
+        video: "",
+    }
 ]
 
 
@@ -99,9 +99,21 @@ async function createProjectCard(project, lang) {
     const content = document.createElement("div");
     content.style.padding = "20px";
 
+    const header = document.createElement("div");
+    header.classList.add("card-header");
+
     const title = document.createElement("h3");
     title.style.margin = "0";
     title.textContent = project.title[lang];
+
+    header.appendChild(title);
+
+    for(let i = 0; i < project.tech.length; i++){
+        let techElem = document.createElement("div");
+        techElem.classList.add("card-tech-elem");
+        techElem.innerText = project.tech[i];
+        header.appendChild(techElem);
+    }
 
     const desc = document.createElement("p");
     desc.textContent = project.description[lang];
@@ -110,7 +122,8 @@ async function createProjectCard(project, lang) {
     link.href = project.link;
     link.textContent = project.cta[lang];
 
-    content.append(title, desc, link);
+    content.append(header, desc, link);
+    content.classList.add("card-content");
     card.appendChild(content);
 
     return card;

@@ -184,6 +184,7 @@ section {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .card img {
@@ -243,6 +244,36 @@ section {
 .card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.card-header{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.card-tech-elem{
+  background: rgba(0,0,0,0.3);
+  padding: 6px;
+  border-radius: 15px;
+  font-size: small;
+}
+
+.card-content{
+  background: rgba(255,255,255,0.25);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  /* height: 100%; */
+}
+
+.card-content a{
+  margin-top: auto;
+  background: rgba(0,0,0,0.3);
+  padding: 7px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  border-radius: 10px;
+  align-self: flex-start;
 }
 
 .glass-element {

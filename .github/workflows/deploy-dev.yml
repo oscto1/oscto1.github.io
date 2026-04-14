@@ -2,7 +2,7 @@ name: Deploy Preview (Dev)
 
 on:
   push:
-    branches: [gh-pages-dev]
+    branches: [dev]
 
 jobs:
   build-and-deploy:

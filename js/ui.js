@@ -77,13 +77,17 @@ for (const video of videos) {
 const visibilityMap = new Map();
 // Observer
 const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        visibilityMap.set(entry.target.id, entry.intersectionRatio);
-    });
-
     //find the most visible section
     let maxRatio = 0;
     let activeId = null;
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            activeId = entry.target.id;
+        }
+        // visibilityMap.set(entry.target.id, entry.intersectionRatio);
+    });
+
+    
 
     visibilityMap.forEach((ratio, id) => {
         if(ratio > maxRatio){
@@ -91,10 +95,11 @@ const observer = new IntersectionObserver((entries) => {
             activeId = id;
         }
     });
-
+    
     if(!activeId) return;
 
     //Update UI;
+    console.log("here");
     if(width > 786){
             document.querySelectorAll(".nav-link").forEach(link =>
             link.classList.remove("active")
@@ -111,7 +116,7 @@ const observer = new IntersectionObserver((entries) => {
 }, {
 //   threshold: Array.from({ length: 101 }, (_, i) => i / 100), //smooth tracking
     threshold: 0,
-  rootMargin: "-50% 0px -50% 0px" // center of viewport
+    rootMargin: "-50% 0px -50% 0px" // center of viewport
 });
 
 // Observe sections

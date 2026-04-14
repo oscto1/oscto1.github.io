@@ -189,11 +189,11 @@ if(isTouchDevice){
     joystickZone.style.display = "none";
     arrow.style.display = "none";
     controls_box.innerHTML = ` <div class="ctrl_hint">
-                                    <img src="../img/wasd.png" alt="wasd"  height="50">
+                                    <img src="img/wasd.png" alt="wasd"  height="50">
                                     <p>Drive</p>
                                 </div>
                                 <div class="ctrl_hint">
-                                    <img src="../img/ik.png" alt="ik"  height="50">
+                                    <img src="img/ik.png" alt="ik"  height="50">
                                     <p>Move fork</p>
                                 </div>
                                 `;

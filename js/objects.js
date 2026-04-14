@@ -77,7 +77,7 @@ namePlatform.castShadow = true;
 scene.add(namePlatform);
 
 // fisrt name
-let Fname = fontLoader.load("../fonts/dongle/Dongle_Bold.json", (font) => {
+let Fname = fontLoader.load("fonts/dongle/Dongle_Bold.json", (font) => {
     const textGeometry = new TextGeometry('oscar', {
         font: font,
         size: 9,
@@ -101,7 +101,7 @@ let Fname = fontLoader.load("../fonts/dongle/Dongle_Bold.json", (font) => {
 });
 
 //last name
-let Lname = fontLoader.load("../fonts/Finesse-Oblique/FinesseOblique_Regular.json", (font) => {
+let Lname = fontLoader.load("fonts/Finesse-Oblique/FinesseOblique_Regular.json", (font) => {
     const textGeometry = new TextGeometry('Castillejo', {
         font: font,
         size: 6,
@@ -126,7 +126,7 @@ let Lname = fontLoader.load("../fonts/Finesse-Oblique/FinesseOblique_Regular.jso
 });
 
 //forklift
-let forklift = await loadModel("../models/Forklift.glb", scene);
+let forklift = await loadModel("models/Forklift.glb", scene);
 forklift.position.set(0,0,14);
 forklift.rotation.y = 0.78;
 forklift.scale.set(1, 1, 1);
@@ -135,7 +135,7 @@ let baseCar;
 forklift.castShadow = true;
 
 //fork
-let fork = await loadModel("../models/Fork.glb", forklift);
+let fork = await loadModel("models/Fork.glb", forklift);
 fork.position.set(0, 0.3, 3.1); //Y min 0.3 - Y max 4
 
 forklift.traverse((child) => {

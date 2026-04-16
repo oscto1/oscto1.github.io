@@ -195,14 +195,6 @@ section {
   object-fit: cover;
 }
 
-/* .card video{
-  width: 100%;
-  height: auto;
-
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-} */
-
 .video-wrapper {
   position: relative;
   width: 100%;
@@ -257,6 +249,12 @@ section {
   padding: 6px;
   border-radius: 15px;
   font-size: small;
+}
+
+.card-category{
+  font-size: small;
+  color: rgb(220,220,220);
+  margin-bottom: 5px;
 }
 
 .card-content{

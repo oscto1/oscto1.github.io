@@ -1,6 +1,7 @@
 const projects = [
     {
         id: 1,
+        year: "2025 - 2026",
         title: {
             "en": "Forkfest",
             "es": "Forkfest"
@@ -20,6 +21,7 @@ const projects = [
     },
     {
         id: 2,
+        year: "2023",
         title: {
             "en": "Math Slopes",
             "es": "Math Slopes"
@@ -39,6 +41,7 @@ const projects = [
     },
     {
         id: 3,
+        year: "2021",
         title: {
             "en": "Unity Arcade",
             "es": "Arcade Unity"
@@ -58,6 +61,7 @@ const projects = [
     },
     {
         id: 4,
+        year: "2025",
         title: {
             "en": "Sort Algorithms",
             "es": "Algoritmos de ordenamiento"
@@ -75,7 +79,26 @@ const projects = [
         img: "img/sort_visualizer/1.png",
         video: "img/sort_visualizer/1.mp4",
     },
-    
+    {
+        id: 5,
+        year: "2021",
+        title: {
+            "en": "Messapp",
+            "es": "Messapp"
+        },
+        description: {
+            "en": "Chat room application built with React and Firebase, implementing messaging, Google authentication, and cloud-based data synchronization.",
+            "es": "Aplicación de salas de chat desarrollada con React y Firebase, que incluye funciones de mensajería, autenticación de Google y sincronización de datos en la nube.",
+        },
+        tech: ["React", "Firebase"],
+        cta: {
+            "en": "Try now",
+            "es": "Probar ahora"
+        },
+        link: "https://messa-69e78.firebaseapp.com/",
+        img: "img/messaging/Messa2-min.png",
+        video: "",
+    }
 ]
 
 
@@ -137,6 +160,11 @@ async function createProjectCard(project, lang) {
     const content = document.createElement("div");
     content.style.padding = "20px";
 
+    const category = document.createElement("div");
+    category.classList.add("card-category");
+    category.innerText = project.year; // + " • " + project.category;
+    
+
     const header = document.createElement("div");
     header.classList.add("card-header");
 
@@ -161,7 +189,7 @@ async function createProjectCard(project, lang) {
     link.target = "_blank";
     link.textContent = project.cta[lang];
 
-    content.append(header, desc, link);
+    content.append(category, header, desc, link);
     content.classList.add("card-content");
     card.appendChild(content);
 

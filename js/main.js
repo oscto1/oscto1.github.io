@@ -167,14 +167,15 @@ const rendering = function()
     
     const cameraRange = maxCameraZ - minCameraZ;
 
-    if(forklift.position.z > worldStart)
-    {
-        cntr_hint.classList.add('hidden');
-    }
-    else
-    {
-        cntr_hint.classList.remove('hidden');
-    }
+    // console.log(camera.position.z);
+    // if(camera.position.z > 53)
+    // {
+    //     cntr_hint.classList.add('hidden');
+    // }
+    // else
+    // {
+    //     cntr_hint.classList.remove('hidden');
+    // }
 
     if (isDriving)
     {

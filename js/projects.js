@@ -18,26 +18,64 @@ const projects = [
         img: "img/forkfest/thumbnail.png",
         video: "img/forkfest/forkfest.mp4",
     },
-
     {
         id: 2,
         title: {
-            "en": "Forkfest",
-            "es": "Forkfest"
+            "en": "Math Slopes",
+            "es": "Math Slopes"
         },
         description: {
-            "en": "C#, Multemented using Unity.",
-            "es": "Aplicación multijugador en C# con sincronización cliente-servidor y sistemas de juego implementado usando Unity.",
+            "en": "Browser-based application built with Phaser (JavaScript), implementing game state management, input handling, scoring logic, and dynamic difficulty.",
+            "es": "Aplicación para navegador desarrollada con Phaser (JavaScript), que implementa la gestión de estados de juego, manejo de entradas, lógica de puntuación y dificultad dinámica.",
+        },
+        tech: ["PhaserJS"],
+        cta: {
+            "en": "Try now",
+            "es": "Probar ahora"
+        },
+        link: "project/ski_slopes/index.html",
+        img: "img/ski/1.png",
+        video: "img/ski/1.mp4",
+    },
+    {
+        id: 3,
+        title: {
+            "en": "Unity Arcade",
+            "es": "Arcade Unity"
+        },
+        description: {
+            "en": "C#, Unity project recreating some classic arcade mechanics , implementing input handling, collision detection, scoring systems, and basic UI logic.",
+            "es": "Proyecto en C# y Unity que recrea mecánicas de algunos juegos arcade e implementa el manejo de entradas, la detección de colisiones y lógica de interfaz de usuario.",
         },
         tech: ["C#", "Unity"],
         cta: {
-            "en": "Check updates",
-            "es": "Ver avances"
+            "en": "Try now",
+            "es": "Probar ahora"
         },
-        link: "https://www.instagram.com/olliqadev/",
-        img: "img/forkfest/thumbnail.png",
-        video: "",
-    }
+        link: "Arcade/arcade.html",
+        img: "img/arcade/arcade1.png",
+        video: "img/arcade/arcade1.mp4",
+    },
+    {
+        id: 4,
+        title: {
+            "en": "Sort Algorithms",
+            "es": "Algoritmos de ordenamiento"
+        },
+        description: {
+            "en": "Interactive visualization tool demonstrating sorting algorithms (Merge, Quick, Heap, Bubble), including step-by-step execution.",
+            "es": "Herramienta de visualización interactiva que muestra algoritmos de ordenamiento (Merge, Quick, Heap, Bubble), con ejecución paso a paso.",
+        },
+        tech: ["Javascript"],
+        cta: {
+            "en": "Try now",
+            "es": "Probar ahora"
+        },
+        link: "project/sort_visualizer/index.html",
+        img: "img/sort_visualizer/1.png",
+        video: "img/sort_visualizer/1.mp4",
+    },
+    
 ]
 
 
@@ -120,6 +158,7 @@ async function createProjectCard(project, lang) {
 
     const link = document.createElement("a");
     link.href = project.link;
+    link.target = "_blank";
     link.textContent = project.cta[lang];
 
     content.append(header, desc, link);

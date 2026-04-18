@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8">
     <title>My first three.js app</title>
@@ -20,26 +20,45 @@
         </div>
       </div>
       <section id="hero">
+        <h3 style="text-shadow: 1.5px 1.5px 2.5px pink;" data-i18n="degree" id="degree">Software Engineer</h3>
         <div class="inner hero">
-          <h3 style="text-shadow: 1.5px 1.5px 2.5px pink;">Software Engineer</h3>
+          
           <div class="glass-element toggleControls" id="controls_div">Controls</div>
         </div>
       </section>
       <section id="projects">
         <div class="inner">
-          <h2 style="margin-top: 0;">Projects</h2>
+          <h2 data-i18n="sections.projects" style="margin-top: 0;">Projects</h2>
           <div class="card-grid">
           </div>
         </div>
       </section>
       <section id="about">
         <div class="inner">
-          <h2>About Me</h2>
+          <h2 data-i18n="sections.about">About Me</h2>
           <p>Short description...</p>
         </div>
       </section>
 
-      
+      <footer class="footer-minimal">
+        <div class="footer-minimal__container">
+
+            <p class="footer-minimal__copyright">
+                &copy; 2026 Oscar Castillejo. 
+            </p>
+
+            <nav class="footer-minimal__nav" aria-label="Languages">
+                <ul>
+                    <li>
+                        <button type="button" class="btn btn-lg" style="background-image: url('img/es.svg'); background-size: cover;" id="esbtn"></button>
+                    </li>
+                    <li>
+                        <button type="button" class="btn btn-lg" style="background-image: url('img/gb.svg'); background-size: cover;" id="enbtn"></button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+      </footer>
     </main>
     <div class="glass-element hidden" id="joystick-zone">
       <div id="ctrl-zone">

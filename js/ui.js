@@ -1,14 +1,15 @@
 import { worldSize, getVisibleWorldHeight, isTouchDevice, width } from "./scene";
 import { projects, createProjectCard } from "./projects";
+import { getLang, translate, t } from "./lang";
 import nipplejs from 'nipplejs';
 
 
 // header setup ---------------------------------------------------------------------------------------
 const headerSections = document.querySelector('.header-sections');
 if(width>768){
-    headerSections.innerHTML = `<a href="#hero" class="nav-link">Home</a>
-                                <a href="#projects" class="nav-link">Projects</a>
-                                <a href="#about" class="nav-link">About</a>`
+    headerSections.innerHTML = `<a data-i18n="nav.home" href="#hero" class="nav-link">Home</a>
+                                <a data-i18n="nav.projects" href="#projects" class="nav-link">Projects</a>
+                                <a data-i18n="nav.about" href="#about" class="nav-link">About</a>`
 }else{
     headerSections.innerHTML = `<a class="active" id="section-hint">Home</a>`
 }
@@ -22,7 +23,8 @@ const sectionMap = {
 const cardGrid = document.querySelector(".card-grid");
 
 for (const project of projects){
-    const card = await createProjectCard(project, "en");
+    // console.log(getLang());
+    const card = await createProjectCard(project, getLang());
     cardGrid.appendChild(card);
 }
 
@@ -87,8 +89,6 @@ const observer = new IntersectionObserver((entries) => {
         // visibilityMap.set(entry.target.id, entry.intersectionRatio);
     });
 
-    
-
     visibilityMap.forEach((ratio, id) => {
         if(ratio > maxRatio){
             maxRatio = ratio;
@@ -99,7 +99,6 @@ const observer = new IntersectionObserver((entries) => {
     if(!activeId) return;
 
     //Update UI;
-    console.log("here");
     if(width > 786){
             document.querySelectorAll(".nav-link").forEach(link =>
             link.classList.remove("active")
@@ -110,7 +109,9 @@ const observer = new IntersectionObserver((entries) => {
     }else{
         const hint = document.querySelector("#section-hint");
         if (hint && sectionMap[activeId]) {
-            hint.textContent = sectionMap[activeId];
+            hint.setAttribute("data-i18n", "nav." + sectionMap[activeId].toLowerCase());
+            console.log(hint.dataset.i18n);
+            hint.textContent = t(hint.dataset.i18n, getLang());
         }
     }
 }, {
@@ -141,19 +142,18 @@ const forkZone = document.querySelector('#fork-zone');
 
 const arrow = document.querySelector("#onJoystickToggle");
 if(isTouchDevice){
-    controls_box.innerHTML = `<p>Toggle forklift controls</p>
+    controls_box.innerHTML = `<p data-i18n="controls_hint.1"></p>
     <button class="glass-element control-btn">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M448 128C554 128 640 214 640 320C640 426 554 512 448 512L192 512C86 512 0 426 0 320C0 214 86 128 192 128L448 128zM192 240C178.7 240 168 250.7 168 264L168 296L136 296C122.7 296 112 306.7 112 320C112 333.3 122.7 344 136 344L168 344L168 376C168 389.3 178.7 400 192 400C205.3 400 216 389.3 216 376L216 344L248 344C261.3 344 272 333.3 272 320C272 306.7 261.3 296 248 296L216 296L216 264C216 250.7 205.3 240 192 240zM432 336C414.3 336 400 350.3 400 368C400 385.7 414.3 400 432 400C449.7 400 464 385.7 464 368C464 350.3 449.7 336 432 336zM496 240C478.3 240 464 254.3 464 272C464 289.7 478.3 304 496 304C513.7 304 528 289.7 528 272C528 254.3 513.7 240 496 240z"/></svg>
     </button>`;
     // controls_box.style.backgroundColor = 'rgba(0,0,0,0)';
     const btnToggleControls = document.getElementsByClassName("toggleControls");
-    console.log(btnToggleControls);
     
     for(let i = 0; i < btnToggleControls.length; i++)
     {
         btnToggleControls[i].addEventListener('click', ()=>{
             joystickZone.classList.toggle('hidden');
-            if(joystickZone.classList.contains("hidden"))            {
+            if(joystickZone.classList.contains("hidden")){
                 arrow.style.transform = "rotate(180deg)";
                 arrow.style.bottom = "10px";
             }else{
@@ -189,21 +189,49 @@ if(isTouchDevice){
 
     // fork
     //TODO
-    console.log("touch");
 }else{
     joystickZone.style.display = "none";
     arrow.style.display = "none";
     controls_box.innerHTML = ` <div class="ctrl_hint">
                                     <img src="img/wasd.png" alt="wasd"  height="50">
-                                    <p>Drive</p>
+                                    <p data-i18n="controls_hint.2"></p>
                                 </div>
                                 <div class="ctrl_hint">
                                     <img src="img/ik.png" alt="ik"  height="50">
-                                    <p>Move fork</p>
+                                    <p data-i18n="controls_hint.3"></p>
                                 </div>
                                 `;
-    console.log("keyboard");
 }
+
+// Translate ------------------------------------------------------------------------------------------
+const enButton = document.querySelector('#enbtn');
+const esButton = document.querySelector('#esbtn');
+
+
+function langButtonStyle(){
+    if(getLang() === "es")    {
+        esButton.classList.add('activelang');
+        enButton.classList.remove('activelang')
+    }
+    else{
+        esButton.classList.remove('activelang');
+        enButton.classList.add('activelang')
+    }
+}
+
+translate(getLang());
+
+enButton.addEventListener('click', ()=>{
+    translate('en');
+    langButtonStyle();
+})
+
+esButton.addEventListener('click', ()=>{
+    translate('es');
+    langButtonStyle();
+})
+
+// --------------------------------------
 
 function pageYToWorldZ(pageY)
 {

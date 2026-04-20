@@ -1,9 +1,9 @@
 import * as THREE from 'three';
 import Stats from 'three/addons/libs/stats.module.js';
 import { moveCar } from './controller.js';
-import { scene, camera,directionalLight, worldStart, worldSize, getWorldSize, setWorldSize, width, height, setWindowSize, frustumSize } from './scene.js';
+import { scene, camera,directionalLight, worldStart, worldSize, getWorldSize, setWorldSize, width, height, setWindowSize, frustumSize, worldDistanceToPixels } from './scene.js';
 import { forklift } from './objects.js';
-import { worldDistanceToPixels, joystick, joystickInput } from './ui.js';
+import { joystick, joystickInput } from './ui.js';
 import { directPointLight } from 'three/tsl';
 
 
@@ -56,6 +56,10 @@ function onWindowResize(){
     renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
 
+    const hero = document.getElementById("hero");
+
+    hero.style.height = `${worldDistanceToPixels(35)}px`;
+    
     const pageHeight = main.scrollHeight - main.clientHeight;
     setWorldSize(getWorldSize(pageHeight));
 }

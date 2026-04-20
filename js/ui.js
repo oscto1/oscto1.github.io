@@ -110,7 +110,6 @@ const observer = new IntersectionObserver((entries) => {
         const hint = document.querySelector("#section-hint");
         if (hint && sectionMap[activeId]) {
             hint.setAttribute("data-i18n", "nav." + sectionMap[activeId].toLowerCase());
-            console.log(hint.dataset.i18n);
             hint.textContent = t(hint.dataset.i18n, getLang());
         }
     }
@@ -233,20 +232,4 @@ esButton.addEventListener('click', ()=>{
 
 // --------------------------------------
 
-function pageYToWorldZ(pageY)
-{
-    const scrollHeight = document.body.scrollHeight - window.innerHeight;
-    return (pageY / scrollHeight) * worldSize.height;
-}
-
-function getPixelsPerWorldUnit()
-{
-    return window.innerHeight / getVisibleWorldHeight();
-}
-
-function worldDistanceToPixels(worldDistance)
-{
-    return worldDistance * getPixelsPerWorldUnit();
-}
-
-export { worldDistanceToPixels, joystick, joystickInput }
+export { joystick, joystickInput }

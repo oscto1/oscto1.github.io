@@ -79,16 +79,19 @@ function getWorldSize(pageHeight)
 {
     const visibleWidth = camera.right - camera.left;
 
-    const baseHeight = pageHeight / 10;
+    console.log(pageHeight);
+
+    const baseHeight = pageHeight * 1.4;
 
     // Portrait screens get larger world height
     const aspect = window.innerHeight / window.innerWidth;
 
     const aspectFactor = THREE.MathUtils.clamp(aspect, 1.3, 1.4);
 
+    console.log(pixelsToWorldDistance(pageHeight));
     return {
         width: visibleWidth,
-        height: THREE.MathUtils.clamp(baseHeight * aspectFactor, 80, 220)
+        height: pixelsToWorldDistance(baseHeight)
     };
 }
 
@@ -97,4 +100,25 @@ function getVisibleWorldHeight()
     return camera.top - camera.bottom;
 }
 
-export {scene, camera, frustumSize, directionalLight, width, height, worldStart, getVisibleWorldHeight, isTouchDevice, worldSize, getWorldSize, setWorldSize, setWindowSize };
+
+function pageYToWorldZ(pageY)
+{
+    const scrollHeight = document.body.scrollHeight - window.innerHeight;
+    return (pageY / scrollHeight) * worldSize.height;
+}
+
+function getPixelsPerWorldUnit()
+{
+    return window.innerHeight / getVisibleWorldHeight();
+}
+
+function worldDistanceToPixels(worldDistance)
+{
+    return worldDistance * getPixelsPerWorldUnit();
+}
+
+function pixelsToWorldDistance(pixels){
+    return pixels / getPixelsPerWorldUnit();
+}
+
+export {scene, camera, frustumSize, directionalLight, width, height, worldStart, getVisibleWorldHeight, worldDistanceToPixels, isTouchDevice, worldSize, getWorldSize, setWorldSize, setWindowSize };

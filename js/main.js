@@ -111,6 +111,28 @@ if(joystick !== undefined)
     // });
 }
 
+// reset keys on different events
+window.addEventListener('blur', () => {
+    stopAllInput();
+    setDrivingState(false);
+});
+
+window.addEventListener('contextmenu', () => {
+    stopAllInput();
+    setDrivingState(false);
+});
+
+window.addEventListener('mouseup', () => {
+    stopAllInput();
+});
+
+document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+        stopAllInput();
+        setDrivingState(false);
+    }
+});
+//-----
 
 let targetScrollY = main.scrollTop;
 
@@ -139,6 +161,10 @@ function setDrivingState(driving)
         main.style.overflow = '';
         document.body.style.overflow = '';
     }
+}
+
+function stopAllInput() {
+    Object.keys(keys).forEach(k => keys[k] = false);
 }
 
 // UI config ------------------------------------------------------------------------------------

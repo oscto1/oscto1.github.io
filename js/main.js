@@ -77,6 +77,8 @@ const keys = {
 let isDriving = false;
 
 window.addEventListener('keydown', (e) => {
+    if (isTyping(e)) return;
+
     if(!(e.key in keys)) return;
 
     keys[e.key] = true;
@@ -85,6 +87,8 @@ window.addEventListener('keydown', (e) => {
 
 window.addEventListener('keyup', (e) => 
 {
+    if (isTyping(e)) return;
+
     if (!(e.key in keys)) return;
 
     keys[e.key] = false;
@@ -148,6 +152,28 @@ const stats = new Stats();
 document.body.appendChild(stats.dom);
 
 const cntr_hint = document.querySelector("#controls_div");
+
+//form
+const form = document.getElementById("contact-form");
+
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    
+    await fetch(form.action, {
+      method: "POST",
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    form.style.display = "none";
+    document.getElementById("success-message").style.display = "block";
+});
+
+function isTyping(e) {
+    const tag = e.target.tagName;
+    return tag === "INPUT" || tag === "TEXTAREA";
+}
 
 //---------------------------------------------------------------------------------------------
 // const drivingRange = maxForkliftZ - worldStart;

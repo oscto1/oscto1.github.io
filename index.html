@@ -36,7 +36,64 @@
       <section id="about">
         <div class="inner">
           <h2 data-i18n="sections.about">About Me</h2>
-          <p>Short description...</p>
+          <div class="glass-element aboutme-container">
+            <p style="white-space: pre-line; margin-bottom: 30px;" data-i18n="aboutme">Short description...</p>
+            <h3 data-i18n="contact.title" id="contact">Contact</h3>
+            <form action="https://formspree.io/f/xbdqalol" id="contact-form" method="POST">
+  
+              <!-- Name -->
+              <input 
+                class="input_field"
+                data-i18n="contact.name"
+                type="text"
+                name="name"
+                placeholder="Your name"
+                maxlength="100"
+                required
+              >
+
+              <!-- Email -->
+              <input
+                class="input_field"
+                data-i18n="contact.email"
+                type="email"
+                name="email"
+                placeholder="Your email" 
+                required
+              >
+
+              <!-- Message -->
+              <textarea
+                class="input_field"
+                data-i18n="contact.message"
+                name="message" 
+                placeholder="Your message" 
+                minlength="10"
+                maxlength="1000"
+                required
+              ></textarea>
+
+              <input 
+                type="text" 
+                name="_gotcha" 
+                style="display:none"
+              >
+
+              <!-- Submit -->
+              <button data-i18n="contact.send_button" type="submit">Send Message</button>
+              
+            </form>
+            <p data-i18n="contact.success_message" id="success-message" style="display:none;">Thanks! Your message was sent.</p>
+            <p data-i18n="contact.alternative"></p>
+            <div class="social-container">
+              <!-- <a href="#contact"><img class="contact-icons" src="img/icons/mail.svg" alt="email"></a> -->
+              <a href="https://github.com/oscto1" target="_blank"><img class="contact-icons" src="img/icons/github.svg" alt="email"></a>
+              <a href="https://www.linkedin.com/in/oscar-castilllejo/" target="_blank"><img class="contact-icons" src="img/icons/linkedin.svg" alt="email"></a>
+              <a href="https://www.instagram.com/olliqadev/" target="_blank"><img class="contact-icons" src="img/icons/instagram.svg" alt="email"></a>
+            </div>
+            
+          </div>
+          
         </div>
       </section>
 

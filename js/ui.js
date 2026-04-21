@@ -28,7 +28,41 @@ for (const project of projects){
     cardGrid.appendChild(card);
 }
 
-//videos
+function filterProjects(category) {
+    const cards = document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+        const cardCategory = parseInt(card.dataset.category);
+
+        const shouldShow = !category || cardCategory === category;
+
+        if (shouldShow) {
+            card.classList.remove("hide");
+            card.classList.add("show");
+        } else {
+            card.classList.remove("show");
+            card.classList.add("hide");
+        }
+    });
+}
+
+document.querySelectorAll(".projects-filter button").forEach(btn => {
+    btn.addEventListener("click", () => {
+        const value = btn.dataset.project_cat;
+
+        const category = value === "all" ? null : parseInt(value);
+
+        filterProjects(category);
+
+        // active button styling
+        document.querySelectorAll(".projects-filter button").forEach(b =>
+            b.classList.remove("active")
+        );
+        btn.classList.add("active");
+    });
+});
+
+//videos ------------------------------------------------------------------
 let activeVideo = null;
 
 function pauseActiveVideo() {

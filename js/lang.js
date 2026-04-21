@@ -20,6 +20,11 @@ const translations = {
             projects: "Projects",
             about: "About"
         },
+        project_cat:{
+            "all": "All",
+            1: "Games",
+            2: "Software projects"
+        },
         aboutme: `I’m a software developer from Colombia focused on interactive systems and real-time applications.\n 
                     I enjoy building responsive systems that combine performance, logic, and user experience. I mainly work with C#, JavaScript, and Python, using tools like Unity to develop features such as multiplayer systems, procedural generation, and runtime tools.\n
                     I’m continuously improving my skills and interested in writing clean, maintainable code, with some experience in security testing that helps me consider edge cases and reliability.`,
@@ -49,6 +54,11 @@ const translations = {
             home: "Inicio",
             projects: "Proyectos",
             about: "Sobre mí"
+        },
+        project_cat:{
+            "all": "Todos",
+            1: "Juegos",
+            2: "Proyectos de software"
         },
         aboutme: `Soy desarrollador de software de Colombia, enfocado en sistemas interactivos y aplicaciones en tiempo real.\n
                     Me gusta crear sistemas dinámicos que combinan rendimiento, lógica y experiencia de usuario.

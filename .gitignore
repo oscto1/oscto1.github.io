@@ -30,3 +30,5 @@ yarn.lock
 pnpm-lock.yaml
 
 .vite
+
+.vite/

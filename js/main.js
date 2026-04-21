@@ -18,6 +18,7 @@ const manualScrollHeight = drivableHeight * 1.15;
 setWorldSize(getWorldSize(scrollHeight));
 
 console.log(worldSize.height + " " + worldSize.width);
+console.log(window.devicePixelRatio);
 
 const timer = new THREE.Timer();
 timer.connect(document);
@@ -32,11 +33,14 @@ const renderer = new THREE.WebGLRenderer({
 });
 // renderer.setClearColor("#3e71b4");
 renderer.setClearColor(0x000000, 0); 
+
+console.log(window.innerWidth);
+console.log(window.innerHeight);
+
 renderer.setSize(window.innerWidth, window.innerHeight);
 // renderer.shadowMap.type = THREE.PCFShadowMap;
 renderer.shadowMap.enabled = true;
-// renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setPixelRatio(2);
 
 //Responsive window
 // const aspect = width / height;
@@ -54,7 +58,7 @@ function onWindowResize(){
     camera.updateProjectionMatrix();
 
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+    // renderer.setPixelRatio(1);
 
     const hero = document.getElementById("hero");
 
@@ -205,6 +209,7 @@ function isTyping(e) {
 // const drivingRange = maxForkliftZ - worldStart;
 let targetCameraZ = camera.position.z;
 const cameraOffset = 25;
+
 const minCameraZ = worldStart + cameraOffset;
 const maxCameraZ = worldSize.height - worldStart + cameraOffset;
 
@@ -222,16 +227,6 @@ const rendering = function()
 
     
     const cameraRange = maxCameraZ - minCameraZ;
-
-    // console.log(camera.position.z);
-    // if(camera.position.z > 53)
-    // {
-    //     cntr_hint.classList.add('hidden');
-    // }
-    // else
-    // {
-    //     cntr_hint.classList.remove('hidden');
-    // }
 
     if (isDriving)
     {

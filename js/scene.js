@@ -26,17 +26,26 @@ function setWorldSize(newWorldSize)
 const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
 //camera ------------------------------------------------------------------------
+
+const referenceHeight = 951;
+const heightRatio = height / referenceHeight;
+
+// only partially apply scaling (20–30%)
+const frustumSize = 70 * THREE.MathUtils.lerp(1, heightRatio, 0.3);
+
 const aspect = width / height;
-const frustumSize = 70; // adjust based on scene scale
 const camera = new THREE.OrthographicCamera(
     -frustumSize * aspect / 2, // left
-    frustumSize * aspect / 2,  // right
+    frustumSize  * aspect / 2,  // right
     frustumSize / 2,           // top
     -frustumSize / 2,          // bottom
     0.1,                       // near
     1000)                      // far );
 camera.position.set(0, 45, 0);
-camera.lookAt(0,0, camera.position.z - worldStart);
+
+const adjustedWorldStart = worldStart + (1 - heightRatio) * 15;
+
+camera.lookAt(0,0, camera.position.z - adjustedWorldStart);
 scene.add(camera);
 
 
@@ -79,8 +88,6 @@ function getWorldSize(pageHeight)
 {
     const visibleWidth = camera.right - camera.left;
 
-    console.log(pageHeight);
-
     const baseHeight = pageHeight * 1.4;
 
     // Portrait screens get larger world height
@@ -88,7 +95,6 @@ function getWorldSize(pageHeight)
 
     const aspectFactor = THREE.MathUtils.clamp(aspect, 1.3, 1.4);
 
-    console.log(pixelsToWorldDistance(pageHeight));
     return {
         width: visibleWidth,
         height: pixelsToWorldDistance(baseHeight)

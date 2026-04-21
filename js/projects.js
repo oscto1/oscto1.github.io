@@ -118,6 +118,8 @@ const projects = [
 ]
 
 
+const jobType = new URLSearchParams(window.location.search).get('type');
+
 let playIconTemplate = null;
 
 async function loadPlayIcon() {
@@ -135,6 +137,25 @@ async function loadPlayIcon() {
   // return a fresh copy each time
   return playIconTemplate.cloneNode(true);
 }
+
+function getCategoryPriority(jobType) {
+    if (jobType === "SE") {
+        return { 2: 0, 1: 1 };
+    }
+    return null; // default order
+}
+
+function sortProjects(projects, jobType) {
+    const priority = getCategoryPriority(jobType);
+
+    if (!priority) return projects;
+
+    return [...projects].sort((a, b) => {
+        return (priority[a.category] ?? 99) - (priority[b.category] ?? 99);
+    });
+}
+
+const sortedProjects = sortProjects(projects, jobType);
 
 async function createProjectCard(project, lang) {
     const card = document.createElement("div");
@@ -236,4 +257,4 @@ function filterProjects(category) {
     return allProjects.filter(p => p.category === category);
 }
 
-export {projects, createProjectCard, translateProjects}
+export {sortedProjects, createProjectCard, translateProjects}

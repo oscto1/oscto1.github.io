@@ -1,5 +1,5 @@
 import { worldSize, getVisibleWorldHeight, isTouchDevice, width } from "./scene";
-import { projects, createProjectCard } from "./projects";
+import { sortedProjects, createProjectCard } from "./projects";
 import { getLang, translate, t } from "./lang";
 import nipplejs from 'nipplejs';
 
@@ -22,7 +22,7 @@ const sectionMap = {
 // Projects -----------------------------------------------------------------
 const cardGrid = document.querySelector(".card-grid");
 
-for (const project of projects){
+for (const project of sortedProjects){
     // console.log(getLang());
     const card = await createProjectCard(project, getLang());
     cardGrid.appendChild(card);
@@ -33,16 +33,9 @@ function filterProjects(category) {
 
     cards.forEach(card => {
         const cardCategory = parseInt(card.dataset.category);
-
         const shouldShow = !category || cardCategory === category;
 
-        if (shouldShow) {
-            card.classList.remove("hide");
-            card.classList.add("show");
-        } else {
-            card.classList.remove("show");
-            card.classList.add("hide");
-        }
+        card.classList.toggle("hide", !shouldShow);
     });
 }
 

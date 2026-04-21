@@ -17,9 +17,6 @@ const manualScrollHeight = drivableHeight * 1.15;
 // const pageHeight = main.scrollHeight - main.clientHeight;
 setWorldSize(getWorldSize(scrollHeight));
 
-console.log(worldSize.height + " " + worldSize.width);
-console.log(window.devicePixelRatio);
-
 const timer = new THREE.Timer();
 timer.connect(document);
 timer.reset();
@@ -40,7 +37,7 @@ console.log(window.innerHeight);
 renderer.setSize(window.innerWidth, window.innerHeight);
 // renderer.shadowMap.type = THREE.PCFShadowMap;
 renderer.shadowMap.enabled = true;
-renderer.setPixelRatio(2);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 //Responsive window
 // const aspect = width / height;
@@ -48,24 +45,32 @@ window.addEventListener('resize', onWindowResize);
 
 function onWindowResize(){
     setWindowSize(window.innerWidth, window.innerHeight);
+
     const aspect = width / height;
 
-    camera.left = -frustumSize * aspect / 2
+    const referenceHeight = 951;
+    const heightRatio = height / referenceHeight;
+
+    const clampedRatio = THREE.MathUtils.clamp(heightRatio, 0.7, 1.1);
+    const frustumSize = 70 * THREE.MathUtils.lerp(1, clampedRatio, 0.3);
+
+    // Update camera
+    camera.left = -frustumSize * aspect / 2;
     camera.right = frustumSize * aspect / 2;
     camera.top = frustumSize / 2;
     camera.bottom = -frustumSize / 2;
 
     camera.updateProjectionMatrix();
 
+    // Update renderer
     renderer.setSize(width, height);
-    // renderer.setPixelRatio(1);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    const hero = document.getElementById("hero");
-
-    hero.style.height = `${worldDistanceToPixels(35)}px`;
-    
     const pageHeight = main.scrollHeight - main.clientHeight;
     setWorldSize(getWorldSize(pageHeight));
+
+    const hero = document.getElementById("hero");
+    hero.style.height = `${worldDistanceToPixels(35)}px`;
 }
 
 // Controls --------------------------------------------------------------------------------
@@ -204,6 +209,15 @@ function isTyping(e) {
     const tag = e.target.tagName;
     return tag === "INPUT" || tag === "TEXTAREA";
 }
+
+let links = document.querySelectorAll('.nav-link');
+
+links.forEach((link) => {
+    link.addEventListener('click', ()=>{
+        stopAllInput();
+        setDrivingState(false);
+    });
+})
 
 //---------------------------------------------------------------------------------------------
 // const drivingRange = maxForkliftZ - worldStart;

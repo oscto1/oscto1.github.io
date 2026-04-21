@@ -215,7 +215,7 @@ const maxCameraZ = worldSize.height - worldStart + cameraOffset;
 
 const rendering = function() 
 {
-    stats.update();
+    
     requestAnimationFrame(rendering);
 
     timer.update();
@@ -275,6 +275,7 @@ const rendering = function()
     directionalLight.target.position.set(0, 0, camera.position.z - 40);
 
     renderer.render(scene, camera);
+    stats.update();
 }
 
 rendering();

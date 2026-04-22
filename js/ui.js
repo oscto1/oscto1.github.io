@@ -1,7 +1,7 @@
 import { worldSize, getVisibleWorldHeight, isTouchDevice, width } from "./scene";
-import { projects, createProjectCard } from "./projects";
+import { sortedProjects, createProjectCard } from "./projects";
 import { getLang, translate, t } from "./lang";
-import nipplejs from 'nipplejs';
+import { createJoystick } from "./myJoystick";
 
 
 // header setup ---------------------------------------------------------------------------------------
@@ -22,13 +22,40 @@ const sectionMap = {
 // Projects -----------------------------------------------------------------
 const cardGrid = document.querySelector(".card-grid");
 
-for (const project of projects){
+for (const project of sortedProjects){
     // console.log(getLang());
     const card = await createProjectCard(project, getLang());
     cardGrid.appendChild(card);
 }
 
-//videos
+function filterProjects(category) {
+    const cards = document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+        const cardCategory = parseInt(card.dataset.category);
+        const shouldShow = !category || cardCategory === category;
+
+        card.classList.toggle("hide", !shouldShow);
+    });
+}
+
+document.querySelectorAll(".projects-filter button").forEach(btn => {
+    btn.addEventListener("click", () => {
+        const value = btn.dataset.project_cat;
+
+        const category = value === "all" ? null : parseInt(value);
+
+        filterProjects(category);
+
+        // active button styling
+        document.querySelectorAll(".projects-filter button").forEach(b =>
+            b.classList.remove("active")
+        );
+        btn.classList.add("active");
+    });
+});
+
+//videos ------------------------------------------------------------------
 let activeVideo = null;
 
 function pauseActiveVideo() {
@@ -129,7 +156,9 @@ document.querySelectorAll("section").forEach(section => {
 const controls_box = document.querySelector('#controls_div');
 let joystickInput = {
     forward: 0,
-    turn: 0
+    turn: 0,
+    rise: false,
+    lower: false
 };
 // let isMovingJoystick = false;
 
@@ -140,6 +169,10 @@ const moveZone = document.querySelector('#move-zone');
 const forkZone = document.querySelector('#fork-zone');
 
 const arrow = document.querySelector("#onJoystickToggle");
+
+let moveJoystick;
+let forkJoystick;
+
 if(isTouchDevice){
     controls_box.innerHTML = `<p data-i18n="controls_hint.1"></p>
     <button class="glass-element control-btn">
@@ -151,7 +184,10 @@ if(isTouchDevice){
     for(let i = 0; i < btnToggleControls.length; i++)
     {
         btnToggleControls[i].addEventListener('click', ()=>{
+            const isHidden = joystickZone.classList.contains("hidden");
             joystickZone.classList.toggle('hidden');
+
+
             if(joystickZone.classList.contains("hidden")){
                 arrow.style.transform = "rotate(180deg)";
                 arrow.style.bottom = "10px";
@@ -163,30 +199,37 @@ if(isTouchDevice){
     }  
     
     // forklift
-    joystick = nipplejs.create({
-        zone: moveZone,
-        mode: 'static',
-        // multitouch: false,
-        position: { left: '100px', bottom: '70px' },
-        color: 'white',
-        size: 100
+    moveJoystick = createJoystick({
+        baseEl: document.getElementById('move-base'),
+        stickEl: document.getElementById('move-stick'),
     });
 
-    joystick.on('move', (event) => {
-       
-        joystickInput.turn = Math.abs(event.data.vector.x) > 0.1 ? event.data.vector.x : 0;
-        joystickInput.forward = Math.abs(event.data.vector.y) > 0.1 ? -event.data.vector.y : 0;
+    moveJoystick.setOnMove((x, y)=>{
+        joystickInput.turn = x;
+            joystickInput.forward = y;
     });
-    joystickZone.addEventListener('touchmove', (e) => {
-        e.preventDefault();
-    }, { passive: false });
 
-    joystick.on('end', () => {
-        joystickInput.forward = 0;
+    moveJoystick.setOnEnd((x, y) => {
         joystickInput.turn = 0;
+            joystickInput.forward = -0;
     });
 
     // fork
+    forkJoystick = createJoystick({
+        baseEl: document.getElementById('fork-base'),
+        stickEl: document.getElementById('fork-stick'),
+    });
+
+    forkJoystick.setOnMove((x, y)=>{
+        y < -0.2 ? joystickInput.rise = true : joystickInput.rise = false;
+        y > 0.2 ?  joystickInput.lower = true : joystickInput.lower = false;
+    });
+
+    forkJoystick.setOnEnd((x, y) => {
+        joystickInput.rise = false;
+        joystickInput.lower = false;
+    });
+
     //TODO
 }else{
     joystickZone.style.display = "none";
@@ -232,4 +275,4 @@ esButton.addEventListener('click', ()=>{
 
 // --------------------------------------
 
-export { joystick, joystickInput }
+export { moveJoystick, joystickInput }

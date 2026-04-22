@@ -48,11 +48,11 @@ export function moveCar(keys, joystickInput, deltaTime)
 
     // forkcontrol
     let forkpos = fork.position;
-    if (keys['i'] && forkpos.y <= 4)
+    if ((keys['i'] || joystickInput.rise) && forkpos.y <= 4)
     {
         fork.position.set(0, forkpos.y+= (0.15 * dt), 3.1);
     }
-    if (keys['k'] && forkpos.y >= 0.3)
+    if ((keys['k'] || joystickInput.lower) && forkpos.y >= 0.3)
     {
         fork.position.set(0, forkpos.y-=(0.15 * dt), 3.1);
     }

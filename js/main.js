@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import { moveCar } from './controller.js';
 import { scene, camera,directionalLight, worldStart, worldSize, getWorldSize, setWorldSize, width, height, setWindowSize, frustumSize, worldDistanceToPixels } from './scene.js';
 import { forklift } from './objects.js';
-import { joystick, joystickInput } from './ui.js';
+import { moveJoystick, joystickInput } from './ui.js';
 import { directPointLight } from 'three/tsl';
 
 
@@ -16,9 +16,6 @@ const manualScrollHeight = drivableHeight * 1.15;
 // const drivingScrollHeight = drivableHeight;
 // const pageHeight = main.scrollHeight - main.clientHeight;
 setWorldSize(getWorldSize(scrollHeight));
-
-console.log(worldSize.height + " " + worldSize.width);
-console.log(window.devicePixelRatio);
 
 const timer = new THREE.Timer();
 timer.connect(document);
@@ -40,7 +37,7 @@ console.log(window.innerHeight);
 renderer.setSize(window.innerWidth, window.innerHeight);
 // renderer.shadowMap.type = THREE.PCFShadowMap;
 renderer.shadowMap.enabled = true;
-renderer.setPixelRatio(2);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 //Responsive window
 // const aspect = width / height;
@@ -48,24 +45,32 @@ window.addEventListener('resize', onWindowResize);
 
 function onWindowResize(){
     setWindowSize(window.innerWidth, window.innerHeight);
+
     const aspect = width / height;
 
-    camera.left = -frustumSize * aspect / 2
+    const referenceHeight = 951;
+    const heightRatio = height / referenceHeight;
+
+    const clampedRatio = THREE.MathUtils.clamp(heightRatio, 0.7, 1.1);
+    const frustumSize = 70 * THREE.MathUtils.lerp(1, clampedRatio, 0.3);
+
+    // Update camera
+    camera.left = -frustumSize * aspect / 2;
     camera.right = frustumSize * aspect / 2;
     camera.top = frustumSize / 2;
     camera.bottom = -frustumSize / 2;
 
     camera.updateProjectionMatrix();
 
+    // Update renderer
     renderer.setSize(width, height);
-    // renderer.setPixelRatio(1);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    const hero = document.getElementById("hero");
-
-    hero.style.height = `${worldDistanceToPixels(35)}px`;
-    
     const pageHeight = main.scrollHeight - main.clientHeight;
     setWorldSize(getWorldSize(pageHeight));
+
+    const hero = document.getElementById("hero");
+    hero.style.height = `${worldDistanceToPixels(35)}px`;
 }
 
 // Controls --------------------------------------------------------------------------------
@@ -102,17 +107,16 @@ window.addEventListener('wheel', () => {
     setDrivingState(false);
 });
 
-if(joystick !== undefined)
+if(moveJoystick !== undefined)
 {
-    joystick.on('start', ()=>{
-        console.log("started");
+    moveJoystick.setOnStart(() => {
         setDrivingState(true);
     });
 
-    // joystick.on('end', ()=>{
-    //     console.log("ended");
-    //     setDrivingState(false);
-    // });
+//     // joystick.on('end', ()=>{
+//     //     console.log("ended");
+//     //     setDrivingState(false);
+//     // });
 }
 
 // reset keys on different events
@@ -205,6 +209,15 @@ function isTyping(e) {
     return tag === "INPUT" || tag === "TEXTAREA";
 }
 
+let links = document.querySelectorAll('.nav-link');
+
+links.forEach((link) => {
+    link.addEventListener('click', ()=>{
+        stopAllInput();
+        setDrivingState(false);
+    });
+})
+
 //---------------------------------------------------------------------------------------------
 // const drivingRange = maxForkliftZ - worldStart;
 let targetCameraZ = camera.position.z;
@@ -275,6 +288,7 @@ const rendering = function()
     directionalLight.target.position.set(0, 0, camera.position.z - 40);
 
     renderer.render(scene, camera);
+    // stats.update();
 }
 
 rendering();

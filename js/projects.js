@@ -17,7 +17,7 @@ const projects = [
             "en": "Forkfest",
             "es": "Forkfest"
         },
-        category: projectCategories[1],
+        category: 1,
         description: {
             "en": "C#, Multiplayer application with client-server synchronization and gameplay systems implemented using Unity NGO.",
             "es": "Aplicación multijugador en C# con sincronización cliente-servidor y sistemas de juego implementado usando Unity NGO.",
@@ -38,7 +38,7 @@ const projects = [
             "en": "Math Slopes",
             "es": "Math Slopes"
         },
-        category: projectCategories[1],
+        category: 1,
         description: {
             "en": "Browser-based application built with Phaser (JavaScript), implementing game state management, input handling, scoring logic, and dynamic difficulty.",
             "es": "Aplicación para navegador desarrollada con Phaser (JavaScript), que implementa la gestión de estados de juego, manejo de entradas, lógica de puntuación y dificultad dinámica.",
@@ -59,7 +59,7 @@ const projects = [
             "en": "Unity Arcade",
             "es": "Arcade Unity"
         },
-        category: projectCategories[1],
+        category: 1,
         description: {
             "en": "C#, Unity project recreating some classic arcade mechanics , implementing input handling, collision detection, scoring systems, and basic UI logic.",
             "es": "Proyecto en C# y Unity que recrea mecánicas de algunos juegos arcade e implementa el manejo de entradas, la detección de colisiones y lógica de interfaz de usuario.",
@@ -80,7 +80,7 @@ const projects = [
             "en": "Sort Algorithms",
             "es": "Algoritmos de ordenamiento"
         },
-        category: projectCategories[2],
+        category: 2,
         description: {
             "en": "Interactive visualization tool demonstrating sorting algorithms (Merge, Quick, Heap, Bubble), including step-by-step execution.",
             "es": "Herramienta de visualización interactiva que muestra algoritmos de ordenamiento (Merge, Quick, Heap, Bubble), con ejecución paso a paso.",
@@ -101,7 +101,7 @@ const projects = [
             "en": "Messapp",
             "es": "Messapp"
         },
-        category: projectCategories[2],
+        category: 2,
         description: {
             "en": "Chat room application built with React and Firebase, implementing messaging, Google authentication, and cloud-based data synchronization.",
             "es": "Aplicación de salas de chat desarrollada con React y Firebase, que incluye funciones de mensajería, autenticación de Google y sincronización de datos en la nube.",
@@ -117,6 +117,8 @@ const projects = [
     }
 ]
 
+
+const jobType = new URLSearchParams(window.location.search).get('type');
 
 let playIconTemplate = null;
 
@@ -135,6 +137,25 @@ async function loadPlayIcon() {
   // return a fresh copy each time
   return playIconTemplate.cloneNode(true);
 }
+
+function getCategoryPriority(jobType) {
+    if (jobType === "SE") {
+        return { 2: 0, 1: 1 };
+    }
+    return null; // default order
+}
+
+function sortProjects(projects, jobType) {
+    const priority = getCategoryPriority(jobType);
+
+    if (!priority) return projects;
+
+    return [...projects].sort((a, b) => {
+        return (priority[a.category] ?? 99) - (priority[b.category] ?? 99);
+    });
+}
+
+const sortedProjects = sortProjects(projects, jobType);
 
 async function createProjectCard(project, lang) {
     const card = document.createElement("div");
@@ -179,7 +200,8 @@ async function createProjectCard(project, lang) {
 
     const category = document.createElement("div");
     category.classList.add("card-category");
-    category.innerText = project.year + " • " + project.category[lang];
+    const categoryLabel = projectCategories[project.category][lang];
+    category.innerText = project.year + " • " + categoryLabel;
 
     const header = document.createElement("div");
     header.classList.add("card-header");
@@ -209,6 +231,9 @@ async function createProjectCard(project, lang) {
     content.classList.add("card-content");
     card.appendChild(content);
 
+    card.classList.add("show");
+    card.dataset.category = project.category;
+
     return card;
 }
 
@@ -221,10 +246,15 @@ function translateProjects(lang){
             projectsCards[i].querySelector("h3").innerText = match.title[lang];
             projectsCards[i].querySelector("p").innerText = match.description[lang];
             projectsCards[i].querySelector("a").innerText = match.cta[lang];
-            projectsCards[i].querySelector(".card-category").innerText = match.year + " • " + match.category[lang];
+            projectsCards[i].querySelector(".card-category").innerText = match.year + " • " + projectCategories[match.category][lang];
         }
     }
-    
 }
 
-export {projects, createProjectCard, translateProjects}
+function filterProjects(category) {
+    if (!category) return allProjects;
+
+    return allProjects.filter(p => p.category === category);
+}
+
+export {sortedProjects, createProjectCard, translateProjects}

@@ -1,52 +1,134 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8">
-    <title>My first three.js app</title>
+    <title>Oscar Castillejo | Porfolio</title>
+    <link rel="icon" type="image/png" href="img/OC_color.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="darkreader-lock">
-    <script type="module" crossorigin src="/assets/index-BrFC90XD.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-Co5Ay0s3.css">
+    <script type="module" crossorigin src="/assets/index-CPVzD3VA.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-_2fnivff.css">
   </head>
   <body>
     <canvas id="bg"></canvas>
     <main>
       <div id="dev-banner">THIS VERSION OF THE PORTFOLIO IS IN DEVELOPMENT</div>  <!-- DEV -->
       <div class="navbar">
-        <a href="#default" class="logo">Oscar Castillejo</a>
-        <div class="header-sections">
-        </div>
-        <div class="">
-          Social Media
-        </div>
+        <a href="#hero " class="logo nav-link"><img src="img/OC.png" alt=""></a>
+        <div class="header-sections"></div>
+        <a href="#contact" class="logo media_button nav-link"><img src="img/icons/at.svg" alt=""></a>
       </div>
       <section id="hero">
+        <h3 style="text-shadow: 1.5px 1.5px 2.5px pink;" data-i18n="degree" id="degree">Software Engineer</h3>
         <div class="inner hero">
-          <h3 style="text-shadow: 1.5px 1.5px 2.5px pink;">Software Engineer</h3>
+          
           <div class="glass-element toggleControls" id="controls_div">Controls</div>
         </div>
       </section>
       <section id="projects">
         <div class="inner">
-          <h2 style="margin-top: 0;">Projects</h2>
+          <h2 data-i18n="sections.projects" style="margin-top: 0;">Projects</h2>
+          <div class="projects-filter">
+            <button data-i18n="project_cat.all" data-project_cat="all" class="active">All</button>
+            <button data-i18n="project_cat.1" data-project_cat="1">Games</button>
+            <button data-i18n="project_cat.2" data-project_cat="2">Software</button>
+          </div>
           <div class="card-grid">
           </div>
         </div>
       </section>
       <section id="about">
         <div class="inner">
-          <h2>About Me</h2>
-          <p>Short description...</p>
+          <h2 data-i18n="sections.about">About Me</h2>
+          <div class="glass-element aboutme-container">
+            <p style="white-space: pre-line; margin-bottom: 30px;" data-i18n="aboutme">Short description...</p>
+            <h3 data-i18n="contact.title" id="contact">Contact</h3>
+            <form action="https://formspree.io/f/xbdqalol" id="contact-form" method="POST">
+  
+              <!-- Name -->
+              <input 
+                class="input_field"
+                data-i18n="contact.name"
+                type="text"
+                name="name"
+                placeholder="Your name"
+                maxlength="100"
+                required
+              >
+
+              <!-- Email -->
+              <input
+                class="input_field"
+                data-i18n="contact.email"
+                type="email"
+                name="email"
+                placeholder="Your email" 
+                required
+              >
+
+              <!-- Message -->
+              <textarea
+                class="input_field"
+                data-i18n="contact.message"
+                name="message" 
+                placeholder="Your message" 
+                minlength="10"
+                maxlength="1000"
+                required
+              ></textarea>
+
+              <input 
+                type="text" 
+                name="_gotcha" 
+                style="display:none"
+              >
+
+              <!-- Submit -->
+              <button data-i18n="contact.send_button" type="submit">Send Message</button>
+              
+            </form>
+            <p data-i18n="contact.success_message" id="success-message" style="margin-bottom: 20px; display:none;">Thanks! Your message was sent.</p>
+            <p data-i18n="contact.alternative"></p>
+            <div class="social-container">
+              <!-- <a href="#contact"><img class="contact-icons" src="img/icons/mail.svg" alt="email"></a> -->
+              <a href="https://www.linkedin.com/in/oscar-castilllejo/" class="media_button" target="_blank"><img class="contact-icons" src="img/icons/linkedin.svg" alt="linkedin"></a>
+              <a href="https://github.com/oscto1" class="media_button" target="_blank"><img class="contact-icons" src="img/icons/github.svg" alt="github"></a>
+              <a href="https://www.instagram.com/olliqadev/" class="media_button" target="_blank"><img class="contact-icons" src="img/icons/instagram.svg" alt="instagram"></a>
+            </div>
+            <a href="mailto:oscarcastillejo2@gmail.com" target="_blank">oscarcastillejo2@gmail.com</a>
+            
+          </div>
+          
         </div>
       </section>
 
-      
+      <footer class="footer-minimal">
+        <div class="footer-minimal__container">
+
+            <p class="footer-minimal__copyright">
+                &copy; 2026 Oscar Castillejo. 
+            </p>
+
+            <nav class="footer-minimal__nav" aria-label="Languages">
+                <ul>
+                    <li>
+                        <button type="button" class="btn btn-lg" style="background-image: url('img/es.svg'); background-size: cover;" id="esbtn"></button>
+                    </li>
+                    <li>
+                        <button type="button" class="btn btn-lg" style="background-image: url('img/gb.svg'); background-size: cover;" id="enbtn"></button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+      </footer>
     </main>
     <div class="glass-element hidden" id="joystick-zone">
-      <div id="ctrl-zone">
-        <div class="stick-zone" id="move-zone"></div>
+        <div class="stick-zone" id="move-zone">
+          <div class="joystick-base" id="move-base">
+            <div class="joystick-stick" id="move-stick"></div>
+          </div>
+        </div>
         <div class="stick-zone" id="fork-zone"></div>
-      </div> 
     </div>
     <div id="onJoystickToggle" class="toggleControls"><svg class="glass-elements" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="#fff" d="M300.3 440.8C312.9 451 331.4 450.3 343.1 438.6L471.1 310.6C480.3 301.4 483 287.7 478 275.7C473 263.7 461.4 256 448.5 256L192.5 256C179.6 256 167.9 263.8 162.9 275.8C157.9 287.8 160.7 301.5 169.9 310.6L297.9 438.6L300.3 440.8z"/></svg></div>
     <!-- <script src="https://cdn.jsdelivr.net/npm/eruda"></script>

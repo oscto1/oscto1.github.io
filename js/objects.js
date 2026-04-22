@@ -163,6 +163,14 @@ scene.add(floor);
 // const axesHelper = new THREE.AxesHelper(20);
 // scene.add(axesHelper);
 
+//BOUNDING BOXES
+
+const forkliftBox = new THREE.Box3().setFromObject(baseCar);
+const platformBox = new THREE.Box3().setFromObject(namePlatform);
+
+const helper = new THREE.Box3Helper(forkliftBox, 0xff0000);
+scene.add(helper);
+
 
 function initTransform(object)
 {
@@ -171,4 +179,4 @@ function initTransform(object)
     // object.rotateZ(Math.PI / 2);
 }
 
-export {forklift, fork, floor}
+export {forklift, fork, floor, forkliftBox, platformBox, baseCar}

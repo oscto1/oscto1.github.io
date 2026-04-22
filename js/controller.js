@@ -1,5 +1,5 @@
 import { Vector3, MathUtils } from "three"; // THREE from 'three';
-import { forklift, fork } from "./objects.js";
+import { forklift, fork, baseCar, forkliftBox, platformBox } from "./objects.js";
 import { worldSize } from "./scene.js";
 
 
@@ -9,6 +9,8 @@ let friction = 0.95;
 
 const maxSpeed = 0.8; 
 const forward = new Vector3();
+
+const push = 3;
 
 
 export function moveCar(keys, joystickInput, deltaTime)
@@ -28,6 +30,16 @@ export function moveCar(keys, joystickInput, deltaTime)
         velocity -= acceleration * Math.max(1, joystickInput.forward) * dt;
     }
 
+    let forkpos = fork.position;
+    if ((keys['i'] || joystickInput.rise) && forkpos.y <= 4)
+    {
+        fork.position.set(0, forkpos.y+= (0.15 * dt), 3.1);
+    }
+    if ((keys['k'] || joystickInput.lower) && forkpos.y >= 0.3)
+    {
+        fork.position.set(0, forkpos.y-=(0.15 * dt), 3.1);
+    }
+
     velocity *= Math.pow(friction, dt);
 
     const speed = Math.abs(velocity);
@@ -38,24 +50,40 @@ export function moveCar(keys, joystickInput, deltaTime)
     // scale steering strength
     const steerStrength = 0.03 * t * dt;
 
+    // compute movement
     forward.set(0, 0, 1).applyQuaternion(forklift.quaternion);
-    forklift.position.addScaledVector(forward, velocity * dt);
+    const moveStep = forward.clone().multiplyScalar(velocity * dt);
 
+    const oldPosition = forklift.position.clone();
+
+    // --- FULL MOVEMENT ---
+    forklift.position.add(moveStep);
+    updateForkliftBox();
+
+    if (forkliftBox.intersectsBox(platformBox)) {
+        // revert
+        forklift.position.copy(oldPosition);
+
+        // damp velocity
+        velocity *= 0.3;
+
+        // --- X axis ---
+        forklift.position.x += moveStep.x;
+
+        // --- Z axis ---
+        forklift.position.z += moveStep.z;
+        updateForkliftBox();
+
+        if (forkliftBox.intersectsBox(platformBox)) {
+            forklift.position.x -= moveStep.x * push;
+            forklift.position.z -= moveStep.z * push;
+        }
+    }
     // rotation
     forklift.rotation.y += turnInput * steerStrength * Math.sign(velocity);
-    // if (keys['a']) forklift.rotation.y += steerStrength * Math.sign(velocity);
-    // if (keys['d']) forklift.rotation.y -= steerStrength * Math.sign(velocity);
 
     // forkcontrol
-    let forkpos = fork.position;
-    if ((keys['i'] || joystickInput.rise) && forkpos.y <= 4)
-    {
-        fork.position.set(0, forkpos.y+= (0.15 * dt), 3.1);
-    }
-    if ((keys['k'] || joystickInput.lower) && forkpos.y >= 0.3)
-    {
-        fork.position.set(0, forkpos.y-=(0.15 * dt), 3.1);
-    }
+    
 
     forklift.position.x = MathUtils.clamp(
         forklift.position.x,
@@ -68,4 +96,9 @@ export function moveCar(keys, joystickInput, deltaTime)
         0,
         worldSize.height
     );
+}
+
+function updateForkliftBox() {
+    forkliftBox.setFromObject(baseCar);
+    forkliftBox.expandByScalar(-0.1);
 }

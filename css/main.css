@@ -473,6 +473,8 @@ main {
 }
 
 #joystick-zone {
+    display: flex;
+    flex-direction: row;
     position: absolute;
     left: 0px;
     bottom: 0px;
@@ -510,6 +512,11 @@ main {
 
 #move-base{
   left: 40px;
+  bottom: 20px;
+}
+
+#fork-base{
+  right: 40px;
   bottom: 20px;
 }
 

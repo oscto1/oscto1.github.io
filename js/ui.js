@@ -156,7 +156,9 @@ document.querySelectorAll("section").forEach(section => {
 const controls_box = document.querySelector('#controls_div');
 let joystickInput = {
     forward: 0,
-    turn: 0
+    turn: 0,
+    rise: false,
+    lower: false
 };
 // let isMovingJoystick = false;
 
@@ -169,6 +171,7 @@ const forkZone = document.querySelector('#fork-zone');
 const arrow = document.querySelector("#onJoystickToggle");
 
 let moveJoystick;
+let forkJoystick;
 
 if(isTouchDevice){
     controls_box.innerHTML = `<p data-i18n="controls_hint.1"></p>
@@ -212,6 +215,21 @@ if(isTouchDevice){
     });
 
     // fork
+    forkJoystick = createJoystick({
+        baseEl: document.getElementById('fork-base'),
+        stickEl: document.getElementById('fork-stick'),
+    });
+
+    forkJoystick.setOnMove((x, y)=>{
+        y < -0.2 ? joystickInput.rise = true : joystickInput.rise = false;
+        y > 0.2 ?  joystickInput.lower = true : joystickInput.lower = false;
+    });
+
+    forkJoystick.setOnEnd((x, y) => {
+        joystickInput.rise = false;
+        joystickInput.lower = false;
+    });
+
     //TODO
 }else{
     joystickZone.style.display = "none";

@@ -3,7 +3,7 @@ import Stats from 'three/addons/libs/stats.module.js';
 import { moveCar } from './controller.js';
 import { scene, camera,directionalLight, worldStart, worldSize, getWorldSize, setWorldSize, width, height, setWindowSize, frustumSize, worldDistanceToPixels } from './scene.js';
 import { forklift } from './objects.js';
-import { joystick, joystickInput } from './ui.js';
+import { moveJoystick, joystickInput } from './ui.js';
 import { directPointLight } from 'three/tsl';
 
 
@@ -107,17 +107,16 @@ window.addEventListener('wheel', () => {
     setDrivingState(false);
 });
 
-if(joystick !== undefined)
+if(moveJoystick !== undefined)
 {
-    joystick.on('start', ()=>{
-        console.log("started");
+    moveJoystick.setOnStart(() => {
         setDrivingState(true);
     });
 
-    // joystick.on('end', ()=>{
-    //     console.log("ended");
-    //     setDrivingState(false);
-    // });
+//     // joystick.on('end', ()=>{
+//     //     console.log("ended");
+//     //     setDrivingState(false);
+//     // });
 }
 
 // reset keys on different events

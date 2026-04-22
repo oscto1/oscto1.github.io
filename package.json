@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "nipplejs": "^1.0.1",
     "three": "^0.183.2"
   },
   "devDependencies": {

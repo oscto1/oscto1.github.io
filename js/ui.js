@@ -1,7 +1,7 @@
 import { worldSize, getVisibleWorldHeight, isTouchDevice, width } from "./scene";
 import { sortedProjects, createProjectCard } from "./projects";
 import { getLang, translate, t } from "./lang";
-import nipplejs from 'nipplejs';
+import { createJoystick } from "./myJoystick";
 
 
 // header setup ---------------------------------------------------------------------------------------
@@ -167,6 +167,9 @@ const moveZone = document.querySelector('#move-zone');
 const forkZone = document.querySelector('#fork-zone');
 
 const arrow = document.querySelector("#onJoystickToggle");
+
+let moveJoystick;
+
 if(isTouchDevice){
     controls_box.innerHTML = `<p data-i18n="controls_hint.1"></p>
     <button class="glass-element control-btn">
@@ -178,7 +181,10 @@ if(isTouchDevice){
     for(let i = 0; i < btnToggleControls.length; i++)
     {
         btnToggleControls[i].addEventListener('click', ()=>{
+            const isHidden = joystickZone.classList.contains("hidden");
             joystickZone.classList.toggle('hidden');
+
+
             if(joystickZone.classList.contains("hidden")){
                 arrow.style.transform = "rotate(180deg)";
                 arrow.style.bottom = "10px";
@@ -190,27 +196,19 @@ if(isTouchDevice){
     }  
     
     // forklift
-    joystick = nipplejs.create({
-        zone: moveZone,
-        mode: 'static',
-        // multitouch: false,
-        position: { left: '100px', bottom: '70px' },
-        color: 'white',
-        size: 100
+    moveJoystick = createJoystick({
+        baseEl: document.getElementById('move-base'),
+        stickEl: document.getElementById('move-stick'),
     });
 
-    joystick.on('move', (event) => {
-       
-        joystickInput.turn = Math.abs(event.data.vector.x) > 0.1 ? event.data.vector.x : 0;
-        joystickInput.forward = Math.abs(event.data.vector.y) > 0.1 ? -event.data.vector.y : 0;
+    moveJoystick.setOnMove((x, y)=>{
+        joystickInput.turn = x;
+            joystickInput.forward = y;
     });
-    joystickZone.addEventListener('touchmove', (e) => {
-        e.preventDefault();
-    }, { passive: false });
 
-    joystick.on('end', () => {
-        joystickInput.forward = 0;
+    moveJoystick.setOnEnd((x, y) => {
         joystickInput.turn = 0;
+            joystickInput.forward = -0;
     });
 
     // fork
@@ -259,4 +257,4 @@ esButton.addEventListener('click', ()=>{
 
 // --------------------------------------
 
-export { joystick, joystickInput }
+export { moveJoystick, joystickInput }

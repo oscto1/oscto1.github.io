@@ -61,26 +61,19 @@ export function moveCar(keys, joystickInput, deltaTime)
     updateForkliftBox();
 
     if (forkliftBox.intersectsBox(platformBox)) {
-        // revert
-        forklift.position.copy(oldPosition);
 
-        // damp velocity
-        velocity *= 0.3;
-
-        // --- X axis ---
-        forklift.position.x += moveStep.x;
-
-        // --- Z axis ---
-        forklift.position.z += moveStep.z;
+        // push OUT of collision (this is enough)
+        resolveCollision(forkliftBox, platformBox, forklift.position);
         updateForkliftBox();
 
-        if (forkliftBox.intersectsBox(platformBox)) {
-            forklift.position.x -= moveStep.x * push;
-            forklift.position.z -= moveStep.z * push;
-        }
+        // damp velocity (so it doesn't jitter)
+        velocity *= 0.3;
+
+    } else {
+        // rotation only when not colliding
+        forklift.rotation.y += turnInput * steerStrength * Math.sign(velocity);
     }
-    // rotation
-    forklift.rotation.y += turnInput * steerStrength * Math.sign(velocity);
+        
 
     // forkcontrol
     
@@ -101,4 +94,27 @@ export function moveCar(keys, joystickInput, deltaTime)
 function updateForkliftBox() {
     forkliftBox.setFromObject(baseCar);
     forkliftBox.expandByScalar(-0.1);
+}
+
+function resolveCollision(boxA, boxB, position) {
+    const overlapX = Math.min(
+        boxA.max.x - boxB.min.x,
+        boxB.max.x - boxA.min.x
+    );
+
+    const overlapZ = Math.min(
+        boxA.max.z - boxB.min.z,
+        boxB.max.z - boxA.min.z
+    );
+
+    // push along smallest overlap axis
+    if (overlapX < overlapZ) {
+        position.x += (boxA.getCenter(new Vector3()).x < boxB.getCenter(new Vector3()).x)
+            ? -overlapX
+            : overlapX;
+    } else {
+        position.z += (boxA.getCenter(new Vector3()).z < boxB.getCenter(new Vector3()).z)
+            ? -overlapZ
+            : overlapZ;
+    }
 }

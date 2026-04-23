@@ -168,9 +168,6 @@ scene.add(floor);
 const forkliftBox = new THREE.Box3().setFromObject(baseCar);
 const platformBox = new THREE.Box3().setFromObject(namePlatform);
 
-const helper = new THREE.Box3Helper(forkliftBox, 0xff0000);
-scene.add(helper);
-
 
 function initTransform(object)
 {

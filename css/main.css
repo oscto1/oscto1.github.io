@@ -21,6 +21,10 @@ html, body {
     height: 100%;
 }
 
+/* h1,h2,h3,p,button{
+  z-index: 150;
+} */
+
 h1 {
     font-size: clamp(2rem, 8vw, 5rem);
     font-weight: bold;
@@ -67,7 +71,7 @@ a{
   background-color: rgba(56,124,224,0.7);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px) !important;
-  z-index: 10;
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -96,11 +100,13 @@ a{
   filter: none !important;
   -webkit-filter: none !important;
   position: fixed;
+  touch-action: none;
+  pointer-events: none;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
+  z-index: 50;
 }
 
 #hero {
@@ -609,7 +615,31 @@ main {
   border: 1px solid white;
 }
 
+#forklift-blob {
+  position: fixed;
+  top: 500px;
+  left: 0;
 
+  width: 120px;
+  height: 120px;
+
+  pointer-events: none;
+  z-index: -1;
+
+  /* center the blob on its position */
+  transform: translate(-50%, -50%);
+}
+
+#forklift-blob svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+#blob-path {
+  fill: rgb(255, 120, 60);
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.15));
+}
 
 
 /*tablet*/

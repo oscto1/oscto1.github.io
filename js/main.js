@@ -218,7 +218,20 @@ links.forEach((link) => {
     });
 })
 
-//---------------------------------------------------------------------------------------------
+//blob ---------------------------------------------------------------------------------------------
+const blob = document.getElementById("forklift-blob");
+
+function updateBlobPosition() {
+    const vector = forklift.position.clone().project(camera);
+
+    const x = (vector.x * 0.5 + 0.5) * window.innerWidth;
+    const y = (-vector.y * 0.5 + 0.5) * window.innerHeight;
+
+    blob.style.left = `${x}px`;
+    blob.style.top = `${y}px`;
+}
+
+// -------------------------------------------------------------------------
 // const drivingRange = maxForkliftZ - worldStart;
 let targetCameraZ = camera.position.z;
 const cameraOffset = 25;
@@ -283,6 +296,15 @@ const rendering = function()
 
         camera.position.z = targetCameraZ;
     }
+
+    updateBlobPosition();
+
+    // glow.style.background = `
+    //     radial-gradient(
+    //     circle at ${x}px ${y}px,
+    //     rgba(100, 255, 255, 1),
+    //     )
+    //     `;
 
     directionalLight.position.set(-15, 40, camera.position.z - 40);
     directionalLight.target.position.set(0, 0, camera.position.z - 40);

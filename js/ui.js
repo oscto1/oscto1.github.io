@@ -263,6 +263,45 @@ function langButtonStyle(){
 
 translate(getLang());
 
+// blob generator
+function generateBlobPath(points = 12, radius = 95, variation = 0.3) {
+    const angleStep = (Math.PI * 2) / points;
+    const pts = [];
+
+    for (let i = 0; i < points; i++) {
+        const angle = i * angleStep;
+        const r = radius * (1 + (Math.random() * 2 - 1) * variation);
+
+        pts.push({
+            x: 100 + Math.cos(angle) * r,
+            y: 100 + Math.sin(angle) * r
+        });
+    }
+
+    let path = `M ${pts[0].x} ${pts[0].y}`;
+
+    for (let i = 0; i < pts.length; i++) {
+        const next = pts[(i + 1) % pts.length];
+
+        const midX = (pts[i].x + next.x) / 2;
+        const midY = (pts[i].y + next.y) / 2;
+
+        path += ` Q ${pts[i].x} ${pts[i].y} ${midX} ${midY}`;
+    }
+
+    path += " Z";
+    return path;
+}
+
+const blobPath = document.getElementById("blob-path");
+
+function randomizeBlob() {
+    blobPath.setAttribute("d", generateBlobPath());
+}
+
+// run once
+randomizeBlob();
+
 enButton.addEventListener('click', ()=>{
     translate('en');
     langButtonStyle();

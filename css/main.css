@@ -4,9 +4,15 @@
   /* src: url('/fonts/Poppins/Poppins-Regular.ttf') format('truetype'); */
 }
 
+:root {
+  --bg-top: rgb(44,115,210);
+  --bg-bottom: rgb(196,156,248);
+
+  --nav-color: var(--bg-top);
+}
 
 html{
-  background-image: linear-gradient( 180deg,  rgb(44,115,210) 3.4%, rgb(196, 156, 248) 127.9% );;
+    background-image: linear-gradient( 180deg, var(--bg-top) 3.4%, var(--bg-bottom) 127.9% );
 }
 
 body {
@@ -68,7 +74,7 @@ a{
   top: 0;
   padding: 15px;
   /* background-color: rgba(255,255,255,0.15); */
-  background-color: rgba(56,124,224,0.7);
+  background-color: var(--nav-color);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px) !important;
   z-index: 1000;

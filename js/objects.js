@@ -127,7 +127,7 @@ let Lname = fontLoader.load("fonts/Finesse-Oblique/FinesseOblique_Regular.json",
 
 //forklift
 let forklift = await loadModel("models/Forklift.glb", scene);
-forklift.position.set(0,0,14);
+forklift.position.set(0,0,20);
 forklift.rotation.y = 0.78;
 forklift.scale.set(1, 1, 1);
 let baseCar;

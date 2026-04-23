@@ -234,17 +234,59 @@ function updateBlobPosition() {
 let lastForkHeight = fork.position.y;
 const blobPath = document.getElementById("blob-path");
 
-function updateBlobFromFork() {
-    const current = fork.position.y;
+// function updateBlobFromFork() {
+//     const current = fork.position.y;
 
-    const diff = Math.abs(current - lastForkHeight);
+//     const diff = Math.abs(current - lastForkHeight);
 
-    if (diff > 1.8) {
-        lastForkHeight = current;
+//     if (diff > 1.8) {
+//         lastForkHeight = current;
 
-        randomizeBlob();           // new shape
-        blobPath.style.fill = getRandomColor(); // new color
-    }
+//         randomizeBlob();           // new shape
+//         blobPath.style.fill = getRandomColor(); // new color
+//     }
+// }
+// light - dark mode transition
+const lightTop = [44,115,210];
+const lightBottom = [196,156,248];
+
+const darkTop = [10,20,40];
+const darkBottom = [80,40,120];
+
+function updateThemeFromFork(forkHeight){
+    const t = (forkHeight - 0.3) / (4 - 0.3);
+    const clampedT = Math.max(0, Math.min(1, t));
+
+    const top = lerpColor(lightTop, darkTop, clampedT);
+    const bottom = lerpColor(lightBottom, darkBottom, clampedT);
+
+    document.documentElement.style.setProperty(
+    '--bg-top',
+    `rgb(${top[0]}, ${top[1]}, ${top[2]})`
+    );
+
+    document.documentElement.style.setProperty(
+    '--bg-bottom',
+    `rgb(${bottom[0]}, ${bottom[1]}, ${bottom[2]})`
+    );
+
+    // navbar uses same as top
+    document.documentElement.style.setProperty(
+    '--nav-color',
+    `rgba(${top[0]}, ${top[1]}, ${top[2]}, 0.8)`
+    );
+}
+
+function lerp(a, b, t) {
+    return a + (b - a) * t;
+}
+
+function lerpColor(c1, c2, t) {
+    return [
+        lerp(c1[0], c2[0], t),
+        lerp(c1[1], c2[1], t),
+        lerp(c1[2], c2[2], t)
+    ];
 }
 
 // -------------------------------------------------------------------------
@@ -314,7 +356,8 @@ const rendering = function()
     }
 
     updateBlobPosition();
-    updateBlobFromFork();
+    updateThemeFromFork(fork.position.y);
+    // updateBlobFromFork();
 
     directionalLight.position.set(-15, 40, camera.position.z - 40);
     directionalLight.target.position.set(0, 0, camera.position.z - 40);

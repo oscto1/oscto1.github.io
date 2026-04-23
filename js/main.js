@@ -239,7 +239,7 @@ function updateBlobFromFork() {
 
     const diff = Math.abs(current - lastForkHeight);
 
-    if (diff > 0.7) {
+    if (diff > 1.8) {
         lastForkHeight = current;
 
         randomizeBlob();           // new shape

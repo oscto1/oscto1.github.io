@@ -264,7 +264,7 @@ function langButtonStyle(){
 translate(getLang());
 
 // blob generator
-function generateBlobPath(points = 12, radius = 95, variation = 0.3) {
+function generateBlobPath(points = 12, radius = 60, variation = 0.3) {
     const angleStep = (Math.PI * 2) / points;
     const pts = [];
 
@@ -293,13 +293,23 @@ function generateBlobPath(points = 12, radius = 95, variation = 0.3) {
     return path;
 }
 
+function getRandomColor() {
+    // nicer palette (not fully random chaos)
+    const hue = Math.random() * 360;
+    const saturation = 70 + Math.random() * 20; // 70–90%
+    const lightness = 50 + Math.random() * 10;  // 50–60%
+
+    return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+}
+
+
 const blobPath = document.getElementById("blob-path");
+blobPath.style.fill = getRandomColor();
 
 function randomizeBlob() {
     blobPath.setAttribute("d", generateBlobPath());
 }
 
-// run once
 randomizeBlob();
 
 enButton.addEventListener('click', ()=>{
@@ -314,4 +324,4 @@ esButton.addEventListener('click', ()=>{
 
 // --------------------------------------
 
-export { moveJoystick, joystickInput }
+export { moveJoystick, joystickInput, randomizeBlob, getRandomColor }

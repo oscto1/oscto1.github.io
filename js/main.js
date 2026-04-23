@@ -2,8 +2,8 @@ import * as THREE from 'three';
 import Stats from 'three/addons/libs/stats.module.js';
 import { moveCar } from './controller.js';
 import { scene, camera,directionalLight, worldStart, worldSize, getWorldSize, setWorldSize, width, height, setWindowSize, frustumSize, worldDistanceToPixels } from './scene.js';
-import { forklift } from './objects.js';
-import { moveJoystick, joystickInput } from './ui.js';
+import { forklift, fork } from './objects.js';
+import { moveJoystick, joystickInput, randomizeBlob, getRandomColor } from './ui.js';
 import { directPointLight } from 'three/tsl';
 
 
@@ -231,6 +231,22 @@ function updateBlobPosition() {
     blob.style.top = `${y}px`;
 }
 
+let lastForkHeight = fork.position.y;
+const blobPath = document.getElementById("blob-path");
+
+function updateBlobFromFork() {
+    const current = fork.position.y;
+
+    const diff = Math.abs(current - lastForkHeight);
+
+    if (diff > 0.7) {
+        lastForkHeight = current;
+
+        randomizeBlob();           // new shape
+        blobPath.style.fill = getRandomColor(); // new color
+    }
+}
+
 // -------------------------------------------------------------------------
 // const drivingRange = maxForkliftZ - worldStart;
 let targetCameraZ = camera.position.z;
@@ -298,13 +314,7 @@ const rendering = function()
     }
 
     updateBlobPosition();
-
-    // glow.style.background = `
-    //     radial-gradient(
-    //     circle at ${x}px ${y}px,
-    //     rgba(100, 255, 255, 1),
-    //     )
-    //     `;
+    updateBlobFromFork();
 
     directionalLight.position.set(-15, 40, camera.position.z - 40);
     directionalLight.target.position.set(0, 0, camera.position.z - 40);

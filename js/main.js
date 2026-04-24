@@ -1,6 +1,6 @@
 import { moveJoystick, joystickInput } from './ui.js';
 import { Timer, MathUtils, WebGLRenderer, Vector3 } from 'three';
-import Stats from 'three/addons/libs/stats.module.js';
+// import Stats from 'three/addons/libs/stats.module.js';
 import { moveCar } from './controller.js';
 import { scene, camera,directionalLight, worldStart, worldSize, getWorldSize, setWorldSize, width, height, setWindowSize, frustumSize, worldDistanceToPixels } from './scene.js';
 import { forklift, fork } from './objects.js';
@@ -208,8 +208,8 @@ const hero = document.getElementById("hero");
 hero.style.height = `${worldDistanceToPixels(35)}px`;
 
 
-const stats = new Stats();
-document.body.appendChild(stats.dom);
+// const stats = new Stats();
+// document.body.appendChild(stats.dom);
 
 const cntr_hint = document.querySelector("#controls_div");
 
@@ -383,7 +383,7 @@ const rendering = function()
     directionalLight.target.position.set(0, 0, camera.position.z - 40);
 
     renderer.render(scene, camera);
-    stats.update();
+    // stats.update();
 }
 
 rendering();

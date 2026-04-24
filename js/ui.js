@@ -75,30 +75,56 @@ function pauseActiveVideo() {
     const oldButton = oldCard?.querySelector(".play_button");
 
     activeVideo.pause();
+    activeVideo.classList.add("ready"); // 👈 IMPORTANT
+
     if (oldButton) oldButton.style.display = "block";
 
     activeVideo = null;
 }
 
+let isPlayingRequest = false;
 function handleVideoClick(video) {
     const playButton = video.parentElement.querySelector(".play_button");
 
-    // If another video is playing → pause only that one
     if (activeVideo && activeVideo !== video) {
         pauseActiveVideo();
     }
 
-    // Toggle current video
+    if (isPlayingRequest) return;
+
     if (video.paused) {
+
+        // ensure loading started
+        if (video.readyState === 0) {
+            video.load();
+        }
+
+        isPlayingRequest = true;
+
+        // show loader immediately
+        video.classList.remove("ready");
+
         video.play()
             .then(() => {
                 if (playButton) playButton.style.display = "none";
                 activeVideo = video;
             })
-            .catch(err => console.log("Playback failed:", err));
+            .catch(err => {
+                if (err.name !== "AbortError") {
+                    console.log("Playback failed:", err);
+                }
+            })
+            .finally(() => {
+                isPlayingRequest = false;
+            });
+
     } else {
         video.pause();
+        isPlayingRequest = false; // 👈 important
+
         if (playButton) playButton.style.display = "block";
+        video.classList.add("ready");
+
         activeVideo = null;
     }
 }

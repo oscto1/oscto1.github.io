@@ -174,7 +174,50 @@ async function createProjectCard(project, lang) {
             loop: true,
         });
 
+        media.classList.add("ready");
+        media.addEventListener('playing', () => {
+            media.classList.add('ready');
+        });
+
+        media.addEventListener('pause', () => {
+            if (media.readyState >= 3) {
+                media.classList.add('ready');
+            }
+        });
+
+        media.addEventListener('waiting', () => {
+            media.classList.remove('ready');
+        });
+
+        media.addEventListener('error', () => {
+            loader.innerHTML = "⚠️";
+        });
+        
+        let retried = false;
+
+        setTimeout(() => {
+            if (media.readyState < 3 && !retried) {
+                retried = true;
+
+                console.log("Video stuck, reloading:", media.id);
+
+                media.load(); // reload only
+            }
+        }, 3000);
+
         const icon = await loadPlayIcon();
+        const loader = document.createElement("div");
+        const spinner = document.createElement("div");
+        spinner.classList.add("video-spinner");
+        loader.appendChild(spinner);
+
+
+        media.addEventListener('error', () => {
+            console.warn("Video failed:", media.src);
+
+            loader.innerHTML = "⚠️"; // or retry icon
+        });
+        loader.classList.add("video-loader");
 
         const source = document.createElement("source");
         source.src = project.video;
@@ -185,6 +228,7 @@ async function createProjectCard(project, lang) {
         media.appendChild(source);
         wrapper.appendChild(media);
         wrapper.appendChild(icon);
+        wrapper.appendChild(loader);
 
         card.appendChild(wrapper);
     } else {

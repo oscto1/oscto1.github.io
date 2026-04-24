@@ -3,7 +3,7 @@ import Stats from 'three/addons/libs/stats.module.js';
 import { moveCar } from './controller.js';
 import { scene, camera,directionalLight, worldStart, worldSize, getWorldSize, setWorldSize, width, height, setWindowSize, frustumSize, worldDistanceToPixels } from './scene.js';
 import { forklift, fork } from './objects.js';
-import { moveJoystick, joystickInput, randomizeBlob, getRandomColor } from './ui.js';
+import { moveJoystick, joystickInput } from './ui.js';
 import { directPointLight } from 'three/tsl';
 
 
@@ -218,8 +218,8 @@ links.forEach((link) => {
     });
 })
 
-//blob ---------------------------------------------------------------------------------------------
-const blob = document.getElementById("forklift-blob");
+//glow ---------------------------------------------------------------------------------------------
+const glow = document.getElementById("forklift-glow");
 
 function updateBlobPosition() {
     const vector = forklift.position.clone().project(camera);
@@ -227,25 +227,10 @@ function updateBlobPosition() {
     const x = (vector.x * 0.5 + 0.5) * window.innerWidth;
     const y = (-vector.y * 0.5 + 0.5) * window.innerHeight;
 
-    blob.style.left = `${x}px`;
-    blob.style.top = `${y}px`;
+    glow.style.left = `${x}px`;
+    glow.style.top = `${y}px`;
 }
 
-let lastForkHeight = fork.position.y;
-const blobPath = document.getElementById("blob-path");
-
-// function updateBlobFromFork() {
-//     const current = fork.position.y;
-
-//     const diff = Math.abs(current - lastForkHeight);
-
-//     if (diff > 1.8) {
-//         lastForkHeight = current;
-
-//         randomizeBlob();           // new shape
-//         blobPath.style.fill = getRandomColor(); // new color
-//     }
-// }
 // light - dark mode transition
 const lightTop = [44,115,210];
 const lightBottom = [196,156,248];
@@ -357,7 +342,6 @@ const rendering = function()
 
     updateBlobPosition();
     updateThemeFromFork(fork.position.y);
-    // updateBlobFromFork();
 
     directionalLight.position.set(-15, 40, camera.position.z - 40);
     directionalLight.target.position.set(0, 0, camera.position.z - 40);

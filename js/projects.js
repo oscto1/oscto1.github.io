@@ -1,3 +1,5 @@
+import { addLoadItem,markLoaded } from "./loading";
+
 const projectCategories = {
     1: {
         en: "Games",
@@ -158,127 +160,150 @@ function sortProjects(projects, jobType) {
 const sortedProjects = sortProjects(projects, jobType);
 
 async function createProjectCard(project, lang) {
-    const card = document.createElement("div");
-    card.className = "card";
+    try{
+        const card = document.createElement("div");
+        card.className = "card";
 
-    if (project.video !== "") {
-        const wrapper = document.createElement("div");
-        wrapper.className = "video-wrapper";
+        if (project.video !== "") {
+            addLoadItem();
 
-        const media = Object.assign(document.createElement("video"), {
-            id: "video" + project.id,
-            poster: project.img,
-            preload: "metadata",
-            playsInline: true,
-            muted: true,
-            loop: true,
-        });
+            const wrapper = document.createElement("div");
+            wrapper.className = "video-wrapper";
 
-        media.classList.add("ready");
-        media.addEventListener('playing', () => {
-            media.classList.add('ready');
-        });
+            const media = Object.assign(document.createElement("video"), {
+                id: "video" + project.id,
+                poster: project.img,
+                preload: "metadata",
+                playsInline: true,
+                muted: true,
+                loop: true,
+            });
 
-        media.addEventListener('pause', () => {
-            if (media.readyState >= 3) {
+            let loaded = false;
+
+            function done() {
+                if (loaded) return;
+                loaded = true;
+                markLoaded();
+            }
+
+            media.addEventListener('loadeddata', done);
+
+            media.addEventListener('error', done);
+
+            media.classList.add("ready");
+            media.addEventListener('playing', () => {
                 media.classList.add('ready');
-            }
-        });
+            });
 
-        media.addEventListener('waiting', () => {
-            media.classList.remove('ready');
-        });
+            media.addEventListener('pause', () => {
+                if (media.readyState >= 3) {
+                    media.classList.add('ready');
+                }
+            });
 
-        media.addEventListener('error', () => {
-            loader.innerHTML = "⚠️";
-        });
-        
-        let retried = false;
+            media.addEventListener('waiting', () => {
+                media.classList.remove('ready');
+            });
 
-        setTimeout(() => {
-            if (media.readyState < 3 && !retried) {
-                retried = true;
+            media.addEventListener('error', () => {
+                loader.innerHTML = "⚠️";
+            });
+            
+            let retried = false;
 
-                console.log("Video stuck, reloading:", media.id);
+            setTimeout(() => {
+                if (media.readyState < 3 && !retried) {
+                    retried = true;
 
-                media.load(); // reload only
-            }
-        }, 3000);
+                    console.log("Video stuck, reloading:", media.id);
 
-        const icon = await loadPlayIcon();
-        const loader = document.createElement("div");
-        const spinner = document.createElement("div");
-        spinner.classList.add("video-spinner");
-        loader.appendChild(spinner);
+                    media.load(); // reload only
+                }
+            }, 3000);
+
+            const icon = await loadPlayIcon();
+            const loader = document.createElement("div");
+            const spinner = document.createElement("div");
+            spinner.classList.add("video-spinner");
+            loader.appendChild(spinner);
 
 
-        media.addEventListener('error', () => {
-            console.warn("Video failed:", media.src);
+            media.addEventListener('error', () => {
+                console.warn("Video failed:", media.src);
 
-            loader.innerHTML = "⚠️"; // or retry icon
-        });
-        loader.classList.add("video-loader");
+                loader.innerHTML = "⚠️"; // or retry icon
+            });
+            loader.classList.add("video-loader");
 
-        const source = document.createElement("source");
-        source.src = project.video;
-        source.type = "video/mp4";
+            const source = document.createElement("source");
+            source.src = project.video;
+            source.type = "video/mp4";
 
-        media.classList.add("videos");
+            media.classList.add("videos");
 
-        media.appendChild(source);
-        wrapper.appendChild(media);
-        wrapper.appendChild(icon);
-        wrapper.appendChild(loader);
+            media.appendChild(source);
+            wrapper.appendChild(media);
+            wrapper.appendChild(icon);
+            wrapper.appendChild(loader);
 
-        card.appendChild(wrapper);
-    } else {
-        const img = document.createElement("img");
-        img.src = project.img;
-        img.alt = project.title[lang];
-        card.appendChild(img);
-    }
+            card.appendChild(wrapper);
+        } else {
+            addLoadItem();
+            const img = document.createElement("img");
+            img.onload = markLoaded;
+            img.onerror = markLoaded;
 
-    const content = document.createElement("div");
-    content.style.padding = "20px";
-    content.id = project.id;
+            img.src = project.img;
+            img.alt = project.title[lang];
 
-    const category = document.createElement("div");
-    category.classList.add("card-category");
-    const categoryLabel = projectCategories[project.category][lang];
-    category.innerText = project.year + " • " + categoryLabel;
+            card.appendChild(img); 
+        }
 
-    const header = document.createElement("div");
-    header.classList.add("card-header");
+        const content = document.createElement("div");
+        content.style.padding = "20px";
+        content.id = project.id;
 
-    const title = document.createElement("h3");
-    title.style.margin = "0";
-    title.textContent = project.title[lang];
+        const category = document.createElement("div");
+        category.classList.add("card-category");
+        const categoryLabel = projectCategories[project.category][lang];
+        category.innerText = project.year + " • " + categoryLabel;
 
-    header.appendChild(title);
+        const header = document.createElement("div");
+        header.classList.add("card-header");
 
-    for(let i = 0; i < project.tech.length; i++){
-        let techElem = document.createElement("div");
-        techElem.classList.add("card-tech-elem");
-        techElem.innerText = project.tech[i];
-        header.appendChild(techElem);
-    }
+        const title = document.createElement("h3");
+        title.style.margin = "0";
+        title.textContent = project.title[lang];
 
-    const desc = document.createElement("p");
-    desc.textContent = project.description[lang];
+        header.appendChild(title);
 
-    const link = document.createElement("a");
-    link.href = project.link;
-    link.target = "_blank";
-    link.textContent = project.cta[lang];
+        for(let i = 0; i < project.tech.length; i++){
+            let techElem = document.createElement("div");
+            techElem.classList.add("card-tech-elem");
+            techElem.innerText = project.tech[i];
+            header.appendChild(techElem);
+        }
 
-    content.append(category, header, desc, link);
-    content.classList.add("card-content");
-    card.appendChild(content);
+        const desc = document.createElement("p");
+        desc.textContent = project.description[lang];
 
-    card.classList.add("show");
-    card.dataset.category = project.category;
+        const link = document.createElement("a");
+        link.href = project.link;
+        link.target = "_blank";
+        link.textContent = project.cta[lang];
 
-    return card;
+        content.append(category, header, desc, link);
+        content.classList.add("card-content");
+        card.appendChild(content);
+
+        card.classList.add("show");
+        card.dataset.category = project.category;
+
+        return card;
+    }catch(err){
+        console.error("Failed loading project card: " + err);
+    }   
 }
 
 function translateProjects(lang){

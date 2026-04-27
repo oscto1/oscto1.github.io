@@ -1,16 +1,27 @@
+import { addLoadItem, markLoaded } from './loading.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { height, scene, width } from "./scene.js";
 import * as THREE from 'three';
 import { FontLoader, TextGeometry } from 'three/examples/jsm/Addons.js';
+import { add } from 'three/examples/jsm/libs/tween.module.js';
 
 const loader = new GLTFLoader();
 const fontLoader = new FontLoader();
 
 async function loadModel(path, parent) {
-    const gltf = await loader.loadAsync(path);
-    parent.add(gltf.scene); // Add loaded scene to your three.js scene
+    addLoadItem();
 
-    return gltf.scene;
+    try{
+        const gltf = await loader.loadAsync(path);
+        parent.add(gltf.scene); // Add loaded scene to your three.js scene
+        markLoaded(); 
+        return gltf.scene;
+    }catch(err)
+    {
+        console.error("Failed to load model:", path, err);
+        markLoaded();
+        throw err;
+    }
 }
 
 function centerTextOrigin(textMesh)
@@ -77,6 +88,7 @@ let namePlatform = createRoundedBox(23, 7, 3, 1);
 scene.add(namePlatform);
 
 // fisrt name
+addLoadItem();
 let Fname = fontLoader.load("fonts/dongle/Dongle_Bold.json", (font) => {
     const textGeometry = new TextGeometry('oscar', {
         font: font,
@@ -98,9 +110,17 @@ let Fname = fontLoader.load("fonts/dongle/Dongle_Bold.json", (font) => {
     centerTextOrigin(textMesh);
     textMesh.position.set(namePlatform.position.x, 4, namePlatform.position.z);
     scene.add(textMesh);
+    markLoaded();
+}
+,
+undefined,
+(err) => {
+    console.error("Font failed to load", err);
+    markLoaded();
 });
 
 //last name
+addLoadItem();
 let Lname = fontLoader.load("fonts/Finesse-Oblique/FinesseOblique_Regular.json", (font) => {
     const textGeometry = new TextGeometry('Castillejo', {
         font: font,
@@ -123,6 +143,12 @@ let Lname = fontLoader.load("fonts/Finesse-Oblique/FinesseOblique_Regular.json",
     textMesh.position.set(namePlatform.position.x, 0.1, 6);
     textMesh.receiveShadow = true;
     scene.add(textMesh);
+    markLoaded();
+},
+undefined,
+(err) => {
+    console.error("Font failed to load", err);
+    markLoaded();
 });
 
 //forklift

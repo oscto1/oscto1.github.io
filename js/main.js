@@ -1,3 +1,4 @@
+import { loaderEvents } from './loading.js';
 import * as THREE from 'three';
 import Stats from 'three/addons/libs/stats.module.js';
 import { moveCar } from './controller.js';
@@ -6,6 +7,10 @@ import { forklift, fork } from './objects.js';
 import { moveJoystick, joystickInput } from './ui.js';
 import { directPointLight } from 'three/tsl';
 
+
+loaderEvents.addEventListener("finished", () => {
+    console.log("loading finished");
+});
 
 
 const main = document.querySelector('main');

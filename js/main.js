@@ -37,7 +37,11 @@ console.log(window.innerHeight);
 renderer.setSize(window.innerWidth, window.innerHeight);
 // renderer.shadowMap.type = THREE.PCFShadowMap;
 renderer.shadowMap.enabled = true;
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+// const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+// console.log(isMobile ? 1 : Math.min(window.devicePixelRatio, 1.5));
+// renderer.setPixelRatio(isMobile ? 1 : Math.min(window.devicePixelRatio, 1.5));
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
 
 //Responsive window
 // const aspect = width / height;
@@ -64,7 +68,7 @@ function onWindowResize(){
 
     // Update renderer
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
 
     const pageHeight = main.scrollHeight - main.clientHeight;
     setWorldSize(getWorldSize(pageHeight));
@@ -282,10 +286,14 @@ const cameraOffset = 25;
 const minCameraZ = worldStart + cameraOffset;
 const maxCameraZ = worldSize.height - worldStart + cameraOffset;
 
+
+
 const rendering = function() 
 {
     // stats.update();
     requestAnimationFrame(rendering);
+
+    // console.log("here");
 
     timer.update();
     const deltaTime = timer.getDelta();
@@ -299,7 +307,6 @@ const rendering = function()
 
     if (isDriving)
     {
-        // Follow forklift
         const desiredCameraZ = forklift.position.z + cameraOffset;
 
         const clampedCameraZ = THREE.MathUtils.clamp(
@@ -308,9 +315,9 @@ const rendering = function()
             maxCameraZ
         );
 
-        camera.position.z += (clampedCameraZ - camera.position.z) * 0.2;
+        const smoothFactor = 1 - Math.exp(-10 * deltaTime);
+        camera.position.z += (clampedCameraZ - camera.position.z) * smoothFactor;
 
-        // Sync scroll position with forklift progress
         const normalizedProgress = THREE.MathUtils.clamp(
             ((forklift.position.z + cameraOffset) - minCameraZ) / cameraRange,
             0,
@@ -319,10 +326,9 @@ const rendering = function()
 
         const newScrollTop = normalizedProgress * currentScrollHeight;
 
-        main.scrollTo({
-            top: newScrollTop,
-            behavior: 'auto'
-        });
+        if (Math.abs(newScrollTop - main.scrollTop) > 1) {
+            main.scrollTop = newScrollTop;
+        }
     }
     else
     {

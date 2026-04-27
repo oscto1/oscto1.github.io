@@ -72,7 +72,7 @@ function createRoundedBox(width, height, depth, radius)
 //name platform
 let namePlatform = createRoundedBox(23, 7, 3, 1);
 // namePlatform.position.set(-worldSize.width / 2 + 20, 0.1, 0);
-namePlatform.castShadow = true;
+// namePlatform.castShadow = true;
 // initTransform(namePlatform);
 scene.add(namePlatform);
 
@@ -82,11 +82,11 @@ let Fname = fontLoader.load("fonts/dongle/Dongle_Bold.json", (font) => {
         font: font,
         size: 9,
         depth: 1.5,
-        curveSegments: 12,
-        bevelEnabled: true,
-        bevelThickness: 0.08,
-        bevelSize: 0.07,
-        bevelSegments: 3
+        curveSegments: 6,
+        // bevelEnabled: true,
+        // bevelThickness: 0.08,
+        // bevelSize: 0.07,
+        // bevelSegments: 3
     });
 
     const textMaterial = new THREE.MeshStandardMaterial({
@@ -105,12 +105,12 @@ let Lname = fontLoader.load("fonts/Finesse-Oblique/FinesseOblique_Regular.json",
     const textGeometry = new TextGeometry('Castillejo', {
         font: font,
         size: 6,
-        depth: 0,
-        curveSegments: 12,
-        bevelEnabled: true,
-        bevelThickness: 0.08,
-        bevelSize: 0.07,
-        bevelSegments: 3
+        depth: 0.1,
+        curveSegments: 8,
+        // bevelEnabled: true,
+        // bevelThickness: 0.08,
+        // bevelSize: 0.07,
+        // bevelSegments: 3
     });
 
     const textMaterial = new THREE.MeshStandardMaterial({

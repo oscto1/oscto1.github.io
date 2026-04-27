@@ -26,7 +26,8 @@ body {
 html, body {
     margin: 0;
     overflow: hidden;
-    height: 100%;
+    height: 100vh;
+    height: 100dvh;
 }
 
 /* h1,h2,h3,p,button{
@@ -662,18 +663,13 @@ main {
 
   width: 100px;
   height: 100px;
-
+  will-change: transform;
   pointer-events: none;
   z-index: -1w;
-
   transform: translate(-50%, -50%);
-
   border-radius: 50%;
-
-  /* soft light */
   background: rgba(255,217,157);
 
-  /* filter: blur(2px); */
 }
 
 /*tablet*/

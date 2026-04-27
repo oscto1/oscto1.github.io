@@ -44,11 +44,25 @@ renderer.shadowMap.enabled = true;
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
 
 //Responsive window
-// const aspect = width / height;
+let lastHeight = window.innerHeight;
+let lastWidth = window.innerWidth;
+
 window.addEventListener('resize', onWindowResize);
 
-function onWindowResize(){
-    setWindowSize(window.innerWidth, window.innerHeight);
+function onWindowResize() {
+    const newHeight = window.innerHeight;
+    const newWidth = window.innerWidth;
+
+    const widthChanged = Math.abs(newWidth - lastWidth) > 1;
+    const heightChangedALot = Math.abs(newHeight - lastHeight) > 100;
+
+    // ❌ Ignore ONLY small height changes (URL bar)
+    if (!widthChanged && !heightChangedALot) return;
+
+    lastHeight = newHeight;
+    lastWidth = newWidth;
+
+    setWindowSize(newWidth, newHeight);
 
     const aspect = width / height;
 
@@ -58,7 +72,7 @@ function onWindowResize(){
     const clampedRatio = THREE.MathUtils.clamp(heightRatio, 0.7, 1.1);
     const frustumSize = 70 * THREE.MathUtils.lerp(1, clampedRatio, 0.3);
 
-    // Update camera
+    // Camera
     camera.left = -frustumSize * aspect / 2;
     camera.right = frustumSize * aspect / 2;
     camera.top = frustumSize / 2;
@@ -66,13 +80,15 @@ function onWindowResize(){
 
     camera.updateProjectionMatrix();
 
-    // Update renderer
+    // Renderer
     renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
 
+    // World
     const pageHeight = main.scrollHeight - main.clientHeight;
     setWorldSize(getWorldSize(pageHeight));
 
+    // Hero
     const hero = document.getElementById("hero");
     hero.style.height = `${worldDistanceToPixels(35)}px`;
 }
@@ -225,14 +241,22 @@ links.forEach((link) => {
 //glow ---------------------------------------------------------------------------------------------
 const glow = document.getElementById("forklift-glow");
 
-function updateBlobPosition() {
-    const vector = forklift.position.clone().project(camera);
+const tempVector = new THREE.Vector3();
+// let blobTimer = 0;
+let blobX = 0;
+let blobY = 0;
+function updateBlobPosition(deltaTime) {
+    tempVector.copy(forklift.position).project(camera);
 
-    const x = (vector.x * 0.5 + 0.5) * window.innerWidth;
-    const y = (-vector.y * 0.5 + 0.5) * window.innerHeight;
+    const targetX = (tempVector.x * 0.5 + 0.5) * window.innerWidth;
+    const targetY = (-tempVector.y * 0.5 + 0.5) * window.innerHeight;
 
-    glow.style.left = `${x}px`;
-    glow.style.top = `${y}px`;
+    const smoothFactor = 1 - Math.exp(-15 * deltaTime);
+
+    blobX += (targetX - blobX) * smoothFactor;
+    blobY += (targetY - blobY) * smoothFactor;
+
+    glow.style.transform = `translate(-50%, -50%) translate(${blobX}px, ${blobY}px)`;
 }
 
 // light - dark mode transition
@@ -346,7 +370,7 @@ const rendering = function()
         camera.position.z = targetCameraZ;
     }
 
-    updateBlobPosition();
+    updateBlobPosition(deltaTime);
     updateThemeFromFork(fork.position.y);
 
     directionalLight.position.set(-15, 40, camera.position.z - 40);

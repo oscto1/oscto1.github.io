@@ -29,7 +29,7 @@ const projects = [
         },
         link: "https://www.instagram.com/olliqadev/",
         img: "img/forkfest/thumbnail.png",
-        video: "img/forkfest/forkfest.mp4",
+        video: "img/forkfest/output.mp4",
     },
     {
         id: 2,

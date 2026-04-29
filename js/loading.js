@@ -5,22 +5,36 @@ const loaderEvents = new EventTarget();
 
 const progressFill = document.querySelector(".progress-fill");
 
+let finishTimeout = null;
+let hasStartedLoading = false;
+
 function addLoadItem() {
     itemsToLoad++;
+    hasStartedLoading = true;
 }
 
 function markLoaded() {
     itemsLoaded++;
-
     updateProgress();
 
+    if (!hasStartedLoading) return;
+
     if (itemsLoaded >= itemsToLoad) {
-        finishLoading();
+        if (finishTimeout) clearTimeout(finishTimeout);
+
+        finishTimeout = setTimeout(() => {
+            if (itemsLoaded >= itemsToLoad) {
+                finishLoading();
+            }
+        }, 100);
     }
 }
 
 function updateProgress() {
-    const progress = itemsLoaded / itemsToLoad;
+    if (itemsToLoad === 0) return;
+
+    const progress = Math.min(itemsLoaded / itemsToLoad, 1);
+    // console.log(progress + "%");
     progressFill.style.width = `${progress * 100}%`;
 }
 
@@ -29,15 +43,14 @@ function updateProgress() {
     // }, 8000);
 
 function finishLoading() {
-    progressFill.style.width = "100%";
-
+    // progressFill.style.width = "90%";
     setTimeout(() => {
-        document.getElementById("page-loader").classList.add("hidden");
+        // document.getElementById("page-loader").classList.add("hidden");
         // emit event
         loaderEvents.dispatchEvent(new Event("finished"));
         
     }, 300);
-    
+ 
 }
 
 export { loaderEvents, addLoadItem, markLoaded };

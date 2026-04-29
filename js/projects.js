@@ -165,7 +165,7 @@ async function createProjectCard(project, lang) {
         card.className = "card";
 
         if (project.video !== "") {
-            addLoadItem();
+            
 
             const wrapper = document.createElement("div");
             wrapper.className = "video-wrapper";
@@ -213,7 +213,7 @@ async function createProjectCard(project, lang) {
             let retried = false;
 
             setTimeout(() => {
-                if (media.readyState < 3 && !retried) {
+                if (media.readyState < 2 && !retried) {
                     retried = true;
 
                     console.log("Video stuck, reloading:", media.id);
@@ -249,7 +249,7 @@ async function createProjectCard(project, lang) {
 
             card.appendChild(wrapper);
         } else {
-            addLoadItem();
+            // addLoadItem();
             const img = document.createElement("img");
             img.onload = markLoaded;
             img.onerror = markLoaded;

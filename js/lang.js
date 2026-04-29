@@ -108,7 +108,7 @@ function t(path, lang) {
 function initLang()
 {
     if(!localStorage.getItem('lang')){
-        console.log("Language not found in localStorage. Setting it!");
+        // console.log("Language not found in localStorage. Setting it!");
         if(navigator.language.split('-')[0] === 'es')
         {
             localStorage.setItem('lang', 'es');

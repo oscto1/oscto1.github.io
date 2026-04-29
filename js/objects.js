@@ -13,7 +13,6 @@ const fontLoader = new FontLoader();
 
 async function loadModel(path, parent) {
     addLoadItem();
-
     try{
         const gltf = await loader.loadAsync(path);
         parent.add(gltf.scene); // Add loaded scene to your three.js scene

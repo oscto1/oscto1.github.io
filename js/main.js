@@ -1,13 +1,18 @@
-import { loaderEvents } from './loading.js';
+import { moveJoystick, joystickInput } from './ui.js';
 import { Timer, MathUtils, WebGLRenderer, Vector3 } from 'three';
 import Stats from 'three/addons/libs/stats.module.js';
 import { moveCar } from './controller.js';
 import { scene, camera,directionalLight, worldStart, worldSize, getWorldSize, setWorldSize, width, height, setWindowSize, frustumSize, worldDistanceToPixels } from './scene.js';
 import { forklift, fork } from './objects.js';
-import { moveJoystick, joystickInput } from './ui.js';
+import { loaderEvents } from './loading.js';
+
 
 loaderEvents.addEventListener("finished", () => {
-    console.log("loading finished");
+
+    const progressFill = document.querySelector(".progress-fill");
+    progressFill.style.width = "100%";
+    document.getElementById("page-loader").classList.add("hidden");
+
 });
 
 const main = document.querySelector('main');
@@ -33,8 +38,8 @@ const renderer = new WebGLRenderer({
 // renderer.setClearColor("#3e71b4");
 renderer.setClearColor(0x000000, 0); 
 
-console.log(window.innerWidth);
-console.log(window.innerHeight);
+// console.log(window.innerWidth);
+// console.log(window.innerHeight);
 
 renderer.setSize(window.innerWidth, window.innerHeight);
 // renderer.shadowMap.type = THREE.PCFShadowMap;

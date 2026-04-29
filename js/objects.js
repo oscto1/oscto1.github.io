@@ -1,9 +1,12 @@
 import { addLoadItem, markLoaded } from './loading.js';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
+import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
 import { height, scene, width } from "./scene.js";
-import * as THREE from 'three';
-import { FontLoader, TextGeometry } from 'three/examples/jsm/Addons.js';
-import { add } from 'three/examples/jsm/libs/tween.module.js';
+import { Shape, ExtrudeGeometry, Mesh, MeshStandardMaterial, PlaneGeometry, ShadowMaterial, Box3 } from 'three';
+
+// import { FontLoader, TextGeometry } from 'three/examples/jsm/Addons.js';
+// import { add } from 'three/examples/jsm/libs/tween.module.js';
 
 const loader = new GLTFLoader();
 const fontLoader = new FontLoader();
@@ -45,7 +48,7 @@ function centerTextOrigin(textMesh)
 
 function createRoundedBox(width, height, depth, radius)
 {
-    const shape = new THREE.Shape();
+    const shape = new Shape();
 
     const x = -width / 2;
     const y = -height / 2;
@@ -64,16 +67,16 @@ function createRoundedBox(width, height, depth, radius)
     shape.lineTo(x, y + radius);
     shape.quadraticCurveTo(x, y, x + radius, y);
 
-    const geometry = new THREE.ExtrudeGeometry(shape, {
+    const geometry = new ExtrudeGeometry(shape, {
         depth: depth,
         bevelEnabled: false
     });
 
-    const material = new THREE.MeshStandardMaterial({
+    const material = new MeshStandardMaterial({
         color: 0xF0C82B
     });
 
-    const mesh = new THREE.Mesh(geometry, material);
+    const mesh = new Mesh(geometry, material);
 
     mesh.rotation.x = -Math.PI / 2;
 
@@ -101,11 +104,11 @@ let Fname = fontLoader.load("fonts/dongle/Dongle_Bold.json", (font) => {
         // bevelSegments: 3
     });
 
-    const textMaterial = new THREE.MeshStandardMaterial({
+    const textMaterial = new MeshStandardMaterial({
         color: 0xffffff
     });
 
-    const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+    const textMesh = new Mesh(textGeometry, textMaterial);
     initTransform(textMesh);
     centerTextOrigin(textMesh);
     textMesh.position.set(namePlatform.position.x, 4, namePlatform.position.z);
@@ -133,11 +136,11 @@ let Lname = fontLoader.load("fonts/Finesse-Oblique/FinesseOblique_Regular.json",
         // bevelSegments: 3
     });
 
-    const textMaterial = new THREE.MeshStandardMaterial({
+    const textMaterial = new MeshStandardMaterial({
         color: 0xffffff
     });
 
-    const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+    const textMesh = new Mesh(textGeometry, textMaterial);
     initTransform(textMesh);
     centerTextOrigin(textMesh);
     textMesh.position.set(namePlatform.position.x, 0.1, 6);
@@ -175,12 +178,12 @@ forklift.traverse((child) => {
 });
 //floor
 const floorSize = 1024;
-const floorGeometry = new THREE.PlaneGeometry(floorSize, floorSize);
-const floorMaterial = new THREE.ShadowMaterial({
+const floorGeometry = new PlaneGeometry(floorSize, floorSize);
+const floorMaterial = new ShadowMaterial({
   opacity: 0.3
 });
 // floorMaterial.transparent = true;
-const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+const floor = new Mesh(floorGeometry, floorMaterial);
 
 initTransform(floor);
 floor.receiveShadow = true;
@@ -191,8 +194,8 @@ scene.add(floor);
 
 //BOUNDING BOXES
 
-const forkliftBox = new THREE.Box3().setFromObject(baseCar);
-const platformBox = new THREE.Box3().setFromObject(namePlatform);
+const forkliftBox = new Box3().setFromObject(baseCar);
+const platformBox = new Box3().setFromObject(namePlatform);
 
 
 function initTransform(object)

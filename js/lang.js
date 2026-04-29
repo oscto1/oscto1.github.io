@@ -1,4 +1,4 @@
-import { translateProjects } from "./projects";
+import { translateProjects } from "./projects.js";
 
 const allowedLanguages = ["es", "en"];
 

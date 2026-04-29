@@ -1,4 +1,4 @@
-import { addLoadItem,markLoaded } from "./loading";
+import { addLoadItem,markLoaded } from "./loading.js";
 
 const projectCategories = {
     1: {

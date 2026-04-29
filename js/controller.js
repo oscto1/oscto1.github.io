@@ -1,4 +1,4 @@
-import { Vector3, MathUtils } from "three"; // THREE from 'three';
+import { Vector3, MathUtils } from "three";
 import { forklift, fork, baseCar, forkliftBox, platformBox } from "./objects.js";
 import { worldSize } from "./scene.js";
 
@@ -56,17 +56,17 @@ export function moveCar(keys, joystickInput, deltaTime)
 
     const oldPosition = forklift.position.clone();
 
-    // --- FULL MOVEMENT ---
+    // FULL MOVEMENT
     forklift.position.add(moveStep);
     updateForkliftBox();
 
     if (forkliftBox.intersectsBox(platformBox)) {
 
-        // push OUT of collision (this is enough)
+        // push OUT of collision
         resolveCollision(forkliftBox, platformBox, forklift.position);
         updateForkliftBox();
 
-        // damp velocity (so it doesn't jitter)
+        // damp velocity
         velocity *= 0.3;
 
     } else {

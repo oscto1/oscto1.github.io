@@ -24,20 +24,20 @@ function updateProgress() {
     progressFill.style.width = `${progress * 100}%`;
 }
 
-
-setTimeout(() => {
-    finishLoading();
-}, 8000);
+    // setTimeout(() => {
+    //     finishLoading();
+    // }, 8000);
 
 function finishLoading() {
     progressFill.style.width = "100%";
 
     setTimeout(() => {
         document.getElementById("page-loader").classList.add("hidden");
-
         // emit event
         loaderEvents.dispatchEvent(new Event("finished"));
+        
     }, 300);
+    
 }
 
 export { loaderEvents, addLoadItem, markLoaded };

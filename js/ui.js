@@ -1,6 +1,6 @@
-import { worldSize, getVisibleWorldHeight, isTouchDevice, width } from "./scene";
-import { sortedProjects, createProjectCard } from "./projects";
-import { getLang, translate, t } from "./lang";
+import { worldSize, getVisibleWorldHeight, isTouchDevice, width } from "./scene.js";
+import { sortedProjects, createProjectCard } from "./projects.js";
+import { getLang, translate, t } from "./lang.js";
 import { createJoystick } from "./myJoystick";
 
 

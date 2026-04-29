@@ -1,5 +1,5 @@
-import * as THREE from 'three';
-const scene = new THREE.Scene();
+import { MathUtils, AmbientLight, DirectionalLight, Scene, OrthographicCamera } from "three";
+const scene = new Scene();
 
 let width = window.innerWidth;
 let height = window.innerHeight;
@@ -31,10 +31,10 @@ const referenceHeight = 951;
 const heightRatio = height / referenceHeight;
 
 // only partially apply scaling (20–30%)
-const frustumSize = 70 * THREE.MathUtils.lerp(1, heightRatio, 0.3);
+const frustumSize = 70 * MathUtils.lerp(1, heightRatio, 0.3);
 
 const aspect = width / height;
-const camera = new THREE.OrthographicCamera(
+const camera = new OrthographicCamera(
     -frustumSize * aspect / 2, // left
     frustumSize  * aspect / 2,  // right
     frustumSize / 2,           // top
@@ -51,15 +51,13 @@ scene.add(camera);
 
 
 //light ------------------------------------------------------------------------
-const ambientLight = new THREE.AmbientLight(0xffffff, 1);
+const ambientLight = new AmbientLight(0xffffff, 1);
 scene.add(ambientLight);
 
-const directionalLight = new THREE.DirectionalLight(0xffffff, 3);
+const directionalLight = new DirectionalLight(0xffffff, 3);
 
 directionalLight.position.set(camera.position.x - 15, camera.position.y - 5, camera.position.z - 46);
 
-// const helper = new THREE.CameraHelper(directionalLight.shadow.camera);
-// scene.add(helper);
 
 directionalLight.castShadow = true;
 // console.log(worldSize.);
@@ -93,7 +91,7 @@ function getWorldSize(pageHeight)
     // Portrait screens get larger world height
     const aspect = window.innerHeight / window.innerWidth;
 
-    const aspectFactor = THREE.MathUtils.clamp(aspect, 1.3, 1.4);
+    const aspectFactor = MathUtils.clamp(aspect, 1.3, 1.4);
 
     return {
         width: visibleWidth,

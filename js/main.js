@@ -1,17 +1,14 @@
 import { loaderEvents } from './loading.js';
-import * as THREE from 'three';
+import { Timer, MathUtils, WebGLRenderer, Vector3 } from 'three';
 import Stats from 'three/addons/libs/stats.module.js';
 import { moveCar } from './controller.js';
 import { scene, camera,directionalLight, worldStart, worldSize, getWorldSize, setWorldSize, width, height, setWindowSize, frustumSize, worldDistanceToPixels } from './scene.js';
 import { forklift, fork } from './objects.js';
 import { moveJoystick, joystickInput } from './ui.js';
-import { directPointLight } from 'three/tsl';
-
 
 loaderEvents.addEventListener("finished", () => {
     console.log("loading finished");
 });
-
 
 const main = document.querySelector('main');
 const scrollHeight = main.scrollHeight - main.clientHeight;
@@ -22,13 +19,13 @@ const manualScrollHeight = drivableHeight * 1.15;
 // const pageHeight = main.scrollHeight - main.clientHeight;
 setWorldSize(getWorldSize(scrollHeight));
 
-const timer = new THREE.Timer();
+const timer = new Timer();
 timer.connect(document);
 timer.reset();
 // Rendering ------------------------------------------------------------------------
 const canvas = document.querySelector('#bg');
 
-const renderer = new THREE.WebGLRenderer({
+const renderer = new WebGLRenderer({
     canvas: canvas,
     antialias: true,
     // alpha: true
@@ -61,7 +58,6 @@ function onWindowResize() {
     const widthChanged = Math.abs(newWidth - lastWidth) > 1;
     const heightChangedALot = Math.abs(newHeight - lastHeight) > 100;
 
-    // ❌ Ignore ONLY small height changes (URL bar)
     if (!widthChanged && !heightChangedALot) return;
 
     lastHeight = newHeight;
@@ -74,8 +70,8 @@ function onWindowResize() {
     const referenceHeight = 951;
     const heightRatio = height / referenceHeight;
 
-    const clampedRatio = THREE.MathUtils.clamp(heightRatio, 0.7, 1.1);
-    const frustumSize = 70 * THREE.MathUtils.lerp(1, clampedRatio, 0.3);
+    const clampedRatio = MathUtils.clamp(heightRatio, 0.7, 1.1);
+    const frustumSize = 70 * MathUtils.lerp(1, clampedRatio, 0.3);
 
     // Camera
     camera.left = -frustumSize * aspect / 2;
@@ -246,7 +242,7 @@ links.forEach((link) => {
 //glow ---------------------------------------------------------------------------------------------
 const glow = document.getElementById("forklift-glow");
 
-const tempVector = new THREE.Vector3();
+const tempVector = new Vector3();
 // let blobTimer = 0;
 let blobX = 0;
 let blobY = 0;
@@ -338,7 +334,7 @@ const rendering = function()
     {
         const desiredCameraZ = forklift.position.z + cameraOffset;
 
-        const clampedCameraZ = THREE.MathUtils.clamp(
+        const clampedCameraZ = MathUtils.clamp(
             desiredCameraZ,
             minCameraZ,
             maxCameraZ
@@ -347,7 +343,7 @@ const rendering = function()
         const smoothFactor = 1 - Math.exp(-10 * deltaTime);
         camera.position.z += (clampedCameraZ - camera.position.z) * smoothFactor;
 
-        const normalizedProgress = THREE.MathUtils.clamp(
+        const normalizedProgress = MathUtils.clamp(
             ((forklift.position.z + cameraOffset) - minCameraZ) / cameraRange,
             0,
             1
@@ -366,7 +362,7 @@ const rendering = function()
             ? main.scrollTop / currentScrollHeight
             : 0;
 
-        targetCameraZ = THREE.MathUtils.lerp(
+        targetCameraZ = MathUtils.lerp(
             minCameraZ,
             maxCameraZ,
             scrollPercent

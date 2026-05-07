@@ -6,6 +6,6 @@ export default defineConfig(({ mode }) => ({
     : "/",
 
   build: {
-    target: 'chrome80'
+    target: 'chrome80',
   }
 }));

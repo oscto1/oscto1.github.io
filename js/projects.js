@@ -71,7 +71,7 @@ const projects = [
             "en": "Try now",
             "es": "Probar ahora"
         },
-        link: "Arcade/arcade.html",
+        link: "project/Arcade/arcade.html",
         img: "img/arcade/arcade1.png",
         video: "img/arcade/arcade1.mp4",
     },

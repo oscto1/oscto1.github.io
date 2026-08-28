@@ -77,24 +77,24 @@ const projects = [
     },
     {
         id: 4,
-        year: "2025",
+        year: "2026",
         title: {
-            "en": "Sort Algorithms",
-            "es": "Algoritmos de ordenamiento"
+            "en": "PrinterMNG",
+            "es": "PrinterMNG"
         },
         category: 2,
         description: {
-            "en": "Interactive visualization tool demonstrating sorting algorithms (Merge, Quick, Heap, Bubble), including step-by-step execution.",
-            "es": "Herramienta de visualización interactiva que muestra algoritmos de ordenamiento (Merge, Quick, Heap, Bubble), con ejecución paso a paso.",
+            "en": ".Net full-stack web application for managing a printer rental business. Manage clients, printers, contracts, and monthly printer readings, with contract-based pricing and usage calculations.",
+            "es": "Aplicación full-stack en .NET para la gestión de un negocio de alquiler de impresoras. Permite gestionar clientes, impresoras, contratos y lecturas mensuales de las impresoras, con precios basados en los contratos y cálculos de consumo.",
         },
-        tech: ["Javascript"],
+        tech: ["C# / .NET", "Next.js", "PostgreSQL"],
         cta: {
-            "en": "Try now",
-            "es": "Probar ahora"
+            "en": "Try demo",
+            "es": "Probar demo"
         },
-        link: "project/sort_visualizer/index.html",
-        img: "img/sort_visualizer/1.png",
-        video: "img/sort_visualizer/1.mp4",
+        link: "https://printer-mng.vercel.app/",
+        img: "img/printerMNG/printerMNG.png",
+        video: "",
     },
     {
         id: 5,
@@ -116,6 +116,27 @@ const projects = [
         link: "https://messa-69e78.firebaseapp.com/",
         img: "img/messaging/Messa2-min.png",
         video: "",
+    },
+    {
+        id: 6,
+        year: "2025",
+        title: {
+            "en": "Sort Algorithms",
+            "es": "Algoritmos de ordenamiento"
+        },
+        category: 2,
+        description: {
+            "en": "Interactive visualization tool demonstrating sorting algorithms (Merge, Quick, Heap, Bubble), including step-by-step execution.",
+            "es": "Herramienta de visualización interactiva que muestra algoritmos de ordenamiento (Merge, Quick, Heap, Bubble), con ejecución paso a paso.",
+        },
+        tech: ["Javascript"],
+        cta: {
+            "en": "Try now",
+            "es": "Probar ahora"
+        },
+        link: "project/sort_visualizer/index.html",
+        img: "img/sort_visualizer/1.png",
+        video: "img/sort_visualizer/1.mp4",
     }
 ]
 
